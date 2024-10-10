@@ -5,7 +5,7 @@ export const Landing = () => {
       <div className="flex w-[23.4375rem] flex-col items-center justify-center gap-[8.5rem] bg-white pb-0">
         <div className="flex flex-col items-center gap-4">
           <img src="/logo.svg" alt="logo" />
-          <p className="text-Text-Normal text-center text-[1.33456rem] font-[860] not-italic leading-normal">
+          <p className="text-center text-[1.33456rem] font-[860] not-italic leading-normal text-Text-Normal">
             TimeTable
           </p>
           {/** TODO add font */}
@@ -13,11 +13,11 @@ export const Landing = () => {
         <div className="flex w-[23.4375rem] flex-col items-center gap-10">
           <div className="flex flex-col items-start gap-2.5 px-8 py-0">
             <div className="flex w-[19.4375rem] flex-col items-center gap-3.5">
-              <button className="bg-SNUTT-orange text-Text-onBG flex items-center justify-center gap-[0.3125rem] self-stretch rounded-md p-3">
+              <button className="flex items-center justify-center gap-[0.3125rem] self-stretch rounded-md bg-SNUTT-orange p-3 text-Text-onBG">
                 로그인
               </button>
               <button className="flex flex-col items-start justify-center gap-2.5">
-                <div className="text-Text-Plain flex items-center gap-1">
+                <div className="flex items-center gap-1 text-Text-Plain">
                   회원가입
                 </div>
               </button>
@@ -26,12 +26,12 @@ export const Landing = () => {
           <div className="flex flex-col items-start gap-2.5 px-3 py-0">
             <div className="flex w-[21.9375rem] flex-col items-center gap-6">
               <div className="flex items-center justify-center gap-2.5 self-stretch">
-                <hr className="bg-Text-Assistive h-[0.04688rem] w-[6.25rem]" />
-                <p className="text-Text-Assistive text-sm">
+                <hr className="h-[0.04688rem] w-[6.25rem] bg-Text-Assistive" />
+                <p className="text-sm text-Text-Assistive">
                   SNS 계정으로 계속하기
                 </p>{' '}
                 {/* TODO add font style */}
-                <hr className="bg-Text-Assistive h-[0.04688rem] w-[6.25rem]" />
+                <hr className="h-[0.04688rem] w-[6.25rem] bg-Text-Assistive" />
               </div>
               <div className="flex items-center gap-3">
                 {/* TODO fix style */}
