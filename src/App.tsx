@@ -1,7 +1,7 @@
 import './reset.css';
 import './tailwind.css';
 
-import { useState } from 'react';
+import { type FormEvent, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import { Landing } from './pages/Landing';
@@ -9,19 +9,15 @@ import { Login, postLogin } from './pages/Login';
 import { Profile } from './pages/Profile';
 
 export const App = () => {
-  const [token, setToken] = useState<string | null>();
+  const [token, setToken] = useState<string | null>(null);
 
   const navigate = useNavigate();
 
-  const goToLogin = () => {
-    navigate('/login');
-  };
-
-  const loginHandler = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const id = formData.get('id');
-    const pw = formData.get('pw');
+  const loginHandler = (event: FormEvent) => {
+    event.preventDefault();
+    const formData = new FormData(event.target as HTMLFormElement);
+    const id = formData.get('id') as string;
+    const pw = formData.get('pw') as string;
     console.info(id, pw);
 
     postLogin({ id: id, pw: pw })
@@ -30,7 +26,7 @@ export const App = () => {
         setToken(data.token);
         navigate('/');
       })
-      .catch((error) => {
+      .catch((error: unknown) => {
         console.error(error);
       });
   };
@@ -44,7 +40,11 @@ export const App = () => {
             token !== null ? (
               <Profile token={token} />
             ) : (
-              <Landing handler={goToLogin} />
+              <Landing
+                router={() => {
+                  navigate('/login');
+                }}
+              />
             )
           }
         />

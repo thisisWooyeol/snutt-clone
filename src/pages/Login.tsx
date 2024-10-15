@@ -7,13 +7,13 @@ export const Login = ({ handler }: LoginProps) => {
     <form onSubmit={handler}>
       <div>
         <h1>아이디</h1>
-        <input type="text" name="id" />
+        <input type="text" name="id" required />
       </div>
       <div>
         <h1>비밀번호</h1>
-        <input type="password" name="pw" />
+        <input type="password" name="pw" required />
       </div>
-      <button type="submit">로그인</button>
+      <button>로그인</button>
     </form>
   );
 };
