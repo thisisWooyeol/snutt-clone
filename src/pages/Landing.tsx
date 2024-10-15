@@ -8,7 +8,7 @@ export const Landing = ({ router }: LoginRouter) => {
       <div /> {/* For layout */}
       <div className="flex w-[23.4375rem] flex-col items-center justify-center gap-[8.5rem] bg-white pb-0">
         <div className="flex flex-col items-center gap-4">
-          <img src="/logo.svg" alt="logo" />
+          <img src="/snutt-logo.svg" alt="logo" />
           <p className="text-center text-[1.33456rem] font-[860] not-italic leading-normal text-Text-Normal">
             TimeTable
           </p>
@@ -43,21 +43,25 @@ export const Landing = ({ router }: LoginRouter) => {
               <div className="flex items-center gap-3">
                 {/* TODO fix style */}
                 <img
-                  src="/kakaotalk.png"
+                  src="/landing/kakaotalk.png"
                   alt="kakaotalk"
                   className="h-11 w-11 rounded-[1.35rem]"
                 />{' '}
                 {/* TODO fix bg shift */}
                 <div className="flex w-11 items-center justify-center gap-1 p-[0.6rem]">
                   <img
-                    src="/google.png"
+                    src="/landing/google.png"
                     alt="google"
                     className="h-[1.55rem] w-[1.55rem] shrink-0 rounded-[1.525rem]"
                   />
                 </div>
-                <img src="/facebook.png" alt="facebook" className="h-11 w-11" />
                 <img
-                  src="/apple.png"
+                  src="/landing/facebook.png"
+                  alt="facebook"
+                  className="h-11 w-11"
+                />
+                <img
+                  src="/landing/apple.png"
                   alt="apple"
                   className="h-11 w-11 rounded-[1.775rem]"
                 />
