@@ -8,7 +8,7 @@ export const Landing = ({ router }: LoginRouter) => {
       <div /> {/* For layout */}
       <div className="flex w-[23.4375rem] flex-col items-center justify-center gap-[8.5rem] bg-white pb-0">
         <div className="flex flex-col items-center gap-4">
-          <img src="/logo.svg" alt="logo" />
+          <img src="/snutt-logo.svg" alt="logo" />
           <p className="text-center text-[1.33456rem] font-[860] not-italic leading-normal text-Text-Normal">
             TimeTable
           </p>
