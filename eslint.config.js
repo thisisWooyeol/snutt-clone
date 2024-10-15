@@ -6,5 +6,6 @@ export default [
   },
   ...react({
     tsconfigRootDir: import.meta.dirname,
+    envAllowedFiles: ['src/main.tsx'],
   }),
 ];

@@ -26,7 +26,7 @@ export const postLogin = async ({
   pw,
 }: LoginRequest): Promise<LoginResponse> => {
   const response = await fetch(
-    'https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/auth/login_local',
+    `${import.meta.env.VITE_API_BASE_URL}/v1/auth/login_local`,
     {
       method: 'POST',
       headers: {

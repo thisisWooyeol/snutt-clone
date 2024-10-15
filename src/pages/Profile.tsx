@@ -15,7 +15,7 @@ type UserInfo = {
 
 const getUser = async (token: string): Promise<UserInfo> => {
   const response = await fetch(
-    'https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/users/me',
+    `${import.meta.env.VITE_API_BASE_URL}/v1/users/me`,
     {
       headers: {
         'x-access-token': token,
@@ -28,7 +28,6 @@ const getUser = async (token: string): Promise<UserInfo> => {
 };
 
 import { useState } from 'react';
-
 export const Profile = ({ token }: ProfileProps) => {
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
 
