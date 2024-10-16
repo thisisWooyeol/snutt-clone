@@ -1,16 +1,19 @@
 import { type FormEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-type LoginProps = {
-  onLogin: (id: string, pw: string) => void;
-};
+import { ServiceContext } from '../context/ServiceContext';
+import { useGuardContext } from '../hooks/useGuardContext';
 
-export const Login = ({ onLogin }: LoginProps) => {
+export const Login = () => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
+  const { authService } = useGuardContext(ServiceContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    onLogin(id, pw);
+    authService.signInWithPassword({ id, pw });
+    navigate('/', { replace: true });
   };
 
   return (
