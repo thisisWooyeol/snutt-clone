@@ -1,5 +1,5 @@
-export type LoginResponse = { user_id: string; token: string; message: string };
-export type LoginRequest = { id: string; pw: string };
+type LoginResponse = { user_id: string; token: string; message: string };
+type LoginRequest = { id: string; pw: string };
 
 export const signInWithPassword = async ({
   id,

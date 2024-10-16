@@ -1,8 +1,8 @@
-type LoginRouter = {
-  router: () => void;
+type LandingProps = {
+  onLoginClick: () => void;
+  onSignUpClick?: () => void;
 };
-
-export const Landing = ({ router }: LoginRouter) => {
+export const Landing = ({ onLoginClick, onSignUpClick }: LandingProps) => {
   return (
     <div className="flex w-[23.4375rem] flex-col items-start gap-[14.5rem] bg-white pb-[5.62519rem]">
       <div /> {/* For layout */}
@@ -19,11 +19,14 @@ export const Landing = ({ router }: LoginRouter) => {
             <div className="flex w-[19.4375rem] flex-col items-center gap-3.5">
               <button
                 className="flex items-center justify-center gap-[0.3125rem] self-stretch rounded-md bg-SNUTT-orange p-3 text-Text-onBG"
-                onClick={router}
+                onClick={onLoginClick}
               >
                 로그인
               </button>
-              <button className="flex flex-col items-start justify-center gap-2.5">
+              <button
+                className="flex flex-col items-start justify-center gap-2.5"
+                onClick={onSignUpClick}
+              >
                 <div className="flex items-center gap-1 text-Text-Plain">
                   회원가입
                 </div>
