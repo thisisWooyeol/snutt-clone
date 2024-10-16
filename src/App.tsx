@@ -1,34 +1,43 @@
 import './reset.css';
 import './tailwind.css';
 
-import { type FormEvent, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import { Landing } from './pages/Landing';
-import { Login, postLogin } from './pages/Login';
+import { Login } from './pages/Login';
 import { Profile } from './pages/Profile';
+import { signInWithPassword } from './services/authService';
 
 export const App = () => {
-  const [token, setToken] = useState<string | null>(null);
+  const [token, setToken] = useState<string | null>(() =>
+    localStorage.getItem('token'),
+  );
 
   const navigate = useNavigate();
 
-  const loginHandler = (event: FormEvent) => {
-    event.preventDefault();
-    const formData = new FormData(event.target as HTMLFormElement);
-    const id = formData.get('id') as string;
-    const pw = formData.get('pw') as string;
-    console.info(id, pw);
+  useEffect(() => {
+    if (token !== null) {
+      localStorage.setItem('token', token);
+    } else {
+      localStorage.removeItem('token');
+    }
+  }, [token]);
 
-    postLogin({ id: id, pw: pw })
+  const handleLogin = (id: string, pw: string) => {
+    signInWithPassword({ id, pw })
       .then((data) => {
-        console.info(data);
         setToken(data.token);
         navigate('/');
       })
       .catch((error: unknown) => {
         console.error(error);
       });
+  };
+
+  const handleLogout = () => {
+    setToken(null);
+    navigate('/');
   };
 
   return (
@@ -38,25 +47,19 @@ export const App = () => {
           path="/"
           element={
             token !== null ? (
-              <Profile token={token} />
+              <Profile token={token} onLogout={handleLogout} />
             ) : (
               <Landing
-                router={() => {
+                onLoginClick={() => {
                   navigate('/login');
                 }}
               />
             )
           }
         />
-        <Route
-          path="/login"
-          element={
-            <>
-              <Login handler={loginHandler} />
-              <div>token: {token}</div>
-            </>
-          }
-        ></Route>
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        {/* Add more routes as needed */}
+        <Route path="*" element={<div>Not found</div>} />
       </Routes>
     </>
   );
