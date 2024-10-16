@@ -6,8 +6,8 @@ type LayoutProps = {
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="flex items-center justify-center">
-      <div className="flex w-[23.4375rem] flex-col items-center gap-[14.5rem] bg-white pb-[5.62519rem]">
+    <div className="flex h-svh w-screen items-center justify-center">
+      <div className="flex h-[49rem] w-[23.4375rem] flex-col justify-center rounded-lg border-2 border-zinc-200 bg-white">
         {children}
       </div>
     </div>

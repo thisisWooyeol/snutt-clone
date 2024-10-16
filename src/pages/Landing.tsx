@@ -5,9 +5,9 @@ type LandingProps = {
 
 export const Landing = ({ onLoginClick, onSignUpClick }: LandingProps) => {
   return (
-    <>
+    <div className="flex flex-col items-center gap-[14.5rem] pb-[5.62519rem]">
       <div /> {/* For layout */}
-      <div className="flex w-[23.4375rem] flex-col items-center justify-center gap-[8.5rem] bg-white pb-0">
+      <div className="flex w-[23rem] flex-col items-center justify-center gap-[8.5rem] bg-white pb-0">
         <div className="flex flex-col items-center gap-4">
           <img src="/snutt-logo.svg" alt="logo" />
           <p className="text-center text-[1.33456rem] font-[860] not-italic leading-normal text-Text-Normal">
@@ -15,7 +15,7 @@ export const Landing = ({ onLoginClick, onSignUpClick }: LandingProps) => {
           </p>
           {/** TODO add font */}
         </div>
-        <div className="flex w-[23.4375rem] flex-col items-center gap-10">
+        <div className="flex w-[23rem] flex-col items-center gap-10">
           <div className="flex flex-col items-start gap-2.5 px-8 py-0">
             <div className="flex w-[19.4375rem] flex-col items-center gap-3.5">
               <button
@@ -27,6 +27,7 @@ export const Landing = ({ onLoginClick, onSignUpClick }: LandingProps) => {
               <button
                 className="flex flex-col items-start justify-center gap-2.5"
                 onClick={onSignUpClick}
+                style={{ cursor: 'not-allowed' }}
               >
                 <div className="flex items-center gap-1 text-Text-Plain">
                   회원가입
@@ -37,23 +38,31 @@ export const Landing = ({ onLoginClick, onSignUpClick }: LandingProps) => {
           <div className="flex flex-col items-start gap-2.5 px-3 py-0">
             <div className="flex w-[21.9375rem] flex-col items-center gap-6">
               <div className="flex items-center justify-center gap-2.5 self-stretch">
-                <div className="h-[0.04688rem] w-[6.25rem] bg-Text-Assistive" />
-                <p className="non-italic text-sm font-medium text-Text-Assistive">
+                <hr className="h-[0.04688rem] w-[6rem] bg-Text-Assistive" />
+                <p className="non-italic items-center text-sm font-medium text-Text-Assistive">
                   SNS 계정으로 계속하기
                 </p>
                 {/* TODO add font style */}
-                <div className="h-[0.04688rem] w-[6.25rem] bg-Text-Assistive" />
+                <hr className="h-[0.04688rem] w-[6rem] bg-Text-Assistive" />
               </div>
               <div className="flex items-center gap-3">
-                <img src="/landing/kakaotalk.png" alt="kakaotalk" />
-                <img src="/landing/google.png" alt="google" />
-                <img src="/landing/facebook.png" alt="facebook" />
-                <img src="/landing/apple.png" alt="apple" />
+                <button style={{ cursor: 'not-allowed' }}>
+                  <img src="/landing/kakaotalk.png" alt="kakaotalk" />
+                </button>
+                <button style={{ cursor: 'not-allowed' }}>
+                  <img src="/landing/google.png" alt="google" />
+                </button>
+                <button style={{ cursor: 'not-allowed' }}>
+                  <img src="/landing/facebook.png" alt="facebook" />
+                </button>
+                <button style={{ cursor: 'not-allowed' }}>
+                  <img src="/landing/apple.png" alt="apple" />
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
