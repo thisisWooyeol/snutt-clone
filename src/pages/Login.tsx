@@ -1,41 +1,51 @@
+import { type FormEvent, useState } from 'react';
+
 type LoginProps = {
-  handler: (e: React.FormEvent<HTMLFormElement>) => void;
+  onLogin: (id: string, pw: string) => void;
 };
 
-export const Login = ({ handler }: LoginProps) => {
+export const Login = ({ onLogin }: LoginProps) => {
+  const [id, setId] = useState('');
+  const [pw, setPw] = useState('');
+
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    onLogin(id, pw);
+  };
+
   return (
-    <form onSubmit={handler}>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <div>
-        <h1>아이디</h1>
-        <input type="text" name="id" required />
+        <label htmlFor="id">아이디</label>
+        <input
+          type="text"
+          name="id"
+          id="id"
+          value={id}
+          onChange={(e) => {
+            setId(e.target.value);
+          }}
+          required
+          className="w-full border p-2"
+        />
       </div>
       <div>
-        <h1>비밀번호</h1>
-        <input type="password" name="pw" required />
+        <label htmlFor="pw">비밀번호</label>
+        <input
+          type="password"
+          name="pw"
+          id="pw"
+          value={pw}
+          onChange={(e) => {
+            setPw(e.target.value);
+          }}
+          required
+          className="w-full border p-2"
+        />
       </div>
-      <button>로그인</button>
+      <button type="submit" className="rounded bg-blue-500 py-2 text-white">
+        로그인
+      </button>
     </form>
   );
-};
-
-type LoginResponse = { user_id: string; token: string; message: string };
-type LoginRequest = { id: string; pw: string };
-
-export const postLogin = async ({
-  id,
-  pw,
-}: LoginRequest): Promise<LoginResponse> => {
-  const response = await fetch(
-    `${import.meta.env.VITE_API_BASE_URL}/v1/auth/login_local`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ id: id, password: pw }),
-    },
-  );
-  const data = (await response.json()) as LoginResponse;
-  console.info(data);
-  return data;
 };

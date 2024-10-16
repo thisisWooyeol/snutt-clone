@@ -1,47 +1,40 @@
+import { useEffect, useState } from 'react';
+
+import { getUser, type UserInfo } from '../services/authService';
+
 type ProfileProps = {
   token: string;
+  onLogout: () => void;
 };
 
-type UserInfo = {
-  id: string;
-  isAdmin: boolean;
-  regDate: string;
-  notificationCheckedAt: string;
-  email: string;
-  localId: string;
-  fbName: string;
-  nickname: { nickname: string; tag: string };
-};
-
-const getUser = async (token: string): Promise<UserInfo> => {
-  const response = await fetch(
-    `${import.meta.env.VITE_API_BASE_URL}/v1/users/me`,
-    {
-      headers: {
-        'x-access-token': token,
-      },
-    },
-  );
-  const data = (await response.json()) as UserInfo;
-  console.info(data);
-  return data;
-};
-
-import { useState } from 'react';
-export const Profile = ({ token }: ProfileProps) => {
+export const Profile = ({ token, onLogout }: ProfileProps) => {
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
 
-  getUser(token)
-    .then((data) => {
-      setUserInfo(data);
-    })
-    .catch((error: unknown) => {
-      console.error(error);
-    });
+  useEffect(() => {
+    getUser(token)
+      .then((data) => {
+        setUserInfo(data);
+      })
+      .catch((error: unknown) => {
+        console.error(error);
+      });
+  }, [token]);
 
   if (userInfo === null) {
     return <div>Loading...</div>;
   }
 
-  return <div>{userInfo.nickname.nickname}</div>;
+  return (
+    <div className="p-4">
+      <h1>Welcome, {userInfo.nickname.nickname}!</h1>
+      <p>Email: {userInfo.email}</p>
+      {/* Display other user info as needed */}
+      <button
+        onClick={onLogout}
+        className="mt-4 rounded bg-red-500 py-2 text-white"
+      >
+        Logout
+      </button>
+    </div>
+  );
 };
