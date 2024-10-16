@@ -37,38 +37,18 @@ export const Landing = ({ onLoginClick, onSignUpClick }: LandingProps) => {
           <div className="flex flex-col items-start gap-2.5 px-3 py-0">
             <div className="flex w-[21.9375rem] flex-col items-center gap-6">
               <div className="flex items-center justify-center gap-2.5 self-stretch">
-                <hr className="h-[0.04688rem] w-[6.25rem] bg-Text-Assistive" />
-                <p className="text-sm text-Text-Assistive">
+                <div className="h-[0.04688rem] w-[6.25rem] bg-Text-Assistive" />
+                <p className="non-italic text-sm font-medium text-Text-Assistive">
                   SNS 계정으로 계속하기
-                </p>{' '}
+                </p>
                 {/* TODO add font style */}
-                <hr className="h-[0.04688rem] w-[6.25rem] bg-Text-Assistive" />
+                <div className="h-[0.04688rem] w-[6.25rem] bg-Text-Assistive" />
               </div>
               <div className="flex items-center gap-3">
-                {/* TODO fix style */}
-                <img
-                  src="/landing/kakaotalk.png"
-                  alt="kakaotalk"
-                  className="h-11 w-11 rounded-[1.35rem]"
-                />{' '}
-                {/* TODO fix bg shift */}
-                <div className="flex w-11 items-center justify-center gap-1 p-[0.6rem]">
-                  <img
-                    src="/landing/google.png"
-                    alt="google"
-                    className="h-[1.55rem] w-[1.55rem] shrink-0 rounded-[1.525rem]"
-                  />
-                </div>
-                <img
-                  src="/landing/facebook.png"
-                  alt="facebook"
-                  className="h-11 w-11"
-                />
-                <img
-                  src="/landing/apple.png"
-                  alt="apple"
-                  className="h-11 w-11 rounded-[1.775rem]"
-                />
+                <img src="/landing/kakaotalk.png" alt="kakaotalk" />
+                <img src="/landing/google.png" alt="google" />
+                <img src="/landing/facebook.png" alt="facebook" />
+                <img src="/landing/apple.png" alt="apple" />
               </div>
             </div>
           </div>
