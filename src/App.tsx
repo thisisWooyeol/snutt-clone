@@ -1,66 +1,45 @@
 import './reset.css';
 import './tailwind.css';
 
-import { useEffect, useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
+import { getAuthApi } from './api/authApi';
+import { EnvContext } from './context/EnvContext';
+import { ServiceContext } from './context/ServiceContext';
+import { useGuardContext } from './hooks/useGuardContext';
+import { useRoutes } from './hooks/useRoutes';
 import { Landing } from './pages/Landing';
 import { Login } from './pages/Login';
 import { Profile } from './pages/Profile';
-import { signInWithPassword } from './services/authService';
+import { getAuthService } from './services/authService';
 
 export const App = () => {
-  const [token, setToken] = useState<string | null>(() =>
-    localStorage.getItem('token'),
-  );
+  const { API_BASE_URL } = useGuardContext(EnvContext);
+  const { toLogin } = useRoutes();
 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (token !== null) {
-      localStorage.setItem('token', token);
-    } else {
-      localStorage.removeItem('token');
-    }
-  }, [token]);
-
-  const handleLogin = (id: string, pw: string) => {
-    signInWithPassword({ id, pw })
-      .then((data) => {
-        setToken(data.token);
-        navigate('/');
-      })
-      .catch((error: unknown) => {
-        console.error(error);
-      });
-  };
-
-  const handleLogout = () => {
-    setToken(null);
-    navigate('/');
-  };
+  const authApi = getAuthApi(API_BASE_URL);
+  const authService = getAuthService({ authApi });
 
   return (
     <>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            token !== null ? (
-              <Profile token={token} onLogout={handleLogout} />
-            ) : (
-              <Landing
-                onLoginClick={() => {
-                  navigate('/login');
-                }}
-              />
-            )
-          }
-        />
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
-        {/* Add more routes as needed */}
-        <Route path="*" element={<div>Not found</div>} />
-      </Routes>
+      <ServiceContext.Provider value={{ authService }}>
+        <Routes>
+          {/** FIXME: crazy routes happen */}
+          <Route
+            path="/"
+            element={
+              localStorage.getItem('token') === null ? (
+                <Landing onLoginClick={toLogin} />
+              ) : (
+                <Profile />
+              )
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          {/* Add more routes as needed */}
+          <Route path="*" element={<div>Not found</div>} />
+        </Routes>
+      </ServiceContext.Provider>
     </>
   );
 };
