@@ -16,10 +16,10 @@ export const getAuthService = ({
       .signInWithPassword(req)
       .then((response) => {
         localStorage.setItem('token', response.token);
-        //TODO: navigate
       })
       .catch((error: unknown) => {
         console.error(error);
+        //FIXME: return error
       });
   },
   getUser: async (token: string): Promise<UserInfo> => {

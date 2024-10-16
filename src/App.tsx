@@ -3,15 +3,15 @@ import './tailwind.css';
 
 import { Route, Routes } from 'react-router-dom';
 
-import { getAuthApi } from './api/authApi';
-import { EnvContext } from './context/EnvContext';
-import { ServiceContext } from './context/ServiceContext';
-import { useGuardContext } from './hooks/useGuardContext';
-import { useRoutes } from './hooks/useRoutes';
-import { Landing } from './pages/Landing';
-import { Login } from './pages/Login';
-import { Profile } from './pages/Profile';
-import { getAuthService } from './services/authService';
+import { getAuthApi } from '@/api/authApi';
+import { EnvContext } from '@/context/EnvContext';
+import { ServiceContext } from '@/context/ServiceContext';
+import { useGuardContext } from '@/hooks/useGuardContext';
+import { useRoutes } from '@/hooks/useRoutes';
+import { Landing } from '@/pages/Landing';
+import { Login } from '@/pages/Login';
+import { Profile } from '@/pages/Profile';
+import { getAuthService } from '@/services/authService';
 
 export const App = () => {
   const { API_BASE_URL } = useGuardContext(EnvContext);

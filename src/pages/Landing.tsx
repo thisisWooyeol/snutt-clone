@@ -2,6 +2,7 @@ type LandingProps = {
   onLoginClick: () => void;
   onSignUpClick?: () => void;
 };
+
 export const Landing = ({ onLoginClick, onSignUpClick }: LandingProps) => {
   return (
     <div className="flex w-[23.4375rem] flex-col items-start gap-[14.5rem] bg-white pb-[5.62519rem]">

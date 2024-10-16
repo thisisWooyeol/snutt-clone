@@ -1,10 +1,9 @@
 import { useState } from 'react';
 
+import { type UserInfo } from '@/api/authApi';
+import { ServiceContext } from '@/context/ServiceContext';
 import { useGuardContext } from '@/hooks/useGuardContext';
 import { useRoutes } from '@/hooks/useRoutes';
-
-import { type UserInfo } from '../api/authApi';
-import { ServiceContext } from '../context/ServiceContext';
 
 export const Profile = () => {
   const [userInfo, setUserInfo] = useState<UserInfo>();

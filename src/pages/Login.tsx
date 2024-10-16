@@ -1,8 +1,8 @@
 import { type FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ServiceContext } from '../context/ServiceContext';
-import { useGuardContext } from '../hooks/useGuardContext';
+import { ServiceContext } from '@/context/ServiceContext';
+import { useGuardContext } from '@/hooks/useGuardContext';
 
 export const Login = () => {
   const [id, setId] = useState('');
