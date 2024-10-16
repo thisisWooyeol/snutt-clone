@@ -58,7 +58,7 @@ export const Login = () => {
         </div>
         <button
           type="submit"
-          className="rounded bg-SNUTT-orange py-3 text-white"
+          className="rounded bg-SNUTT-orange py-3 text-white hover:opacity-80"
         >
           로그인하기
         </button>
