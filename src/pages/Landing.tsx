@@ -5,7 +5,7 @@ type LandingProps = {
 
 export const Landing = ({ onLoginClick, onSignUpClick }: LandingProps) => {
   return (
-    <div className="flex w-[23.4375rem] flex-col items-start gap-[14.5rem] bg-white pb-[5.62519rem]">
+    <>
       <div /> {/* For layout */}
       <div className="flex w-[23.4375rem] flex-col items-center justify-center gap-[8.5rem] bg-white pb-0">
         <div className="flex flex-col items-center gap-4">
@@ -74,6 +74,6 @@ export const Landing = ({ onLoginClick, onSignUpClick }: LandingProps) => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };

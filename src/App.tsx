@@ -4,6 +4,7 @@ import './tailwind.css';
 import { Route, Routes } from 'react-router-dom';
 
 import { getAuthApi } from '@/api/authApi';
+import { Layout } from '@/components/layout';
 import { EnvContext } from '@/context/EnvContext';
 import { ServiceContext } from '@/context/ServiceContext';
 import { useGuardContext } from '@/hooks/useGuardContext';
@@ -23,22 +24,24 @@ export const App = () => {
   return (
     <>
       <ServiceContext.Provider value={{ authService }}>
-        <Routes>
-          {/** FIXME: crazy routes happen */}
-          <Route
-            path="/"
-            element={
-              localStorage.getItem('token') === null ? (
-                <Landing onLoginClick={toLogin} />
-              ) : (
-                <Profile />
-              )
-            }
-          />
-          <Route path="/login" element={<Login />} />
-          {/* Add more routes as needed */}
-          <Route path="*" element={<div>Not found</div>} />
-        </Routes>
+        <Layout>
+          <Routes>
+            {/** FIXME: crazy routes happen */}
+            <Route
+              path="/"
+              element={
+                localStorage.getItem('token') === null ? (
+                  <Landing onLoginClick={toLogin} />
+                ) : (
+                  <Profile />
+                )
+              }
+            />
+            <Route path="/login" element={<Login />} />
+            {/* Add more routes as needed */}
+            <Route path="*" element={<div>Not found</div>} />
+          </Routes>
+        </Layout>
       </ServiceContext.Provider>
     </>
   );
