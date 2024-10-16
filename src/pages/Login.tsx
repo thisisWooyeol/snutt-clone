@@ -1,19 +1,26 @@
 import { type FormEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { ServiceContext } from '@/context/ServiceContext';
 import { useGuardContext } from '@/hooks/useGuardContext';
+import { useRoutes } from '@/hooks/useRoutes';
 
 export const Login = () => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const { authService } = useGuardContext(ServiceContext);
-  const navigate = useNavigate();
+  const { toRoot } = useRoutes();
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    authService.signInWithPassword({ id, pw });
-    navigate('/', { replace: true });
+    authService
+      .signInWithPassword({ id, pw })
+      .then((data) => {
+        localStorage.setItem('token', data.token);
+        toRoot();
+      })
+      .catch((error: unknown) => {
+        console.error(error);
+      });
   };
 
   return (
