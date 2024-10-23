@@ -1,6 +1,5 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
 
 import { App } from '@/App';
 import { EnvContext } from '@/context/EnvContext';
@@ -16,9 +15,7 @@ const ENV = {
 createRoot(root).render(
   <StrictMode>
     <EnvContext.Provider value={ENV}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <App />
     </EnvContext.Provider>
   </StrictMode>,
 );

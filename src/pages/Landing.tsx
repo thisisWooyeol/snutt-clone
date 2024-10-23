@@ -1,9 +1,8 @@
-type LandingProps = {
-  onLoginClick: () => void;
-  onSignUpClick?: () => void;
-};
+import { useRoutes } from '@/hooks/useRoutes';
 
-export const Landing = ({ onLoginClick, onSignUpClick }: LandingProps) => {
+export const Landing = () => {
+  const { toLogin } = useRoutes();
+
   return (
     <div className="flex flex-col items-center gap-[14.5rem] pb-[5.62519rem]">
       <div /> {/* For layout */}
@@ -19,14 +18,14 @@ export const Landing = ({ onLoginClick, onSignUpClick }: LandingProps) => {
           <div className="flex flex-col items-start gap-2.5 px-8 py-0">
             <div className="flex w-[19.4375rem] flex-col items-center gap-3.5">
               <button
-                className="flex items-center justify-center gap-[0.3125rem] self-stretch rounded-md bg-SNUTT-orange p-3 text-Text-onBG"
-                onClick={onLoginClick}
+                className="flex items-center justify-center gap-[0.3125rem] self-stretch rounded-md bg-SNUTT-orange p-3 text-Text-onBG hover:opacity-80"
+                onClick={toLogin}
               >
                 로그인
               </button>
               <button
                 className="flex flex-col items-start justify-center gap-2.5"
-                onClick={onSignUpClick}
+                onClick={() => {}} // TODO: add signup
                 style={{ cursor: 'not-allowed' }}
               >
                 <div className="flex items-center gap-1 text-Text-Plain">

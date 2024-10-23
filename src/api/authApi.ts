@@ -1,20 +1,8 @@
-export type LoginRequest = { id: string; pw: string };
-export type LoginResponse = { user_id: string; token: string; message: string };
-
-export type UserInfo = {
-  id: string;
-  isAdmin: boolean;
-  regDate: string;
-  notificationCheckedAt: string;
-  email: string;
-  localId: string;
-  fbName: string;
-  nickname: { nickname: string; tag: string };
-};
+import type { GetUserResponse, LoginRequest, LoginResponse } from '@/api/types';
 
 export type AuthApi = {
   signInWithPassword: (req: LoginRequest) => Promise<LoginResponse>;
-  getUser: (token: string) => Promise<UserInfo>;
+  getUser: (token: string) => Promise<GetUserResponse>;
 };
 
 export const getAuthApi = (API_BASE_URL: string): AuthApi => ({
@@ -34,7 +22,7 @@ export const getAuthApi = (API_BASE_URL: string): AuthApi => ({
     console.debug('Login success');
     return response.json() as Promise<LoginResponse>;
   },
-  getUser: async (token: string): Promise<UserInfo> => {
+  getUser: async (token: string): Promise<GetUserResponse> => {
     const response = await fetch(`${API_BASE_URL}/v1/users/me`, {
       headers: {
         'x-access-token': token,
@@ -46,6 +34,6 @@ export const getAuthApi = (API_BASE_URL: string): AuthApi => ({
     }
 
     console.debug('Fetched user info');
-    return response.json() as Promise<UserInfo>;
+    return response.json() as Promise<GetUserResponse>;
   },
 });
