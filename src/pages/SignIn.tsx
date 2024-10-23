@@ -5,9 +5,9 @@ import { ServiceContext } from '@/context/ServiceContext';
 import { useGuardContext } from '@/hooks/useGuardContext';
 import { useRoutes } from '@/hooks/useRoutes';
 
-export const Login = () => {
+export const SignIn = () => {
   const { authService } = useGuardContext(ServiceContext);
-  const { toRoot, toLogin } = useRoutes();
+  const { toRoot, toSignIn } = useRoutes();
 
   const signInAction = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -30,7 +30,7 @@ export const Login = () => {
       .catch((error: unknown) => {
         console.error(error);
         alert('알 수 없는 오류가 발생했습니다.');
-        toLogin();
+        toSignIn();
       });
   };
 

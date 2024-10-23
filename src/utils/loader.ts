@@ -1,15 +1,15 @@
 import { type LoaderFunctionArgs, redirect } from 'react-router-dom';
 
-import { type AuthService } from '@/services/authService';
+import { type UserService } from '@/services/userService';
 
 export const getAuthLoader =
-  (authService: AuthService) =>
+  (userService: UserService) =>
   async ({ request }: LoaderFunctionArgs) => {
     const token = localStorage.getItem('token');
 
     if (token !== null) {
       try {
-        const { data, error } = await authService.getUser(token);
+        const { data, error } = await userService.getUser({ token });
         if (data !== null) {
           return data; // 로그인 성공 시 유저 정보 반환
         }

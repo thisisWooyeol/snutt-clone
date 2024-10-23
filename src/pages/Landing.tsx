@@ -1,7 +1,7 @@
 import { useRoutes } from '@/hooks/useRoutes';
 
 export const Landing = () => {
-  const { toLogin } = useRoutes();
+  const { toSignIn } = useRoutes();
 
   return (
     <div className="flex flex-col items-center gap-[14.5rem] pb-[5.62519rem]">
@@ -19,7 +19,7 @@ export const Landing = () => {
             <div className="flex w-[19.4375rem] flex-col items-center gap-3.5">
               <button
                 className="flex items-center justify-center gap-[0.3125rem] self-stretch rounded-md bg-SNUTT-orange p-3 text-Text-onBG hover:opacity-80"
-                onClick={toLogin}
+                onClick={toSignIn}
               >
                 로그인
               </button>

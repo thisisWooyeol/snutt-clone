@@ -1,6 +1,12 @@
-export type LoginRequest = { id: string; pw: string };
-export type LoginResponse = { user_id: string; token: string; message: string };
+// Types for AuthApi
+export type SignInRequest = { id: string; pw: string };
+export type SignInResponse = {
+  user_id: string;
+  token: string;
+  message: string;
+};
 
+// Types for UserApi
 export type UserInfo = {
   id: string;
   isAdmin: boolean;
@@ -12,4 +18,5 @@ export type UserInfo = {
   nickname: { nickname: string; tag: string };
 };
 
+export type GetUserRequest = { token: string };
 export type GetUserResponse = UserInfo;
