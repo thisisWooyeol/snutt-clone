@@ -8,11 +8,12 @@ import {
 } from 'react-router-dom';
 
 import { getAuthApi } from '@/api/authApi';
-import { Layout } from '@/components/layout';
 import { EnvContext } from '@/context/EnvContext';
 import { ServiceContext } from '@/context/ServiceContext';
 import { useGuardContext } from '@/hooks/useGuardContext';
+import { RootLayout } from '@/layout';
 import { Login } from '@/pages/Login';
+import { MyPage } from '@/pages/MyPage';
 import { RootPage } from '@/pages/RootPage';
 import { getAuthService } from '@/services/authService';
 import { getAuthLoader } from '@/utils/loader';
@@ -36,6 +37,11 @@ export const App = () => {
       element: <Login />,
     },
     {
+      path: '/mypage',
+      element: <MyPage />,
+      loader: authLoader,
+    },
+    {
       path: '*',
       element: <div>Not found</div>,
     },
@@ -44,9 +50,9 @@ export const App = () => {
   return (
     <>
       <ServiceContext.Provider value={{ authService }}>
-        <Layout>
+        <RootLayout>
           <RouterProvider router={createBrowserRouter(routes)} />
-        </Layout>
+        </RootLayout>
       </ServiceContext.Provider>
     </>
   );
