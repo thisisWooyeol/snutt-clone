@@ -1,5 +1,5 @@
-import type { AuthApi } from '@/api/authApi';
-import type { LoginRequest } from '@/api/types';
+import { type AuthApi } from '@/api/authApi';
+import { type LoginRequest } from '@/api/types';
 import type {
   GetUserResult,
   LoginResult,

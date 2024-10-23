@@ -1,4 +1,4 @@
-import type { FormEvent } from 'react';
+import { type FormEvent } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { ServiceContext } from '@/context/ServiceContext';

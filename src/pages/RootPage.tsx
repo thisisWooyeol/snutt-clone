@@ -1,6 +1,6 @@
 import { useLoaderData } from 'react-router-dom';
 
-import type { UserInfo } from '@/api/types';
+import { type UserInfo } from '@/api/types';
 import { Landing } from '@/pages/Landing';
 import { TimeTable } from '@/pages/TimeTable';
 
