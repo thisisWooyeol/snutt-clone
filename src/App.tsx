@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 
 import { getAuthApi } from '@/api/authApi';
+import { getUserApi } from '@/api/userApi';
 import { EnvContext } from '@/context/EnvContext';
 import { ServiceContext } from '@/context/ServiceContext';
 import { useGuardContext } from '@/hooks/useGuardContext';
@@ -16,6 +17,7 @@ import { Login } from '@/pages/Login';
 import { MyPage } from '@/pages/MyPage';
 import { RootPage } from '@/pages/RootPage';
 import { getAuthService } from '@/services/authService';
+import { getUserService } from '@/services/userService';
 import { getAuthLoader } from '@/utils/loader';
 
 // FIXME: login, signin 네이밍 통일
@@ -23,8 +25,11 @@ export const App = () => {
   const { API_BASE_URL } = useGuardContext(EnvContext);
 
   const authApi = getAuthApi(API_BASE_URL);
+  const userApi = getUserApi(API_BASE_URL);
   const authService = getAuthService(authApi);
-  const authLoader = getAuthLoader(authService);
+  const userService = getUserService(userApi);
+
+  const authLoader = getAuthLoader(userService);
 
   const routes: RouteObject[] = [
     {
@@ -49,7 +54,7 @@ export const App = () => {
 
   return (
     <>
-      <ServiceContext.Provider value={{ authService }}>
+      <ServiceContext.Provider value={{ authService, userService }}>
         <RootLayout>
           <RouterProvider router={createBrowserRouter(routes)} />
         </RootLayout>
