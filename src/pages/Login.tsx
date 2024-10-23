@@ -20,7 +20,7 @@ export const Login = () => {
       .then(({ data, error }) => {
         if (error != null) {
           console.error(error);
-          alert('로그인에 실패했습니다.');
+          alert('아이디 또는 비밀번호가 일치하지 않습니다.');
           return;
         }
 
@@ -29,7 +29,7 @@ export const Login = () => {
       })
       .catch((error: unknown) => {
         console.error(error);
-        alert('로그인에 실패했습니다.');
+        alert('알 수 없는 오류가 발생했습니다.');
         toLogin();
       });
   };
