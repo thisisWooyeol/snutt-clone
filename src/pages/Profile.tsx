@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { type UserInfo } from '@/api/authApi';
+import { type UserInfo } from '@/api/types';
 import { ServiceContext } from '@/context/ServiceContext';
 import { useGuardContext } from '@/hooks/useGuardContext';
 import { useRoutes } from '@/hooks/useRoutes';

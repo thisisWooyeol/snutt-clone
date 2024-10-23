@@ -1,9 +1,5 @@
-import type {
-  AuthApi,
-  LoginRequest,
-  LoginResponse,
-  UserInfo,
-} from '@/api/authApi';
+import type { AuthApi } from '@/api/authApi';
+import type { LoginRequest, LoginResponse, UserInfo } from '@/api/types';
 
 export type AuthService = {
   signInWithPassword: (req: LoginRequest) => Promise<LoginResponse>;

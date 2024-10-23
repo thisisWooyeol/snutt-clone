@@ -1,16 +1,4 @@
-export type LoginRequest = { id: string; pw: string };
-export type LoginResponse = { user_id: string; token: string; message: string };
-
-export type UserInfo = {
-  id: string;
-  isAdmin: boolean;
-  regDate: string;
-  notificationCheckedAt: string;
-  email: string;
-  localId: string;
-  fbName: string;
-  nickname: { nickname: string; tag: string };
-};
+import type { LoginRequest, LoginResponse, UserInfo } from '@/api/types';
 
 export type AuthApi = {
   signInWithPassword: (req: LoginRequest) => Promise<LoginResponse>;
