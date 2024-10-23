@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 
 import { getAuthApi } from '@/api/authApi';
-import { Layout } from '@/components/Layout';
+import { Layout } from '@/components/layout';
 import { EnvContext } from '@/context/EnvContext';
 import { ServiceContext } from '@/context/ServiceContext';
 import { useGuardContext } from '@/hooks/useGuardContext';
