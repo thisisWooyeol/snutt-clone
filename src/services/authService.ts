@@ -16,9 +16,10 @@ export const getAuthService = (authApi: AuthApi): AuthService => ({
   signInWithPassword: async (req: LoginRequest): Promise<LoginResult> => {
     try {
       const data = await authApi.signInWithPassword(req);
-      return { data };
+      return { data, error: null };
     } catch (error: unknown) {
       return {
+        data: null,
         error: error instanceof Error ? error.message : 'Unknown error',
       };
     }
@@ -26,9 +27,10 @@ export const getAuthService = (authApi: AuthApi): AuthService => ({
   getUser: async (token: string): Promise<GetUserResult> => {
     try {
       const data = await authApi.getUser(token);
-      return { data };
+      return { data, error: null };
     } catch (error: unknown) {
       return {
+        data: null,
         error: error instanceof Error ? error.message : 'Unknown error',
       };
     }
@@ -36,7 +38,7 @@ export const getAuthService = (authApi: AuthApi): AuthService => ({
   signOut: (): SignOutResult => {
     try {
       localStorage.removeItem('token');
-      return {};
+      return { error: null };
     } catch (error: unknown) {
       return {
         error: error instanceof Error ? error.message : 'Unknown error',
