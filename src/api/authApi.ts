@@ -1,8 +1,8 @@
-import type { LoginRequest, LoginResponse, UserInfo } from '@/api/types';
+import type { GetUserResponse, LoginRequest, LoginResponse } from '@/api/types';
 
 export type AuthApi = {
   signInWithPassword: (req: LoginRequest) => Promise<LoginResponse>;
-  getUser: (token: string) => Promise<UserInfo>;
+  getUser: (token: string) => Promise<GetUserResponse>;
 };
 
 export const getAuthApi = (API_BASE_URL: string): AuthApi => ({
@@ -22,7 +22,7 @@ export const getAuthApi = (API_BASE_URL: string): AuthApi => ({
     console.debug('Login success');
     return response.json() as Promise<LoginResponse>;
   },
-  getUser: async (token: string): Promise<UserInfo> => {
+  getUser: async (token: string): Promise<GetUserResponse> => {
     const response = await fetch(`${API_BASE_URL}/v1/users/me`, {
       headers: {
         'x-access-token': token,
@@ -34,6 +34,6 @@ export const getAuthApi = (API_BASE_URL: string): AuthApi => ({
     }
 
     console.debug('Fetched user info');
-    return response.json() as Promise<UserInfo>;
+    return response.json() as Promise<GetUserResponse>;
   },
 });

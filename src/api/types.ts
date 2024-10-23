@@ -11,3 +11,5 @@ export type UserInfo = {
   fbName: string;
   nickname: { nickname: string; tag: string };
 };
+
+export type GetUserResponse = UserInfo;
