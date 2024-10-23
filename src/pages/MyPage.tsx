@@ -10,6 +10,9 @@ export const MyPage = () => {
   const { toRoot } = useRoutes();
   const userInfo = useLoaderData() as UserInfo;
 
+  // TODO: SNUTT 클론코딩 (2-3) - 마이페이지 구현하기
+  // 실제 snutt 앱과 유사한 디자인으로 마이페이지 만들기
+
   return (
     <div className="p-8 text-center">
       <h1>Welcome, {userInfo.nickname.nickname}!</h1>
