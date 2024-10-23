@@ -11,11 +11,7 @@ export type AuthService = {
   signOut: () => void;
 };
 
-export const getAuthService = ({
-  authApi,
-}: {
-  authApi: AuthApi;
-}): AuthService => ({
+export const getAuthService = (authApi: AuthApi): AuthService => ({
   signInWithPassword: (req: LoginRequest): Promise<LoginResponse> => {
     return authApi.signInWithPassword(req);
   },
