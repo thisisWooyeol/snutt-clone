@@ -3571,6 +3571,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-spinners@npm:0.14.1":
+  version: 0.14.1
+  resolution: "react-spinners@npm:0.14.1"
+  peerDependencies:
+    react: ^16.0.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: 10c0/5b3c101f789716331a0b6afad156293fb9aa05620e65494753001afcdb611788057f379b5979b34d570d527fa978003293266b59db505bf2d243ebab899ceeda
+  languageName: node
+  linkType: hard
+
 "react@npm:18.3.1":
   version: 18.3.1
   resolution: "react@npm:18.3.1"
@@ -3830,6 +3840,7 @@ __metadata:
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     react-router-dom: "npm:6.27.0"
+    react-spinners: "npm:0.14.1"
     tailwind-merge: "npm:2.5.4"
     tailwindcss: "npm:3.4.13"
     tailwindcss-animate: "npm:1.0.7"

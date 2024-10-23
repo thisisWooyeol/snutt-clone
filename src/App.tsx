@@ -37,13 +37,13 @@ export const App = () => {
       loader: authLoader,
     },
     {
-      path: '/sign-in',
-      element: <SignIn />,
-    },
-    {
       path: '/mypage',
       element: <MyPage />,
       loader: authLoader,
+    },
+    {
+      path: '/sign-in',
+      element: <SignIn />,
     },
     {
       path: '*',
