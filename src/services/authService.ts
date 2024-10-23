@@ -1,14 +1,14 @@
 import { type AuthApi } from '@/api/authApi';
-import { type LoginRequest } from '@/api/types';
-import type { LoginResult, SignOutResult } from '@/services/types';
+import { type SignInRequest } from '@/api/types';
+import type { SignInResult, SignOutResult } from '@/services/types';
 
 export type AuthService = {
-  signInWithPassword: (req: LoginRequest) => Promise<LoginResult>;
+  signInWithPassword: (req: SignInRequest) => Promise<SignInResult>;
   signOut: () => SignOutResult;
 };
 
 export const getAuthService = (authApi: AuthApi): AuthService => ({
-  signInWithPassword: async (req: LoginRequest): Promise<LoginResult> => {
+  signInWithPassword: async (req: SignInRequest): Promise<SignInResult> => {
     try {
       const data = await authApi.signInWithPassword(req);
       return { data, error: null };

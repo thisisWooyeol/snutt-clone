@@ -1,8 +1,8 @@
-import type { GetUserResponse, LoginResponse } from '@/api/types';
+import type { GetUserResponse, SignInResponse } from '@/api/types';
 
 // Types for AuthService
-export type LoginResult =
-  | { data: LoginResponse; error: null }
+export type SignInResult =
+  | { data: SignInResponse; error: null }
   | { data: null; error: string };
 
 export type SignOutResult = { error: null } | { error: string };

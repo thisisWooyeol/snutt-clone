@@ -7,12 +7,12 @@ export const useRoutes = () => {
     navigate('/');
   };
 
-  const toLogin = () => {
-    navigate('/login');
+  const toSignIn = () => {
+    navigate('/sign-in');
   };
 
   return {
     toRoot,
-    toLogin,
+    toSignIn,
   };
 };

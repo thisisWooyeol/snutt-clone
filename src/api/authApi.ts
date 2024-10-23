@@ -1,11 +1,11 @@
-import type { LoginRequest, LoginResponse } from '@/api/types';
+import type { SignInRequest, SignInResponse } from '@/api/types';
 
 export type AuthApi = {
-  signInWithPassword: (req: LoginRequest) => Promise<LoginResponse>;
+  signInWithPassword: (req: SignInRequest) => Promise<SignInResponse>;
 };
 
 export const getAuthApi = (API_BASE_URL: string): AuthApi => ({
-  signInWithPassword: async (req: LoginRequest): Promise<LoginResponse> => {
+  signInWithPassword: async (req: SignInRequest): Promise<SignInResponse> => {
     const response = await fetch(`${API_BASE_URL}/v1/auth/login_local`, {
       method: 'POST',
       headers: {
@@ -15,10 +15,10 @@ export const getAuthApi = (API_BASE_URL: string): AuthApi => ({
     });
 
     if (!response.ok) {
-      throw new Error('Login failed');
+      throw new Error('SignIn failed');
     }
 
-    console.debug('Login success');
-    return response.json() as Promise<LoginResponse>;
+    console.debug('SignIn success');
+    return response.json() as Promise<SignInResponse>;
   },
 });
