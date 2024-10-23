@@ -1,9 +1,11 @@
-import { useAuth } from '@/hooks/useAuth';
+import { useLoaderData } from 'react-router-dom';
+
+import type { UserInfo } from '@/api/types';
 import { Landing } from '@/pages/Landing';
 import { Profile } from '@/pages/Profile';
 
 export const RootPage = () => {
-  const { isAuthenticated } = useAuth();
+  const userInfo = useLoaderData() as UserInfo | null;
 
-  return isAuthenticated ? <Profile /> : <Landing />;
+  return userInfo !== null ? <Profile /> : <Landing />;
 };
