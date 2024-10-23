@@ -1,5 +1,6 @@
 import { type FormEvent, useState } from 'react';
 
+import { Button } from '@/components/ui/button';
 import { ServiceContext } from '@/context/ServiceContext';
 import { useGuardContext } from '@/hooks/useGuardContext';
 import { useRoutes } from '@/hooks/useRoutes';
@@ -29,9 +30,7 @@ export const Login = () => {
         <div>
           <label htmlFor="id">아이디</label>
           <input
-            type="text"
             name="id"
-            id="id"
             value={id}
             onChange={(e) => {
               setId(e.target.value);
@@ -46,7 +45,6 @@ export const Login = () => {
           <input
             type="password"
             name="pw"
-            id="pw"
             value={pw}
             onChange={(e) => {
               setPw(e.target.value);
@@ -56,12 +54,12 @@ export const Login = () => {
             className="w-full border p-2"
           />
         </div>
-        <button
+        <Button
           type="submit"
           className="rounded bg-SNUTT-orange py-3 text-white hover:opacity-80"
         >
           로그인하기
-        </button>
+        </Button>
       </form>
     </div>
   );
