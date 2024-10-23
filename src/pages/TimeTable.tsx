@@ -1,6 +1,7 @@
 import { useLoaderData } from 'react-router-dom';
 
 import { type UserInfo } from '@/api/types';
+import { NavigationBar } from '@/components/navigation-bar';
 import { ServiceContext } from '@/context/ServiceContext';
 import { useGuardContext } from '@/hooks/useGuardContext';
 import { useRoutes } from '@/hooks/useRoutes';
@@ -26,18 +27,23 @@ export const TimeTable = () => {
   // SNUTT 앱이 그렇듯, 상단 바에 뒤로가기 버튼이 있어야 하며 뒤로가기 시 이전 페이지로 이동할 수 있어야 합니다.
 
   return (
-    <div className="p-8 text-center">
-      <h1>Welcome, {userInfo.nickname.nickname}!</h1>
-      {/* Display other user info as needed */}
-      <button
-        onClick={() => {
-          authService.signOut();
-          toRoot();
-        }}
-        className="mt-4 rounded bg-red-500 p-2 text-white"
-      >
-        Logout
-      </button>
-    </div>
+    <>
+      <div className="p-8 text-center">
+        <h1>Welcome, {userInfo.nickname.nickname}!</h1>
+        {/* Display other user info as needed */}
+        <button
+          onClick={() => {
+            authService.signOut();
+            toRoot();
+          }}
+          className="mt-4 rounded bg-red-500 p-2 text-white"
+        >
+          Logout
+        </button>
+      </div>
+      <div className="flex justify-center border-y border-gray-200">
+        <NavigationBar />
+      </div>
+    </>
   );
 };
