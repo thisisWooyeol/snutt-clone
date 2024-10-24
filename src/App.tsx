@@ -14,6 +14,8 @@ import { ServiceContext } from '@/context/ServiceContext';
 import { useGuardContext } from '@/hooks/useGuardContext';
 import { RootLayout } from '@/layout';
 import { MyPage } from '@/pages/MyPage';
+import { MyPageAccount } from '@/pages/MyPageAccount';
+import { MyPageChangeNickname } from '@/pages/MyPageChangeNickname';
 import { RootPage } from '@/pages/RootPage';
 import { SignIn } from '@/pages/SignIn';
 import { getAuthService } from '@/services/authService';
@@ -39,6 +41,16 @@ export const App = () => {
     {
       path: '/mypage',
       element: <MyPage />,
+      loader: authLoader,
+    },
+    {
+      path: '/mypage/account',
+      element: <MyPageAccount />,
+      loader: authLoader,
+    },
+    {
+      path: '/mypage/account/change-nickname',
+      element: <MyPageChangeNickname />,
       loader: authLoader,
     },
     {
