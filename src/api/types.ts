@@ -20,3 +20,9 @@ export type UserInfo = {
 
 export type GetUserRequest = { token: string };
 export type GetUserResponse = UserInfo;
+
+export type ChangeNicknameRequest = {
+  token: string;
+  nickname: string;
+};
+export type ChangeNicknameResponse = UserInfo;
