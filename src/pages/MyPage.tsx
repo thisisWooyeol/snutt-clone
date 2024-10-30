@@ -1,6 +1,9 @@
+import { ChevronRight, Ellipsis, User } from 'lucide-react';
 import { useLoaderData } from 'react-router-dom';
 
 import { type UserInfo } from '@/api/types';
+import { Avatar } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 import { ServiceContext } from '@/context/ServiceContext';
 import { useGuardContext } from '@/hooks/useGuardContext';
 import { useRoutes } from '@/hooks/useRoutes';
@@ -21,18 +24,143 @@ export const MyPage = () => {
   // SNUTT 앱이 그렇듯, 상단 바에 뒤로가기 버튼이 있어야 하며 뒤로가기 시 이전 페이지로 이동할 수 있어야 합니다.
 
   return (
-    <div className="p-8 text-center">
-      <h1>Welcome, {userInfo.nickname.nickname}!</h1>
-      {/* Display other user info as needed */}
-      <button
-        onClick={() => {
-          authService.signOut();
-          toRoot();
-        }}
-        className="mt-4 rounded bg-red-500 p-2 text-white"
-      >
-        Logout
-      </button>
+    <div className="flex h-full flex-col bg-zinc-50">
+      <header className="w-full bg-white">
+        <div className="flex items-center gap-2 p-4">
+          <Ellipsis className="h-5 w-5" />
+          <div className="font-medium">더보기</div>
+        </div>
+      </header>
+
+      <main className="flex-1">
+        <div className="my-2 bg-white">
+          <div className="flex items-center justify-between p-4">
+            <div className="flex items-center gap-3">
+              <Avatar className="h-8 w-8">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted">
+                  <User className="h-4 w-4" />
+                </div>
+              </Avatar>
+              <div className="flex items-center gap-2">
+                <span>내 계정</span>
+                <span className="rounded bg-emerald-100 px-1.5 py-0.5 text-xs text-emerald-700">
+                  NEW!
+                </span>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <span>
+                {`${userInfo.nickname.nickname}#${userInfo.nickname.tag}`}
+              </span>
+              <ChevronRight className="h-4 w-4" />
+            </div>
+          </div>
+        </div>
+
+        <div className="my-2 bg-white">
+          <Button
+            variant="ghost"
+            className="h-12 w-full justify-between rounded-none font-normal"
+          >
+            <span>화면 모드</span>
+            <div className="flex items-center gap-2">
+              <span className="text-muted-foreground">자동</span>
+              <ChevronRight className="h-4 w-4" />
+            </div>
+          </Button>
+
+          <Button
+            variant="ghost"
+            className="h-12 w-full justify-between rounded-none font-normal"
+          >
+            <span>시간표 설정</span>
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+
+          <Button
+            variant="ghost"
+            className="h-12 w-full justify-between rounded-none font-normal"
+          >
+            <span>시간표 테마</span>
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
+
+        <div className="my-2 bg-white">
+          <Button
+            variant="ghost"
+            className="h-12 w-full justify-between rounded-none font-normal"
+          >
+            <span>빈자리 알림</span>
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
+
+        <div className="my-2 bg-white">
+          <div className="flex items-center justify-between p-4">
+            <span>버전 정보</span>
+            <span className="text-muted-foreground">3.8.2</span>
+          </div>
+
+          <Button
+            variant="ghost"
+            className="h-12 w-full justify-between rounded-none font-normal"
+          >
+            <span>개발자 정보</span>
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
+
+        <div className="my-2 bg-white">
+          <Button
+            variant="ghost"
+            className="h-12 w-full justify-between rounded-none font-normal"
+          >
+            <span>개발자 괴롭히기</span>
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
+
+        <div className="my-2 bg-white">
+          <Button
+            variant="ghost"
+            className="h-12 w-full justify-between rounded-none font-normal"
+          >
+            <span>오픈소스 라이선스</span>
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+
+          <Button
+            variant="ghost"
+            className="h-12 w-full justify-between rounded-none font-normal"
+          >
+            <span>서비스 약관</span>
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+
+          <Button
+            variant="ghost"
+            className="h-12 w-full justify-between rounded-none font-normal"
+          >
+            <span>개인정보처리방침</span>
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
+
+        <div className="my-2 bg-white">
+          <Button
+            variant="ghost"
+            className="h-12 w-full justify-between rounded-none font-normal text-red-500"
+            onClick={() => {
+              authService.signOut();
+              toRoot();
+            }}
+          >
+            <span>로그아웃</span>
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
+      </main>
     </div>
   );
 };
