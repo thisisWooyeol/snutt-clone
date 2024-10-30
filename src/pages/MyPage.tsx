@@ -28,33 +28,36 @@ export const MyPage = () => {
       <header className="w-full bg-white">
         <div className="flex items-center gap-2 p-4">
           <Ellipsis className="h-5 w-5" />
-          <div className="font-medium">더보기</div>
+          <div className="font-bold">더보기</div>
         </div>
       </header>
 
       <main className="flex-1">
         <div className="my-2 bg-white">
-          <div className="flex items-center justify-between p-4">
-            <div className="flex items-center gap-3">
-              <Avatar className="h-8 w-8">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted">
-                  <User className="h-4 w-4" />
+          <Button
+            variant="ghost"
+            className="h-12 w-full justify-between rounded-none font-normal"
+          >
+            <div className="flex items-center gap-2">
+              <Avatar className="h-6 w-6">
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-muted">
+                  <User />
                 </div>
               </Avatar>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
                 <span>내 계정</span>
                 <span className="rounded bg-emerald-100 px-1.5 py-0.5 text-xs text-emerald-700">
                   NEW!
                 </span>
               </div>
             </div>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2 text-muted-foreground">
               <span>
                 {`${userInfo.nickname.nickname}#${userInfo.nickname.tag}`}
               </span>
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight />
             </div>
-          </div>
+          </Button>
         </div>
 
         <div className="my-2 bg-white">
@@ -63,9 +66,9 @@ export const MyPage = () => {
             className="h-12 w-full justify-between rounded-none font-normal"
           >
             <span>화면 모드</span>
-            <div className="flex items-center gap-2">
-              <span className="text-muted-foreground">자동</span>
-              <ChevronRight className="h-4 w-4" />
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <span className="">자동</span>
+              <ChevronRight />
             </div>
           </Button>
 
@@ -74,7 +77,9 @@ export const MyPage = () => {
             className="h-12 w-full justify-between rounded-none font-normal"
           >
             <span>시간표 설정</span>
-            <ChevronRight className="h-4 w-4" />
+            <div className="text-muted-foreground">
+              <ChevronRight />
+            </div>
           </Button>
 
           <Button
@@ -82,7 +87,9 @@ export const MyPage = () => {
             className="h-12 w-full justify-between rounded-none font-normal"
           >
             <span>시간표 테마</span>
-            <ChevronRight className="h-4 w-4" />
+            <div className="text-muted-foreground">
+              <ChevronRight />
+            </div>
           </Button>
         </div>
 
@@ -92,14 +99,16 @@ export const MyPage = () => {
             className="h-12 w-full justify-between rounded-none font-normal"
           >
             <span>빈자리 알림</span>
-            <ChevronRight className="h-4 w-4" />
+            <div className="text-muted-foreground">
+              <ChevronRight />
+            </div>
           </Button>
         </div>
 
         <div className="my-2 bg-white">
-          <div className="flex items-center justify-between p-4">
-            <span>버전 정보</span>
-            <span className="text-muted-foreground">3.8.2</span>
+          <div className="flex h-12 w-full items-center justify-between px-4 py-2">
+            <span className="text-sm">버전 정보</span>
+            <span className="text-sm text-muted-foreground">3.8.2</span>
           </div>
 
           <Button
@@ -107,7 +116,9 @@ export const MyPage = () => {
             className="h-12 w-full justify-between rounded-none font-normal"
           >
             <span>개발자 정보</span>
-            <ChevronRight className="h-4 w-4" />
+            <div className="text-muted-foreground">
+              <ChevronRight />
+            </div>
           </Button>
         </div>
 
@@ -117,7 +128,9 @@ export const MyPage = () => {
             className="h-12 w-full justify-between rounded-none font-normal"
           >
             <span>개발자 괴롭히기</span>
-            <ChevronRight className="h-4 w-4" />
+            <div className="text-muted-foreground">
+              <ChevronRight />
+            </div>
           </Button>
         </div>
 
@@ -127,7 +140,9 @@ export const MyPage = () => {
             className="h-12 w-full justify-between rounded-none font-normal"
           >
             <span>오픈소스 라이선스</span>
-            <ChevronRight className="h-4 w-4" />
+            <div className="text-muted-foreground">
+              <ChevronRight />
+            </div>
           </Button>
 
           <Button
@@ -135,7 +150,9 @@ export const MyPage = () => {
             className="h-12 w-full justify-between rounded-none font-normal"
           >
             <span>서비스 약관</span>
-            <ChevronRight className="h-4 w-4" />
+            <div className="text-muted-foreground">
+              <ChevronRight />
+            </div>
           </Button>
 
           <Button
@@ -143,7 +160,9 @@ export const MyPage = () => {
             className="h-12 w-full justify-between rounded-none font-normal"
           >
             <span>개인정보처리방침</span>
-            <ChevronRight className="h-4 w-4" />
+            <div className="text-muted-foreground">
+              <ChevronRight />
+            </div>
           </Button>
         </div>
 
@@ -157,7 +176,7 @@ export const MyPage = () => {
             }}
           >
             <span>로그아웃</span>
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight />
           </Button>
         </div>
       </main>
