@@ -5,6 +5,7 @@ import { type UserInfo } from '@/api/types';
 import { MyPageButton } from '@/components/mypage-button';
 import { NavigationBar } from '@/components/navigation-bar';
 import { PageHeader } from '@/components/page-header';
+import { SignOutDialog } from '@/components/sign-out-dialog';
 import { Avatar } from '@/components/ui/avatar';
 import { ServiceContext } from '@/context/ServiceContext';
 import { useGuardContext } from '@/hooks/useGuardContext';
@@ -129,16 +130,18 @@ export const MyPage = () => {
         </div>
 
         <div className="my-2 bg-white">
-          <MyPageButton
-            className="text-red-500 hover:text-red-500"
+          <SignOutDialog
+            signOutButton={
+              <MyPageButton className="text-red-500 hover:text-red-500">
+                <span>로그아웃</span>
+                <ChevronRight />
+              </MyPageButton>
+            }
             onClick={() => {
               authService.signOut();
               toRoot();
             }}
-          >
-            <span>로그아웃</span>
-            <ChevronRight />
-          </MyPageButton>
+          />
         </div>
       </main>
 
