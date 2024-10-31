@@ -35,8 +35,9 @@ export const getUserApi = (API_BASE_URL: string): UserApi => ({
       method: 'PATCH',
       headers: {
         'x-access-token': token,
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ nickname }),
+      body: JSON.stringify({ nickname: nickname }),
     });
 
     if (!response.ok) {

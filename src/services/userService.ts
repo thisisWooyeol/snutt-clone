@@ -1,12 +1,9 @@
-import type { ChangeNicknameRequest } from '@/api/types';
 import { type UserApi } from '@/api/userApi';
 import type { ChangeNicknameResult, GetUserResult } from '@/services/types';
 
 export type UserService = {
   getUser: () => Promise<GetUserResult>;
-  changeNickname: ({
-    nickname,
-  }: ChangeNicknameRequest) => Promise<ChangeNicknameResult>;
+  changeNickname: (nickname: string) => Promise<ChangeNicknameResult>;
 };
 
 export const getUserService = (userApi: UserApi): UserService => ({
@@ -24,9 +21,7 @@ export const getUserService = (userApi: UserApi): UserService => ({
       };
     }
   },
-  changeNickname: async ({
-    nickname,
-  }: ChangeNicknameRequest): Promise<ChangeNicknameResult> => {
+  changeNickname: async (nickname: string): Promise<ChangeNicknameResult> => {
     try {
       const token = localStorage.getItem('token');
       if (token === null) throw new Error('Token not found');
