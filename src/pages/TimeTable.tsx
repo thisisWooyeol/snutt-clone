@@ -22,7 +22,9 @@ export const TimeTable = () => {
   return (
     <>
       <div className="p-8 text-center">
-        <h1>Welcome, {userInfo.nickname.nickname}!</h1>
+        <h1>
+          Welcome, {`${userInfo.nickname.nickname}#${userInfo.nickname.tag}`}!
+        </h1>
         {/* Display other user info as needed */}
         <button
           onClick={() => {
@@ -34,9 +36,7 @@ export const TimeTable = () => {
           Logout
         </button>
       </div>
-      <div className="flex justify-center border-y border-gray-200">
-        <NavigationBar />
-      </div>
+      <NavigationBar />
     </>
   );
 };
