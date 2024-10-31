@@ -6,12 +6,27 @@ import type { UserInfo } from '@/api/types';
 import { PageHeader } from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { ServiceContext } from '@/context/ServiceContext';
+import { useGuardContext } from '@/hooks/useGuardContext';
 import { useRoutes } from '@/hooks/useRoutes';
 
 export const MyPageChangeNickname = () => {
+  const { userService } = useGuardContext(ServiceContext);
   const { toMyPageAccount } = useRoutes();
   const userInfo = useLoaderData() as UserInfo;
   const [nickname, setNickname] = useState(() => userInfo.nickname.nickname);
+
+  const handleSave = () => {
+    userService
+      .changeNickname(nickname)
+      .then(({ error }) => {
+        if (error !== null) alert(error);
+        else toMyPageAccount();
+      })
+      .catch((error: unknown) => {
+        alert(error);
+      });
+  };
 
   return (
     <div className="flex h-full flex-col bg-zinc-50">
@@ -31,6 +46,7 @@ export const MyPageChangeNickname = () => {
           variant="ghost"
           className="h-full rounded-none font-normal"
           disabled={userInfo.nickname.nickname === nickname}
+          onClick={handleSave}
         >
           저장
         </Button>
