@@ -2,15 +2,16 @@ import { ChevronRight, Ellipsis, User } from 'lucide-react';
 import { useLoaderData } from 'react-router-dom';
 
 import { type UserInfo } from '@/api/types';
+import { MyPageButton } from '@/components/mypage-button';
+import { NavigationBar } from '@/components/navigation-bar';
 import { Avatar } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
 import { ServiceContext } from '@/context/ServiceContext';
 import { useGuardContext } from '@/hooks/useGuardContext';
 import { useRoutes } from '@/hooks/useRoutes';
 
 export const MyPage = () => {
   const { authService } = useGuardContext(ServiceContext);
-  const { toRoot } = useRoutes();
+  const { toRoot, toMyPageAccount } = useRoutes();
   const userInfo = useLoaderData() as UserInfo;
 
   // TODO: SNUTT 클론코딩 (2-3) - 마이페이지 구현하기
@@ -34,10 +35,7 @@ export const MyPage = () => {
 
       <main className="flex-1">
         <div className="my-2 bg-white">
-          <Button
-            variant="ghost"
-            className="h-12 w-full justify-between rounded-none font-normal"
-          >
+          <MyPageButton onClick={toMyPageAccount}>
             <div className="flex items-center gap-2">
               <Avatar className="h-6 w-6">
                 <div className="flex h-6 w-6 items-center justify-center rounded-full bg-muted">
@@ -57,52 +55,40 @@ export const MyPage = () => {
               </span>
               <ChevronRight />
             </div>
-          </Button>
+          </MyPageButton>
         </div>
 
         <div className="my-2 bg-white">
-          <Button
-            variant="ghost"
-            className="h-12 w-full justify-between rounded-none font-normal"
-          >
+          <MyPageButton>
             <span>화면 모드</span>
             <div className="flex items-center gap-2 text-muted-foreground">
               <span className="">자동</span>
               <ChevronRight />
             </div>
-          </Button>
+          </MyPageButton>
 
-          <Button
-            variant="ghost"
-            className="h-12 w-full justify-between rounded-none font-normal"
-          >
+          <MyPageButton>
             <span>시간표 설정</span>
             <div className="text-muted-foreground">
               <ChevronRight />
             </div>
-          </Button>
+          </MyPageButton>
 
-          <Button
-            variant="ghost"
-            className="h-12 w-full justify-between rounded-none font-normal"
-          >
+          <MyPageButton>
             <span>시간표 테마</span>
             <div className="text-muted-foreground">
               <ChevronRight />
             </div>
-          </Button>
+          </MyPageButton>
         </div>
 
         <div className="my-2 bg-white">
-          <Button
-            variant="ghost"
-            className="h-12 w-full justify-between rounded-none font-normal"
-          >
+          <MyPageButton>
             <span>빈자리 알림</span>
             <div className="text-muted-foreground">
               <ChevronRight />
             </div>
-          </Button>
+          </MyPageButton>
         </div>
 
         <div className="my-2 bg-white">
@@ -111,65 +97,49 @@ export const MyPage = () => {
             <span className="text-sm text-muted-foreground">3.8.2</span>
           </div>
 
-          <Button
-            variant="ghost"
-            className="h-12 w-full justify-between rounded-none font-normal"
-          >
+          <MyPageButton>
             <span>개발자 정보</span>
             <div className="text-muted-foreground">
               <ChevronRight />
             </div>
-          </Button>
+          </MyPageButton>
         </div>
 
         <div className="my-2 bg-white">
-          <Button
-            variant="ghost"
-            className="h-12 w-full justify-between rounded-none font-normal"
-          >
+          <MyPageButton>
             <span>개발자 괴롭히기</span>
             <div className="text-muted-foreground">
               <ChevronRight />
             </div>
-          </Button>
+          </MyPageButton>
         </div>
 
         <div className="my-2 bg-white">
-          <Button
-            variant="ghost"
-            className="h-12 w-full justify-between rounded-none font-normal"
-          >
+          <MyPageButton>
             <span>오픈소스 라이선스</span>
             <div className="text-muted-foreground">
               <ChevronRight />
             </div>
-          </Button>
+          </MyPageButton>
 
-          <Button
-            variant="ghost"
-            className="h-12 w-full justify-between rounded-none font-normal"
-          >
+          <MyPageButton>
             <span>서비스 약관</span>
             <div className="text-muted-foreground">
               <ChevronRight />
             </div>
-          </Button>
+          </MyPageButton>
 
-          <Button
-            variant="ghost"
-            className="h-12 w-full justify-between rounded-none font-normal"
-          >
+          <MyPageButton>
             <span>개인정보처리방침</span>
             <div className="text-muted-foreground">
               <ChevronRight />
             </div>
-          </Button>
+          </MyPageButton>
         </div>
 
         <div className="my-2 bg-white">
-          <Button
-            variant="ghost"
-            className="h-12 w-full justify-between rounded-none font-normal text-red-500"
+          <MyPageButton
+            className="text-red-500 hover:text-red-500"
             onClick={() => {
               authService.signOut();
               toRoot();
@@ -177,9 +147,11 @@ export const MyPage = () => {
           >
             <span>로그아웃</span>
             <ChevronRight />
-          </Button>
+          </MyPageButton>
         </div>
       </main>
+
+      <NavigationBar />
     </div>
   );
 };
