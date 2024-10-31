@@ -33,6 +33,7 @@ export const MyPageChangeNickname = () => {
       <PageHeader>
         <div className="flex items-center gap-1 p-4">
           <Button
+            asChild
             variant="ghost"
             size="icon"
             className="h-6 w-6"

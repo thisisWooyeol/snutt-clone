@@ -54,32 +54,26 @@ export const MyPage = () => {
           <MyPageButton>
             <span>화면 모드</span>
             <div className="flex items-center gap-2 text-muted-foreground">
-              <span className="">자동</span>
+              <span>자동</span>
               <ChevronRight />
             </div>
           </MyPageButton>
 
           <MyPageButton>
             <span>시간표 설정</span>
-            <div className="text-muted-foreground">
-              <ChevronRight />
-            </div>
+            <ChevronRight className="text-muted-foreground" />
           </MyPageButton>
 
           <MyPageButton>
             <span>시간표 테마</span>
-            <div className="text-muted-foreground">
-              <ChevronRight />
-            </div>
+            <ChevronRight className="text-muted-foreground" />
           </MyPageButton>
         </div>
 
         <div className="my-2 bg-white">
           <MyPageButton>
             <span>빈자리 알림</span>
-            <div className="text-muted-foreground">
-              <ChevronRight />
-            </div>
+            <ChevronRight className="text-muted-foreground" />
           </MyPageButton>
         </div>
 
@@ -91,41 +85,31 @@ export const MyPage = () => {
 
           <MyPageButton>
             <span>개발자 정보</span>
-            <div className="text-muted-foreground">
-              <ChevronRight />
-            </div>
+            <ChevronRight className="text-muted-foreground" />
           </MyPageButton>
         </div>
 
         <div className="my-2 bg-white">
           <MyPageButton>
             <span>개발자 괴롭히기</span>
-            <div className="text-muted-foreground">
-              <ChevronRight />
-            </div>
+            <ChevronRight className="text-muted-foreground" />
           </MyPageButton>
         </div>
 
         <div className="my-2 bg-white">
           <MyPageButton>
             <span>오픈소스 라이선스</span>
-            <div className="text-muted-foreground">
-              <ChevronRight />
-            </div>
+            <ChevronRight className="text-muted-foreground" />
           </MyPageButton>
 
           <MyPageButton>
             <span>서비스 약관</span>
-            <div className="text-muted-foreground">
-              <ChevronRight />
-            </div>
+            <ChevronRight className="text-muted-foreground" />
           </MyPageButton>
 
           <MyPageButton>
             <span>개인정보처리방침</span>
-            <div className="text-muted-foreground">
-              <ChevronRight />
-            </div>
+            <ChevronRight className="text-muted-foreground" />
           </MyPageButton>
         </div>
 
