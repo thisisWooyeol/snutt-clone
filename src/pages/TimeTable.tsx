@@ -25,16 +25,16 @@ export const TimeTable = () => {
     <>
       <PageHeader>
         <div className="flex items-center gap-2 p-4">
-          <AlignLeft />
+          <AlignLeft size={24} />
           <div className="font-bold">학점 채우기</div>
           <div className="text-xs text-muted-foreground">
             <span className="align-sub">(0 학점)</span>
           </div>
         </div>
         <div className="flex items-center gap-3 p-4">
-          <List size={24} />
-          <Share2 size={20} />
-          <BellRing size={20} />
+          <List strokeWidth={1.5} />
+          <Share2 strokeWidth={1.5} size={20} />
+          <BellRing strokeWidth={1.5} size={20} />
         </div>
       </PageHeader>
       <div className="p-8 text-center">

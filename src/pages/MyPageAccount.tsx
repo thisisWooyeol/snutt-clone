@@ -16,6 +16,7 @@ export const MyPageAccount = () => {
       <PageHeader>
         <div className="flex items-center gap-1 p-4">
           <Button
+            asChild
             variant="ghost"
             size="icon"
             className="h-6 w-6"
@@ -35,9 +36,7 @@ export const MyPageAccount = () => {
               <span>
                 {`${userInfo.nickname.nickname}#${userInfo.nickname.tag}`}
               </span>
-              <div className="text-muted-foreground">
-                <ChevronRight />
-              </div>
+              <ChevronRight className="text-muted-foreground" />
             </div>
           </MyPageButton>
 
@@ -60,18 +59,14 @@ export const MyPageAccount = () => {
 
           <MyPageButton>
             <span>비밀번호 변경</span>
-            <div className="text-muted-foreground">
-              <ChevronRight />
-            </div>
+            <ChevronRight className="text-muted-foreground" />
           </MyPageButton>
         </div>
 
         <div className="my-2 bg-white">
           <MyPageButton>
             <span>SNS 계정 연동 및 해제</span>
-            <div className="text-muted-foreground">
-              <ChevronRight />
-            </div>
+            <ChevronRight className="text-muted-foreground" />
           </MyPageButton>
         </div>
 
