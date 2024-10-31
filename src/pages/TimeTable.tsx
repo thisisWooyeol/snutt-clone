@@ -1,7 +1,9 @@
+import { AlignLeft, BellRing, List, Share2 } from 'lucide-react';
 import { useLoaderData } from 'react-router-dom';
 
 import { type UserInfo } from '@/api/types';
 import { NavigationBar } from '@/components/navigation-bar';
+import { PageHeader } from '@/components/page-header';
 import { ServiceContext } from '@/context/ServiceContext';
 import { useGuardContext } from '@/hooks/useGuardContext';
 import { useRoutes } from '@/hooks/useRoutes';
@@ -21,6 +23,20 @@ export const TimeTable = () => {
 
   return (
     <>
+      <PageHeader>
+        <div className="flex items-center gap-2 p-4">
+          <AlignLeft />
+          <div className="font-bold">학점 채우기</div>
+          <div className="text-xs text-muted-foreground">
+            <span className="align-sub">(0 학점)</span>
+          </div>
+        </div>
+        <div className="flex items-center gap-3 p-4">
+          <List size={24} />
+          <Share2 size={20} />
+          <BellRing size={20} />
+        </div>
+      </PageHeader>
       <div className="p-8 text-center">
         <h1>
           Welcome, {`${userInfo.nickname.nickname}#${userInfo.nickname.tag}`}!
