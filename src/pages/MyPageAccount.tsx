@@ -13,8 +13,13 @@ export const MyPageAccount = () => {
   return (
     <div className="flex h-full flex-col bg-zinc-50">
       <header className="w-full bg-white">
-        <div className="flex items-center gap-2 p-4">
-          <Button variant="ghost" size="icon" onClick={toMyPage}>
+        <div className="flex items-center gap-1 p-4">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-6 w-6"
+            onClick={toMyPage}
+          >
             <ChevronLeft />
           </Button>
           <h1 className="font-bold">내 계정</h1>
