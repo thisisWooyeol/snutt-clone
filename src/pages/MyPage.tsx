@@ -4,6 +4,7 @@ import { useLoaderData } from 'react-router-dom';
 import { type UserInfo } from '@/api/types';
 import { MyPageButton } from '@/components/mypage-button';
 import { NavigationBar } from '@/components/navigation-bar';
+import { PageHeader } from '@/components/page-header';
 import { Avatar } from '@/components/ui/avatar';
 import { ServiceContext } from '@/context/ServiceContext';
 import { useGuardContext } from '@/hooks/useGuardContext';
@@ -26,12 +27,12 @@ export const MyPage = () => {
 
   return (
     <div className="flex h-full flex-col bg-zinc-50">
-      <header className="w-full bg-white">
+      <PageHeader>
         <div className="flex items-center gap-2 p-4">
           <Ellipsis className="h-5 w-5" />
           <div className="font-bold">더보기</div>
         </div>
-      </header>
+      </PageHeader>
 
       <main className="flex-1">
         <div className="my-2 bg-white">

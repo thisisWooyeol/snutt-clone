@@ -3,6 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 
 import type { UserInfo } from '@/api/types';
 import { MyPageButton } from '@/components/mypage-button';
+import { PageHeader } from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { useRoutes } from '@/hooks/useRoutes';
 
@@ -12,7 +13,7 @@ export const MyPageAccount = () => {
 
   return (
     <div className="flex h-full flex-col bg-zinc-50">
-      <header className="w-full bg-white">
+      <PageHeader>
         <div className="flex items-center gap-1 p-4">
           <Button
             variant="ghost"
@@ -24,7 +25,7 @@ export const MyPageAccount = () => {
           </Button>
           <h1 className="font-bold">내 계정</h1>
         </div>
-      </header>
+      </PageHeader>
 
       <main className="flex-1">
         <div className="my-2 bg-white">

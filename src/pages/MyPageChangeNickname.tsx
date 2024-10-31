@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 import type { UserInfo } from '@/api/types';
+import { PageHeader } from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useRoutes } from '@/hooks/useRoutes';
@@ -14,7 +15,7 @@ export const MyPageChangeNickname = () => {
 
   return (
     <div className="flex h-full flex-col bg-zinc-50">
-      <header className="flex w-full justify-between bg-white">
+      <PageHeader>
         <div className="flex items-center gap-1 p-4">
           <Button
             variant="ghost"
@@ -33,7 +34,7 @@ export const MyPageChangeNickname = () => {
         >
           저장
         </Button>
-      </header>
+      </PageHeader>
 
       <main className="flex-1">
         <div className="mt-4">
