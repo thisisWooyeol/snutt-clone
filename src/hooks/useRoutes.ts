@@ -11,8 +11,23 @@ export const useRoutes = () => {
     navigate('/sign-in');
   };
 
+  const toMyPage = () => {
+    navigate('/mypage');
+  };
+
+  const toMyPageAccount = () => {
+    navigate('/mypage/account');
+  };
+
+  const toMyPageAccountChangeNickname = () => {
+    navigate('/mypage/account/change-nickname');
+  };
+
   return {
     toRoot,
     toSignIn,
+    toMyPage,
+    toMyPageAccount,
+    toMyPageAccountChangeNickname,
   };
 };
