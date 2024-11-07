@@ -11,7 +11,7 @@ export type TimeTableService = {
   getTimeTableById: (id: string) => Promise<GetTimeTableByIdResult>;
 };
 
-export const getUserService = (
+export const getTimeTableService = (
   timeTableApi: TimeTableApi,
 ): TimeTableService => ({
   getTimeTableList: async (): Promise<GetTimeTableListResult> => {

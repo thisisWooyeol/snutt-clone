@@ -19,7 +19,7 @@ export type TimeTableApi = {
   ) => Promise<GetTimeTableByIdResponse>;
 };
 
-export const getUserApi = (API_BASE_URL: string): TimeTableApi => ({
+export const getTimeTableApi = (API_BASE_URL: string): TimeTableApi => ({
   getTimeTableList: async ({
     token,
   }: GetTimeTableListRequest): Promise<GetTimeTableListResponse> => {
