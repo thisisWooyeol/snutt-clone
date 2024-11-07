@@ -39,14 +39,13 @@ export const TimeTable = () => {
         </div>
       </PageHeader>
 
-      {/* Days of the Week */}
+      {/* Days of the Week Header */}
       <div className="grid grid-cols-[5%_19%_19%_19%_19%_19%] border-t">
-        {/* Empty top-left cell for the time column */}
-        <div className="bg-white-50 h-6 border-b" />
+        <div className="h-6 border-b" /> {/* Placeholder for time column */}
         {daysOfWeek.map((day, index) => (
           <div
             key={index}
-            className="bg-white-50 flex h-6 items-center justify-center border-b border-l text-xs text-gray-500"
+            className="flex h-6 items-center justify-center border-b border-l text-xs text-muted-foreground"
           >
             {day}
           </div>
@@ -59,7 +58,7 @@ export const TimeTable = () => {
           {hours.map((hour) => (
             <div
               key={hour}
-              className="bg-white-50 flex flex-grow items-center justify-center border-b pb-6 text-xs font-medium text-gray-500"
+              className="flex flex-grow items-center justify-center border-b pb-6 text-xs font-medium text-muted-foreground"
             >
               {hour}
             </div>
@@ -71,10 +70,10 @@ export const TimeTable = () => {
             {hours.map((_, hourIndex) => (
               <div
                 key={hourIndex}
-                className="relative flex-grow border-b border-l bg-white"
+                className="relative flex-grow border-b border-l"
               >
                 {/* Horizontal Divider */}
-                <div className="absolute inset-x-0 top-1/2 border-t border-gray-100" />
+                <div className="absolute inset-x-0 top-1/2 border-t border-muted" />
                 {/* Optional: Here you can add dayIndex and hourIndex to manage schedule data */}
               </div>
             ))}
