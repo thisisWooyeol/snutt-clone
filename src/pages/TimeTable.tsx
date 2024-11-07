@@ -53,13 +53,13 @@ export const TimeTable = () => {
         ))}
       </div>
       {/* Timetable Grid */}
-      <div className="grid grid-cols-[5%_19%_19%_19%_19%_19%]">
+      <div className="grid flex-grow grid-cols-[5%_19%_19%_19%_19%_19%]">
         {/* Time Column */}
-        <div>
+        <div className="flex flex-col">
           {hours.map((hour) => (
             <div
               key={hour}
-              className="bg-white-50 flex h-12 items-center justify-center border-b pb-6 text-xs font-medium text-gray-500"
+              className="bg-white-50 flex flex-grow items-center justify-center border-b pb-6 text-xs font-medium text-gray-500"
             >
               {hour}
             </div>
@@ -67,11 +67,11 @@ export const TimeTable = () => {
         </div>
         {/* Schedule Cells by Day */}
         {daysOfWeek.map((_, dayIndex) => (
-          <div key={dayIndex}>
+          <div key={dayIndex} className="flex flex-col">
             {hours.map((_, hourIndex) => (
               <div
                 key={hourIndex}
-                className="relative h-12 w-full border-b border-l bg-white"
+                className="relative flex-grow border-b border-l bg-white"
               >
                 {/* Horizontal Divider */}
                 <div className="absolute inset-x-0 top-1/2 border-t border-gray-100" />
