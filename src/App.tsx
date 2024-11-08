@@ -35,7 +35,6 @@ export const App = () => {
   const userService = getUserService(userApi);
   //const tableService = getTableService(tableApi);
 
-
   const authLoader = getAuthLoader(userService);
 
   const routes: RouteObject[] = [

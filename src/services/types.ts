@@ -22,6 +22,6 @@ export type ChangeNicknameResult =
   | { data: null; error: string };
 
 // Types for TableService
-export type GetTableResult = 
+export type GetTableResult =
   | { data: GetRecentTimetableResponse; error: null }
   | { data: null; error: string };
