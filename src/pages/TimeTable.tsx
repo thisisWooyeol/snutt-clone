@@ -5,13 +5,13 @@ import { AlignLeft, BellRing, List, Share2 } from 'lucide-react';
 // import { type UserInfo } from '@/api/types';
 import { NavigationBar } from '@/components/navigation-bar';
 import { PageHeader } from '@/components/page-header';
-// import { ServiceContext } from '@/context/ServiceContext';
-// import { useGuardContext } from '@/hooks/useGuardContext';
+import { ServiceContext } from '@/context/ServiceContext';
+import { useGuardContext } from '@/hooks/useGuardContext';
 
 export const TimeTable = () => {
   // const userInfo = useLoaderData() as UserInfo;
   // const tableInfo = useLoaderData() as TableInfo | null;
-  // const { tableService } = useGuardContext(ServiceContext);
+  const { tableService } = useGuardContext(ServiceContext);
   const daysOfWeek = ['월', '화', '수', '목', '금'];
   const startHour = 9;
   const endHour = 22;
@@ -27,25 +27,28 @@ export const TimeTable = () => {
   // 시간표 영역의 시간 표시 부분은 오전 9시부터 오후 10시까지로 고정해 주세요.
   // 시간표 영역과 바텀 네비바의 마이페이지 버튼 빼고는 모두 저번과 마찬가지로 클릭해도 아무 동작도 하지 않는 상태로 잡아 주세요.
 
-  /* const timeTable = () => {
-    const table = tableService.getTable().then(({data, error}) => {
-      if (error !== null) {
+  const timeTable = () => {
+    const table = tableService
+      .getTable()
+      .then(({ data, error }) => {
+        if (error !== null) {
+          console.error(error);
+          alert('시간표 정보가 없습니다.');
+          //alert(error);
+          return;
+        }
+        //alert('시간표 정보를 불러왔습니다.');
+        return data;
+      })
+      .catch((error: unknown) => {
         console.error(error);
-        alert('시간표 정보가 없습니다.');
-        //alert(error);
-        return;
-      }
-      alert('시간표 정보를 불러왔습니다.');
-      return data;
-    })
-    .catch((error: unknown) => {
-      console.error(error);
-      alert('시간표 로딩 시 알 수 없는 오류가 발생했습니다.');
-    });
+        alert('시간표 로딩 시 알 수 없는 오류가 발생했습니다.');
+      });
     return table;
-  }; */
+  };
 
-  // const data = timeTable().then((datas) => datas ?? null);
+  const data = timeTable().then((datas) => datas ?? null);
+  console.log(data);
 
   // if (data === null) {
   //   return (

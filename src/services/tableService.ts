@@ -9,7 +9,10 @@ export type TableService = {
 export const getTableService = (tableApi: TableApi): TableService => ({
   getTable: async (): Promise<GetTableResult> => {
     try {
-      const data = await tableApi.getTimetable();
+      const token = localStorage.getItem('token');
+      if (token === null) throw new Error('Token not found');
+
+      const data = await tableApi.getTimetable({ token });
       return { data, error: null };
     } catch (error: unknown) {
       return {

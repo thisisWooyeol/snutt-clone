@@ -1,19 +1,21 @@
-import type { GetRecentTableResponse } from '@/api/types';
+import type { GetRecentTableResponse, GetUserRequest } from '@/api/types';
 
 export type TableApi = {
-  getTimetable: () => Promise<GetRecentTableResponse>;
+  getTimetable: (req: GetUserRequest) => Promise<GetRecentTableResponse>;
 };
 
 export const getTableApi = (API_BASE_URL: string): TableApi => ({
-  getTimetable: async (): Promise<GetRecentTableResponse> => {
+  getTimetable: async ({
+    token,
+  }: GetUserRequest): Promise<GetRecentTableResponse> => {
     const response = await fetch(`${API_BASE_URL}/v1/tables/recent`, {
-      method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
+        'x-access-token': token,
       },
     });
 
     if (!response.ok) {
+      //alert('TimeTable 정보가 없습니다.');
       throw new Error(`Error: ${response.status} ${response.statusText}`);
     }
 
