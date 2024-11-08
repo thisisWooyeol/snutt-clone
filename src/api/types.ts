@@ -43,67 +43,67 @@ export type TimeTable = {
   user_id: string;
   year: number;
   semester: 1 | 2 | 3 | 4;
-  lecture_list: [
-    {
-      _id: string;
-      academic_year: string;
-      category: string;
-      class_time_json: [
-        {
-          day: 0 | 1 | 2 | 3 | 4 | 5;
-          place: string;
-          startMinute: number;
-          endMinute: number;
-          start_time: string;
-          end_time: string;
-          len: number;
-          start: number;
-          lectureBuildings: [
-            {
-              id: string;
-              buildingNumber: string;
-              buildingNameKor: string;
-              buildingNameEng: string;
-              locationInDMS: {
-                latitude: number;
-                longitude: number;
-              };
-              locationInDecimal: {
-                latitude: number;
-                longitude: number;
-              };
-              campus: 'GWANAK';
-            },
-          ];
-        },
-      ];
-      classification: string;
-      credit: 1 | 2 | 3 | 4;
-      department: string;
-      instructor: string;
-      lecture_number: string;
-      quota: number;
-      freshman_quota: number;
-      remark: string;
-      course_number: string;
-      course_title: string;
-      color: {
-        bg: string;
-        fg: string;
-      };
-      colorIndex: number;
-      lecture_id: string;
-      snuttEvLecture: {
-        evLectureId: number;
-      };
-      class_time_mask: number[];
-    },
-  ];
+  lecture_list: Lecture[];
   title: string;
   theme: number;
   themeId: string;
   isPrimary: boolean;
   updated_at: string;
+};
+
+export type Lecture = {
+  _id: string;
+  academic_year: string;
+  category: string;
+  class_time_json: ClassTimeJson[];
+  classification: string;
+  credit: 1 | 2 | 3 | 4;
+  department: string;
+  instructor: string;
+  lecture_number: string;
+  quota: number;
+  freshman_quota: number;
+  remark: string;
+  course_number: string;
+  course_title: string;
+  color: {
+    bg: string;
+    fg: string;
+  };
+  colorIndex: number;
+  lecture_id: string;
+  snuttEvLecture: {
+    evLectureId: number;
+  };
+  class_time_mask: number[];
+};
+
+export type ClassTimeJson = {
+  day: 0 | 1 | 2 | 3 | 4 | 5;
+  place: string;
+  startMinute: number;
+  endMinute: number;
+  start_time: string;
+  end_time: string;
+  len: number;
+  start: number;
+  lectureBuildings: [
+    {
+      id: string;
+      buildingNumber: string;
+      buildingNameKor: string;
+      buildingNameEng: string;
+      locationInDMS: {
+        latitude: number;
+        longitude: number;
+      };
+      locationInDecimal: {
+        latitude: number;
+        longitude: number;
+      };
+      campus: 'GWANAK';
+    },
+  ];
 };
 
 export type GetTimeTableListRequest = { token: string };
