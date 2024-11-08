@@ -30,10 +30,7 @@ export const getAuthLoader =
 export const getTimeTableRecentLoader =
   (timeTableService: TimeTableService) => async () => {
     try {
-      // const { data, error } = await timeTableService.getTimeTableRecent();
-      const { data, error } = await timeTableService.getTimeTableById(
-        '6729fe007c9d8350f4640d26',
-      );
+      const { data, error } = await timeTableService.getTimeTableRecent();
       if (data !== null) {
         return data;
       }
