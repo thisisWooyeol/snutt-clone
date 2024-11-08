@@ -74,7 +74,7 @@ export type TableInfo = {
   updated_at: string;
 };
 
-export type GetRecentTimetableResponse = TableInfo;
+export type GetRecentTableResponse = TableInfo;
 
 export type GetUserRequest = { token: string };
 export type GetUserResponse = UserInfo;

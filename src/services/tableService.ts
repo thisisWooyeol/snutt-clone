@@ -1,5 +1,5 @@
 import { type TableApi } from '@/api/tableApi';
-//import { type GetRecentTimetableResponse } from '@/api/types';
+//import { type GetRecentTableResponse } from '@/api/types';
 import type { GetTableResult } from '@/services/types';
 
 export type TableService = {
