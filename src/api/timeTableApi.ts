@@ -49,6 +49,7 @@ export const getTimeTableApi = (API_BASE_URL: string): TimeTableApi => ({
       throw new Error('Failed to fetch recent time table');
     }
 
+    console.debug('Fetched recent time table');
     return response.json() as Promise<GetTimeTableRecentResponse>;
   },
   getTimeTableById: async ({
@@ -65,6 +66,7 @@ export const getTimeTableApi = (API_BASE_URL: string): TimeTableApi => ({
       throw new Error('Failed to fetch time table by id');
     }
 
+    console.debug('Fetched time table by id');
     return response.json() as Promise<GetTimeTableByIdResponse>;
   },
 });

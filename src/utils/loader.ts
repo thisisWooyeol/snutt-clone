@@ -1,5 +1,6 @@
 import { type LoaderFunctionArgs, redirect } from 'react-router-dom';
 
+import { type TimeTableService } from '@/services/timeTableService';
 import { type UserService } from '@/services/userService';
 
 export const getAuthLoader =
@@ -23,5 +24,22 @@ export const getAuthLoader =
     const pathname = url.pathname;
 
     if (pathname === '/') return null;
+    return redirect('/');
+  };
+
+export const getTimeTableRecentLoader =
+  (timeTableService: TimeTableService) => async () => {
+    try {
+      // const { data, error } = await timeTableService.getTimeTableRecent();
+      const { data, error } = await timeTableService.getTimeTableById(
+        '6729fe007c9d8350f4640d26',
+      );
+      if (data !== null) {
+        return data;
+      }
+      console.error(error);
+    } catch (error) {
+      console.error(error);
+    }
     return redirect('/');
   };
