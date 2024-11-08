@@ -1,5 +1,6 @@
 import type {
   ChangeNicknameResponse,
+  GetRecentTableResponse,
   GetUserResponse,
   SignInResponse,
 } from '@/api/types';
@@ -18,4 +19,9 @@ export type GetUserResult =
 
 export type ChangeNicknameResult =
   | { data: ChangeNicknameResponse; error: null }
+  | { data: null; error: string };
+
+// Types for TableService
+export type GetTableResult =
+  | { data: GetRecentTableResponse; error: null }
   | { data: null; error: string };
