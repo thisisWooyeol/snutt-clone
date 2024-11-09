@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 
 import { getAuthApi } from '@/api/authApi';
+import { getTableApi } from '@/api/tableApi';
 import { getUserApi } from '@/api/userApi';
 import { EnvContext } from '@/context/EnvContext';
 import { ServiceContext } from '@/context/ServiceContext';
@@ -19,11 +20,10 @@ import { MyPageChangeNickname } from '@/pages/MyPageChangeNickname';
 import { RootPage } from '@/pages/RootPage';
 import { SignIn } from '@/pages/SignIn';
 import { getAuthService } from '@/services/authService';
+import { getTableService } from '@/services/tableService';
 import { getUserService } from '@/services/userService';
 import { getAuthLoader } from '@/utils/loader';
-
-import { getTableApi } from './api/tableApi';
-import { getTableService } from './services/tableService';
+import { getTableLoader } from '@/utils/loader';
 
 export const App = () => {
   const { API_BASE_URL } = useGuardContext(EnvContext);
@@ -36,12 +36,13 @@ export const App = () => {
   const tableService = getTableService(tableApi);
 
   const authLoader = getAuthLoader(userService);
+  const tableLoader = getTableLoader(tableService);
 
   const routes: RouteObject[] = [
     {
       path: '/',
       element: <RootPage />,
-      loader: authLoader,
+      loader: tableLoader,
     },
     {
       path: '/mypage',

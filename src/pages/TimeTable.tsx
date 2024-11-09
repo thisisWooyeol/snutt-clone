@@ -1,7 +1,7 @@
 import { AlignLeft, BellRing, List, Share2 } from 'lucide-react';
+import { useLoaderData } from 'react-router-dom';
 
-// import { useLoaderData } from 'react-router-dom';
-// import { type TableInfo } from '@/api/types';
+import { type TableInfo } from '@/api/types';
 // import { type UserInfo } from '@/api/types';
 import { NavigationBar } from '@/components/navigation-bar';
 import { PageHeader } from '@/components/page-header';
@@ -10,7 +10,7 @@ import { PageHeader } from '@/components/page-header';
 
 export const TimeTable = () => {
   // const userInfo = useLoaderData() as UserInfo;
-  // const tableInfo = useLoaderData() as TableInfo | null;
+  const data = useLoaderData() as TableInfo;
   // const { tableService } = useGuardContext(ServiceContext);
   const daysOfWeek = ['월', '화', '수', '목', '금'];
   const startHour = 9;
@@ -18,6 +18,11 @@ export const TimeTable = () => {
   const hours = Array.from(
     { length: endHour - startHour + 1 },
     (_, i) => startHour + i,
+  );
+  console.log(data);
+  const totalCredit = data.lecture_list.reduce(
+    (cnt, item) => cnt + item.credit,
+    0,
   );
 
   // TODO: SNUTT 클론코딩 (2-1) - 시간표 화면 구현하기
@@ -27,34 +32,6 @@ export const TimeTable = () => {
   // 시간표 영역의 시간 표시 부분은 오전 9시부터 오후 10시까지로 고정해 주세요.
   // 시간표 영역과 바텀 네비바의 마이페이지 버튼 빼고는 모두 저번과 마찬가지로 클릭해도 아무 동작도 하지 않는 상태로 잡아 주세요.
 
-  /* const timeTable = () => {
-    const table = tableService.getTable().then(({data, error}) => {
-      if (error !== null) {
-        console.error(error);
-        alert('시간표 정보가 없습니다.');
-        //alert(error);
-        return;
-      }
-      alert('시간표 정보를 불러왔습니다.');
-      return data;
-    })
-    .catch((error: unknown) => {
-      console.error(error);
-      alert('시간표 로딩 시 알 수 없는 오류가 발생했습니다.');
-    });
-    return table;
-  }; */
-
-  // const data = timeTable().then((datas) => datas ?? null);
-
-  // if (data === null) {
-  //   return (
-  //     <div className="w-full max-w-md mx-auto p-4 text-center text-gray-500">
-  //       No timetable data available.
-  //     </div>
-  //   );
-  // }
-
   return (
     <div className="flex h-full flex-col">
       <PageHeader>
@@ -62,7 +39,7 @@ export const TimeTable = () => {
           <AlignLeft size={24} />
           <div className="font-bold">시간표</div>
           <div className="text-xs text-muted-foreground">
-            <span className="align-sub">(0 학점)</span>
+            <span className="align-sub">({totalCredit} 학점)</span>
           </div>
         </div>
         <div className="flex items-center gap-3 p-4">
@@ -112,6 +89,41 @@ export const TimeTable = () => {
             ))}
           </div>
         ))}
+
+        {/* Lectures */}
+        {data.lecture_list.map((lecture) =>
+          lecture.class_time_json.map((time) => (
+            <div
+              key={`${time.day}-${time.startMinute}`}
+              className="absolute items-center justify-center text-center"
+              style={{
+                gridColumnStart: 1,
+                gridRowStart: 1,
+                gridRowEnd: `span 1`,
+                backgroundColor: 'black',
+                color: 'white',
+                marginLeft: 20 + time.day * 71,
+                marginTop: (time.startMinute - 60 * 9) * 0.774,
+                height: (time.endMinute - time.startMinute) * 0.774,
+                minWidth: 71,
+                maxWidth: 71,
+              }}
+            >
+              <div
+                className="p-2 text-xs font-semibold"
+                style={{ wordBreak: 'break-all' }}
+              >
+                {lecture.course_title}
+                <span
+                  className="block text-xs font-normal"
+                  style={{ wordBreak: 'break-all' }}
+                >
+                  {time.place}
+                </span>
+              </div>
+            </div>
+          )),
+        )}
       </div>
 
       <NavigationBar />
