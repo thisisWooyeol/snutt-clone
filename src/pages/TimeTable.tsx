@@ -27,7 +27,14 @@ const COLORS = [
 ];
 
 export const TimeTablePage = () => {
-  const recentTimeTable = useLoaderData() as TimeTable;
+  const { recentTimeTable } = useLoaderData() as {
+    recentTimeTable: TimeTable | null;
+  };
+  if (recentTimeTable === null) {
+    alert('시간표 불러오기에 실패했습니다. 다시 시도해주세요.');
+    return null;
+  }
+
   const totalCredit = recentTimeTable.lecture_list.reduce(
     (acc, lecture) => acc + lecture.credit,
     0,

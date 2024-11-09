@@ -44,7 +44,7 @@ export const App = () => {
       loader: async ({ request, params }) => {
         const userInfo = await authLoader({ request, params });
         const recentTimeTable = await timeTableRecentLoader();
-        return { ...userInfo, ...recentTimeTable };
+        return { userInfo, recentTimeTable };
       },
     },
     {
