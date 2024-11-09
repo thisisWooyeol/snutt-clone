@@ -20,11 +20,11 @@ export const MyPageChangeNickname = () => {
     userService
       .changeNickname(nickname)
       .then(({ error }) => {
-        if (error !== null) alert(error);
+        if (error !== null) alert('사용할 수 없는 닉네임입니다.');
         else toMyPageAccount();
       })
-      .catch((error: unknown) => {
-        alert(error);
+      .catch(() => {
+        alert('오류가 발생했습니다. 다시 시도해주세요.');
       });
   };
 

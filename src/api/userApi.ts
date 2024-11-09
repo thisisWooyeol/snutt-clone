@@ -44,6 +44,7 @@ export const getUserApi = (API_BASE_URL: string): UserApi => ({
       throw new Error('Failed to change nickname');
     }
 
+    console.debug('Changed nickname');
     return response.json() as Promise<ChangeNicknameResponse>;
   },
 });
