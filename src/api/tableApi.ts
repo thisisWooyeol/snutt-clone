@@ -7,7 +7,7 @@ import type {
   GetTimeTableRecentResponse,
 } from '@/api/types';
 
-export type TimeTableApi = {
+export type TableApi = {
   getTimeTableList: (
     req: GetTimeTableListRequest,
   ) => Promise<GetTimeTableListResponse>;
@@ -19,7 +19,7 @@ export type TimeTableApi = {
   ) => Promise<GetTimeTableByIdResponse>;
 };
 
-export const getTimeTableApi = (API_BASE_URL: string): TimeTableApi => ({
+export const getTableApi = (API_BASE_URL: string): TableApi => ({
   getTimeTableList: async ({
     token,
   }: GetTimeTableListRequest): Promise<GetTimeTableListResponse> => {

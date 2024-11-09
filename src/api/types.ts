@@ -27,7 +27,7 @@ export type ChangeNicknameRequest = {
 };
 export type ChangeNicknameResponse = UserInfo;
 
-// Types for TimeTableApi
+// Types for TableApi
 export type TimeTableInfo = {
   _id: string;
   year: number;

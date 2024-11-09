@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 
 import { getAuthApi } from '@/api/authApi';
-import { getTimeTableApi } from '@/api/timeTableApi';
+import { getTableApi } from '@/api/tableApi';
 import { getUserApi } from '@/api/userApi';
 import { EnvContext } from '@/context/EnvContext';
 import { ServiceContext } from '@/context/ServiceContext';
@@ -20,7 +20,7 @@ import { MyPageChangeNickname } from '@/pages/MyPageChangeNickname';
 import { RootPage } from '@/pages/RootPage';
 import { SignIn } from '@/pages/SignIn';
 import { getAuthService } from '@/services/authService';
-import { getTimeTableService } from '@/services/timeTableService';
+import { getTableService } from '@/services/tableService';
 import { getUserService } from '@/services/userService';
 import { getAuthLoader, getTimeTableRecentLoader } from '@/utils/loader';
 
@@ -29,13 +29,13 @@ export const App = () => {
 
   const authApi = getAuthApi(API_BASE_URL);
   const userApi = getUserApi(API_BASE_URL);
-  const timeTableApi = getTimeTableApi(API_BASE_URL);
+  const timeTableApi = getTableApi(API_BASE_URL);
   const authService = getAuthService(authApi);
   const userService = getUserService(userApi);
-  const timeTableService = getTimeTableService(timeTableApi);
+  const tableService = getTableService(timeTableApi);
 
   const authLoader = getAuthLoader(userService);
-  const timeTableRecentLoader = getTimeTableRecentLoader(timeTableService);
+  const timeTableRecentLoader = getTimeTableRecentLoader(tableService);
 
   const routes: RouteObject[] = [
     {
@@ -75,7 +75,7 @@ export const App = () => {
   return (
     <>
       <ServiceContext.Provider
-        value={{ authService, userService, timeTableService }}
+        value={{ authService, userService, tableService }}
       >
         <RootLayout>
           <RouterProvider router={createBrowserRouter(routes)} />

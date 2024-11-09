@@ -1,6 +1,6 @@
 import { type LoaderFunctionArgs, redirect } from 'react-router-dom';
 
-import { type TimeTableService } from '@/services/timeTableService';
+import { type TableService } from '@/services/tableService';
 import { type UserService } from '@/services/userService';
 
 export const getAuthLoader =
@@ -28,9 +28,9 @@ export const getAuthLoader =
   };
 
 export const getTimeTableRecentLoader =
-  (timeTableService: TimeTableService) => async () => {
+  (tableService: TableService) => async () => {
     try {
-      const { data, error } = await timeTableService.getTimeTableRecent();
+      const { data, error } = await tableService.getTimeTableRecent();
       if (data !== null) {
         return data;
       }
@@ -38,5 +38,5 @@ export const getTimeTableRecentLoader =
     } catch (error) {
       console.error(error);
     }
-    return redirect('/');
+    return null;
   };

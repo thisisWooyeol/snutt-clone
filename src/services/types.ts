@@ -23,7 +23,7 @@ export type ChangeNicknameResult =
   | { data: ChangeNicknameResponse; error: null }
   | { data: null; error: string };
 
-// Types for TimeTableService
+// Types for TableService
 export type GetTimeTableListResult =
   | {
       data: GetTimeTableListResponse;
