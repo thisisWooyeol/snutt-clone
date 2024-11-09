@@ -1,5 +1,6 @@
 import { type LoaderFunctionArgs, redirect } from 'react-router-dom';
 
+import { type TableService } from '@/services/tableService';
 import { type UserService } from '@/services/userService';
 
 export const getAuthLoader =
@@ -25,3 +26,16 @@ export const getAuthLoader =
     if (pathname === '/') return null;
     return redirect('/');
   };
+
+export const getTableLoader = (tableService: TableService) => async () => {
+  try {
+    const { data, error } = await tableService.getTable();
+    if (data !== null) {
+      return data; // 테이블 정보 반환
+    }
+    console.error(error);
+  } catch (error) {
+    console.error(error);
+  }
+  return null;
+};

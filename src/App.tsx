@@ -21,6 +21,7 @@ import { SignIn } from '@/pages/SignIn';
 import { getAuthService } from '@/services/authService';
 import { getUserService } from '@/services/userService';
 import { getAuthLoader } from '@/utils/loader';
+import { getTableLoader } from '@/utils/loader';
 
 import { getTableApi } from './api/tableApi';
 import { getTableService } from './services/tableService';
@@ -36,12 +37,13 @@ export const App = () => {
   const tableService = getTableService(tableApi);
 
   const authLoader = getAuthLoader(userService);
+  const tableLoader = getTableLoader(tableService);
 
   const routes: RouteObject[] = [
     {
       path: '/',
       element: <RootPage />,
-      loader: authLoader,
+      loader: tableLoader,
     },
     {
       path: '/mypage',
