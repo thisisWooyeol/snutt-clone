@@ -29,10 +29,10 @@ export const App = () => {
 
   const authApi = getAuthApi(API_BASE_URL);
   const userApi = getUserApi(API_BASE_URL);
-  const timeTableApi = getTableApi(API_BASE_URL);
+  const tableApi = getTableApi(API_BASE_URL);
   const authService = getAuthService(authApi);
   const userService = getUserService(userApi);
-  const tableService = getTableService(timeTableApi);
+  const tableService = getTableService(tableApi);
 
   const authLoader = getAuthLoader(userService);
   const timeTableRecentLoader = getTimeTableRecentLoader(tableService);
