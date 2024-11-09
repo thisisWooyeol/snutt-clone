@@ -13,6 +13,7 @@ const END_OF_DAY = 22;
 const NUM_HOURS = END_OF_DAY - START_OF_DAY + 1;
 const HOURS = Array.from({ length: NUM_HOURS }, (_, i) => START_OF_DAY + i);
 const COLORS = [
+  // FIXME: hardcoded, inline colors
   'bg-red-500',
   'bg-orange-500',
   'bg-yellow-400',
@@ -26,6 +27,10 @@ const COLORS = [
 
 export const TimeTablePage = () => {
   const recentTimeTable = useLoaderData() as TimeTable;
+  const totalCredit = recentTimeTable.lecture_list.reduce(
+    (acc, lecture) => acc + lecture.credit,
+    0,
+  );
 
   return (
     <div className="flex h-full flex-col">
@@ -34,14 +39,7 @@ export const TimeTablePage = () => {
           <AlignLeft size={24} />
           <div className="font-bold">{recentTimeTable.title}</div>
           <div className="text-xs text-muted-foreground">
-            <span className="align-sub">
-              (
-              {recentTimeTable.lecture_list.reduce(
-                (acc, lecture) => acc + lecture.credit,
-                0,
-              )}
-              학점)
-            </span>
+            <span className="align-sub">({totalCredit}학점)</span>
           </div>
         </div>
         <div className="flex items-center gap-3 p-4">
