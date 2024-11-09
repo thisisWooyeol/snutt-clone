@@ -21,7 +21,7 @@ export const getUserApi = (API_BASE_URL: string): UserApi => ({
     });
 
     if (!response.ok) {
-      throw new Error('Failed to fetch user info');
+      throw new Error(`Error: ${response.status} ${response.statusText}`);
     }
 
     console.debug('Fetched user info');
@@ -41,9 +41,10 @@ export const getUserApi = (API_BASE_URL: string): UserApi => ({
     });
 
     if (!response.ok) {
-      throw new Error('Failed to change nickname');
+      throw new Error(`Error: ${response.status} ${response.statusText}`);
     }
 
+    console.debug('Changed nickname');
     return response.json() as Promise<ChangeNicknameResponse>;
   },
 });

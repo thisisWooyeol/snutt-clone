@@ -46,7 +46,7 @@ export const getTableApi = (API_BASE_URL: string): TableApi => ({
     });
 
     if (!response.ok) {
-      throw new Error('Failed to fetch recent time table');
+      throw new Error(`Error: ${response.status} ${response.statusText}`);
     }
 
     console.debug('Fetched recent time table');
@@ -63,7 +63,7 @@ export const getTableApi = (API_BASE_URL: string): TableApi => ({
     });
 
     if (!response.ok) {
-      throw new Error('Failed to fetch time table by id');
+      throw new Error(`Error: ${response.status} ${response.statusText}`);
     }
 
     console.debug('Fetched time table by id');

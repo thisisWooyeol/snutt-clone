@@ -15,7 +15,7 @@ export const getAuthApi = (API_BASE_URL: string): AuthApi => ({
     });
 
     if (!response.ok) {
-      throw new Error('SignIn failed');
+      throw new Error(`Error: ${response.status} ${response.statusText}`);
     }
 
     console.debug('SignIn success');
