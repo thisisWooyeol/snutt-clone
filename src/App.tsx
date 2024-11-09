@@ -26,6 +26,9 @@ import { getTableLoader } from '@/utils/loader';
 import { getTableApi } from './api/tableApi';
 import { getTableService } from './services/tableService';
 
+import { getTableApi } from './api/tableApi';
+import { getTableService } from './services/tableService';
+
 export const App = () => {
   const { API_BASE_URL } = useGuardContext(EnvContext);
 
