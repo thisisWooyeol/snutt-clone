@@ -1,3 +1,4 @@
+import { Slot } from '@radix-ui/react-slot';
 import { AlignLeft, BellRing, List, Share2 } from 'lucide-react';
 import { useLoaderData } from 'react-router-dom';
 
@@ -43,9 +44,15 @@ export const TimeTablePage = () => {
           </div>
         </div>
         <div className="flex items-center gap-3 p-4">
-          <List strokeWidth={1.5} />
-          <Share2 strokeWidth={1.5} size={20} />
-          <BellRing strokeWidth={1.5} size={20} />
+          <Slot className="hover:rounded-md hover:bg-accent">
+            <List strokeWidth={1.5} size={24} />
+          </Slot>
+          <Slot className="hover:rounded-md hover:bg-accent">
+            <Share2 strokeWidth={1.5} size={20} />
+          </Slot>
+          <Slot className="hover:rounded-md hover:bg-accent">
+            <BellRing strokeWidth={1.5} size={20} />
+          </Slot>
         </div>
       </PageHeader>
 
@@ -95,20 +102,24 @@ export const TimeTablePage = () => {
                   const duration = endHourPosition - startHourPosition;
 
                   return (
-                    <div
+                    <Slot
                       key={`${lectureIndex}-${classTimeIndex}`}
-                      className={cn(
-                        'absolute inset-x-0 flex flex-col justify-center p-2 text-center text-xs font-bold text-white',
-                        COLORS[lecture.colorIndex % COLORS.length],
-                      )}
-                      style={{
-                        top: `${(startHourPosition * 100) / NUM_HOURS}%`,
-                        height: `${(duration * 100) / NUM_HOURS}%`,
-                      }}
+                      className="hover:opacity-80"
                     >
-                      <p>{lecture.course_title}</p>
-                      <p>{classTime.place}</p>
-                    </div>
+                      <div
+                        className={cn(
+                          'absolute inset-x-0 flex flex-col justify-center p-2 text-center text-xs font-bold text-white',
+                          COLORS[lecture.colorIndex % COLORS.length],
+                        )}
+                        style={{
+                          top: `${(startHourPosition * 100) / NUM_HOURS}%`,
+                          height: `${(duration * 100) / NUM_HOURS}%`,
+                        }}
+                      >
+                        <p>{lecture.course_title}</p>
+                        <p>{classTime.place}</p>
+                      </div>
+                    </Slot>
                   );
                 }),
             )}
