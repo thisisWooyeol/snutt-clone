@@ -1,5 +1,5 @@
 import { ChevronLeft, ChevronRight, Copy } from 'lucide-react';
-import { useLoaderData } from 'react-router-dom';
+import { NavLink, useLoaderData } from 'react-router-dom';
 
 import type { UserInfo } from '@/api/types';
 import { MyPageButton } from '@/components/mypage-button';
@@ -8,21 +8,17 @@ import { Button } from '@/components/ui/button';
 import { useRoutes } from '@/hooks/useRoutes';
 
 export const MyPageAccount = () => {
-  const { toMyPage, toMyPageAccountChangeNickname } = useRoutes();
+  const { toMyPageAccountChangeNickname } = useRoutes();
   const userInfo = useLoaderData() as UserInfo;
 
   return (
     <div className="flex h-full flex-col bg-zinc-50">
       <PageHeader>
         <div className="flex items-center gap-1 p-4">
-          <Button
-            asChild
-            variant="ghost"
-            size="icon"
-            className="h-6 w-6"
-            onClick={toMyPage}
-          >
-            <ChevronLeft />
+          <Button asChild variant="ghost" size="icon" className="size-6">
+            <NavLink to=".." relative="path">
+              <ChevronLeft />
+            </NavLink>
           </Button>
           <h1 className="font-bold">내 계정</h1>
         </div>

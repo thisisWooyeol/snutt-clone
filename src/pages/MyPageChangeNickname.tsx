@@ -1,6 +1,6 @@
 import { ChevronLeft, CircleX } from 'lucide-react';
 import { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { NavLink, useLoaderData } from 'react-router-dom';
 
 import type { UserInfo } from '@/api/types';
 import { PageHeader } from '@/components/page-header';
@@ -31,15 +31,11 @@ export const MyPageChangeNickname = () => {
   return (
     <div className="flex h-full flex-col bg-zinc-50">
       <PageHeader>
-        <div className="flex items-center gap-1 p-4">
-          <Button
-            asChild
-            variant="ghost"
-            size="icon"
-            className="h-6 w-6"
-            onClick={toMyPageAccount}
-          >
-            <ChevronLeft />
+        <div className="flex gap-1 p-4">
+          <Button asChild variant="ghost" size="icon" className="size-6">
+            <NavLink to=".." relative="path">
+              <ChevronLeft />
+            </NavLink>
           </Button>
           <h1 className="font-bold">닉네임 변경</h1>
         </div>
