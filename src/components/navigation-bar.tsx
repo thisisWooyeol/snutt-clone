@@ -1,11 +1,21 @@
-import { NavLink, useLocation, useNavigation } from 'react-router-dom';
+import {
+  NavLink,
+  useLoaderData,
+  useLocation,
+  useNavigation,
+} from 'react-router-dom';
 import { HashLoader } from 'react-spinners';
 
+import type { UserInfo } from '@/api/types';
 import { Button } from '@/components/ui/button';
 
 export const NavigationBar = () => {
+  const userInfo = useLoaderData() as UserInfo | null;
   const location = useLocation();
   const navigation = useNavigation();
+
+  // If the user is not signed in, do not render the navigation bar
+  if (userInfo === null) return null;
 
   const isCurrentPage = (path: string) => location.pathname === path;
   const isNotImplemented = (path: string) => {

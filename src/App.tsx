@@ -48,6 +48,7 @@ export const App = () => {
           <NavigationBar />
         </>
       ),
+      loader: authLoader,
       children: [
         {
           path: '/',
