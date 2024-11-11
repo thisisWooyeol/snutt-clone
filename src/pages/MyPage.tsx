@@ -3,7 +3,6 @@ import { useLoaderData } from 'react-router-dom';
 
 import { type UserInfo } from '@/api/types';
 import { MyPageButton } from '@/components/mypage-button';
-import { NavigationBar } from '@/components/navigation-bar';
 import { PageHeader } from '@/components/page-header';
 import { SignOutDialog } from '@/components/sign-out-dialog';
 import { Avatar } from '@/components/ui/avatar';
@@ -20,7 +19,7 @@ export const MyPage = () => {
     <div className="flex h-full flex-col bg-zinc-50">
       <PageHeader>
         <div className="flex items-center gap-2 p-4">
-          <Ellipsis className="h-5 w-5" />
+          <Ellipsis className="size-5" />
           <div className="font-bold">더보기</div>
         </div>
       </PageHeader>
@@ -29,8 +28,8 @@ export const MyPage = () => {
         <div className="my-2 bg-white">
           <MyPageButton onClick={toMyPageAccount}>
             <div className="flex items-center gap-2">
-              <Avatar className="h-6 w-6">
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-muted">
+              <Avatar className="size-6">
+                <div className="flex size-6 items-center justify-center rounded-full bg-muted">
                   <User />
                 </div>
               </Avatar>
@@ -128,8 +127,6 @@ export const MyPage = () => {
           />
         </div>
       </main>
-
-      <NavigationBar />
     </div>
   );
 };
