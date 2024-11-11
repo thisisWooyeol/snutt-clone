@@ -21,6 +21,7 @@ export const Landing = () => {
                 className="flex items-center justify-center gap-[0.3125rem] self-stretch rounded-md bg-SNUTT-orange p-3 text-Text-onBG hover:opacity-80"
                 onClick={toSignIn}
               >
+                {/* TODO: action 으로 바꾸기 */}
                 로그인
               </button>
               <button
