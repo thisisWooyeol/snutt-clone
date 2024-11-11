@@ -24,6 +24,7 @@ import { SignIn } from '@/pages/SignIn';
 import { getAuthService } from '@/services/authService';
 import { getTableService } from '@/services/tableService';
 import { getUserService } from '@/services/userService';
+import { getSignInAction } from '@/utils/actions';
 import { getAuthLoader, getTimeTableRecentLoader } from '@/utils/loader';
 
 export const App = () => {
@@ -77,6 +78,7 @@ export const App = () => {
     {
       path: '/sign-in',
       element: <SignIn />,
+      action: getSignInAction(authService),
     },
     {
       path: '*',
