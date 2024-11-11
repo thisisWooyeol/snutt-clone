@@ -3,6 +3,7 @@ import './tailwind.css';
 
 import {
   createBrowserRouter,
+  Outlet,
   type RouteObject,
   RouterProvider,
 } from 'react-router-dom';
@@ -10,6 +11,7 @@ import {
 import { getAuthApi } from '@/api/authApi';
 import { getTableApi } from '@/api/tableApi';
 import { getUserApi } from '@/api/userApi';
+import { NavigationBar } from '@/components/navigation-bar';
 import { EnvContext } from '@/context/EnvContext';
 import { ServiceContext } from '@/context/ServiceContext';
 import { useGuardContext } from '@/hooks/useGuardContext';
@@ -39,18 +41,28 @@ export const App = () => {
 
   const routes: RouteObject[] = [
     {
-      path: '/',
-      element: <RootPage />,
-      loader: async ({ request, params }) => {
-        const userInfo = await authLoader({ request, params });
-        const recentTimeTable = await timeTableRecentLoader();
-        return { userInfo, recentTimeTable };
-      },
-    },
-    {
-      path: '/mypage',
-      element: <MyPage />,
-      loader: authLoader,
+      element: (
+        <>
+          <Outlet />
+          <NavigationBar />
+        </>
+      ),
+      children: [
+        {
+          path: '/',
+          element: <RootPage />,
+          loader: async ({ request, params }) => {
+            const userInfo = await authLoader({ request, params });
+            const recentTimeTable = await timeTableRecentLoader();
+            return { userInfo, recentTimeTable };
+          },
+        },
+        {
+          path: '/mypage',
+          element: <MyPage />,
+          loader: authLoader,
+        },
+      ],
     },
     {
       path: '/mypage/account',

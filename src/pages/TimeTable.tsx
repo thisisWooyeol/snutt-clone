@@ -3,7 +3,6 @@ import { AlignLeft, BellRing, List, Share2 } from 'lucide-react';
 import { useLoaderData } from 'react-router-dom';
 
 import { type TimeTable } from '@/api/types';
-import { NavigationBar } from '@/components/navigation-bar';
 import { PageHeader } from '@/components/page-header';
 import { cn } from '@/lib/utils';
 
@@ -133,8 +132,6 @@ export const TimeTablePage = () => {
           </div>
         ))}
       </div>
-
-      <NavigationBar />
     </div>
   );
 };

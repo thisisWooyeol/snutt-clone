@@ -19,7 +19,7 @@ export const MyPageAccount = () => {
             asChild
             variant="ghost"
             size="icon"
-            className="h-6 w-6"
+            className="size-6"
             onClick={toMyPage}
           >
             <ChevronLeft />

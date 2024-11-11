@@ -36,7 +36,7 @@ export const MyPageChangeNickname = () => {
             asChild
             variant="ghost"
             size="icon"
-            className="h-6 w-6"
+            className="size-6"
             onClick={toMyPageAccount}
           >
             <ChevronLeft />
@@ -72,7 +72,7 @@ export const MyPageChangeNickname = () => {
             asChild
             variant="ghost"
             size="icon"
-            className="h-7 w-7 text-muted-foreground hover:bg-transparent hover:text-red-500"
+            className="size-7 text-muted-foreground hover:bg-transparent hover:text-red-500"
           >
             <CircleX />
           </Button>
