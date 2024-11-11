@@ -6,7 +6,7 @@ export const Landing = () => {
   return (
     <div className="flex flex-col items-center gap-[14.5rem] pb-[5.62519rem]">
       <div /> {/* For layout */}
-      <div className="flex w-[23rem] flex-col items-center justify-center gap-[8.5rem] bg-white pb-0">
+      <div className="flex flex-col items-center justify-center gap-[8.5rem] bg-white pb-0">
         <div className="flex flex-col items-center gap-4">
           <img src="/snutt-logo.svg" alt="logo" />
           <p className="text-center text-[1.33456rem] font-[860] not-italic leading-normal text-Text-Normal">
@@ -14,9 +14,9 @@ export const Landing = () => {
           </p>
           {/** TODO add font */}
         </div>
-        <div className="flex w-[23rem] flex-col items-center gap-10">
-          <div className="flex flex-col items-start gap-2.5 px-8 py-0">
-            <div className="flex w-[19.4375rem] flex-col items-center gap-3.5">
+        <div className="flex w-full flex-col items-center gap-10">
+          <div className="flex w-full flex-col gap-2.5 px-8 py-0">
+            <div className="flex w-full flex-col items-center gap-3.5">
               <button
                 className="flex items-center justify-center gap-[0.3125rem] self-stretch rounded-md bg-SNUTT-orange p-3 text-Text-onBG hover:opacity-80"
                 onClick={toSignIn}
@@ -24,7 +24,7 @@ export const Landing = () => {
                 로그인
               </button>
               <button
-                className="flex flex-col items-start justify-center gap-2.5"
+                className="flex flex-col justify-center gap-2.5"
                 onClick={() => {}} // TODO: add signup
                 style={{ cursor: 'not-allowed' }}
               >
@@ -34,15 +34,15 @@ export const Landing = () => {
               </button>
             </div>
           </div>
-          <div className="flex flex-col items-start gap-2.5 px-3 py-0">
-            <div className="flex w-[21.9375rem] flex-col items-center gap-6">
+          <div className="flex flex-col gap-2.5 px-3 py-0">
+            <div className="flex w-full flex-col items-center gap-6">
               <div className="flex items-center justify-center gap-2.5 self-stretch">
-                <hr className="h-[0.04688rem] w-[6rem] bg-Text-Assistive" />
-                <p className="non-italic items-center text-sm font-medium text-Text-Assistive">
+                <hr className="h-[0.04688rem] w-[6rem] flex-1 bg-Text-Assistive" />
+                <p className="non-italic flex-initial items-center text-sm font-medium text-Text-Assistive">
                   SNS 계정으로 계속하기
                 </p>
                 {/* TODO add font style */}
-                <hr className="h-[0.04688rem] w-[6rem] bg-Text-Assistive" />
+                <hr className="h-[0.04688rem] w-[6rem] flex-1 bg-Text-Assistive" />
               </div>
               <div className="flex items-center gap-3">
                 <button style={{ cursor: 'not-allowed' }}>
