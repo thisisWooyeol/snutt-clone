@@ -1,33 +1,20 @@
 import { ChevronLeft, CircleX } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import {
-  Form,
-  NavLink,
-  useLoaderData,
-  useNavigation,
-  useSearchParams,
-} from 'react-router-dom';
+import { useState } from 'react';
+import { Form, NavLink, useLoaderData, useNavigation } from 'react-router-dom';
 import { HashLoader } from 'react-spinners';
 
 import type { UserInfo } from '@/api/types';
 import { PageHeader } from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useSearchParamsAlert } from '@/hooks/useSearchParamsAlert';
 
 export const MyPageChangeNickname = () => {
   const navigation = useNavigation();
   const userInfo = useLoaderData() as UserInfo;
+  useSearchParamsAlert();
 
   const [nickname, setNickname] = useState(() => userInfo.nickname.nickname);
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  // Action으로부터 받은 error message를 alert로 띄워줍니다.
-  useEffect(() => {
-    if (searchParams.has('error')) {
-      alert(searchParams.get('error'));
-      setSearchParams(() => '');
-    }
-  }, [searchParams, setSearchParams]);
 
   return (
     <div className="flex h-full flex-col bg-zinc-50">

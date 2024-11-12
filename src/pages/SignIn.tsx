@@ -1,20 +1,12 @@
-import { useEffect } from 'react';
-import { Form, useNavigation, useSearchParams } from 'react-router-dom';
+import { Form, useNavigation } from 'react-router-dom';
 import { HashLoader } from 'react-spinners';
 
 import { Button } from '@/components/ui/button';
+import { useSearchParamsAlert } from '@/hooks/useSearchParamsAlert';
 
 export const SignIn = () => {
   const navigation = useNavigation();
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  // Action으로부터 받은 error message를 alert로 띄워줍니다.
-  useEffect(() => {
-    if (searchParams.has('error')) {
-      alert(searchParams.get('error'));
-      setSearchParams(() => ''); // Clear search params
-    }
-  }, [searchParams, setSearchParams]);
+  useSearchParamsAlert();
 
   return (
     <div className="px-8">
