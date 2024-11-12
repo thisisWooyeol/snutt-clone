@@ -1,5 +1,7 @@
 import { NavLink } from 'react-router-dom';
 
+import { ROUTES } from '@/routes';
+
 export const Landing = () => {
   return (
     <div className="flex flex-col items-center gap-[14.5rem] pb-[5.62519rem]">
@@ -16,7 +18,7 @@ export const Landing = () => {
           <div className="flex w-full flex-col gap-2.5 px-8 py-0">
             <div className="flex w-full flex-col items-center gap-3.5">
               <button className="flex w-full items-center justify-center gap-[0.3125rem] self-stretch rounded-md bg-SNUTT-orange p-3 text-Text-onBG hover:opacity-80">
-                <NavLink to="sign-in" className={'w-full'}>
+                <NavLink to={ROUTES.signIn} className={'w-full'}>
                   로그인
                 </NavLink>
               </button>

@@ -8,6 +8,7 @@ import { PageHeader } from '@/components/page-header';
 import { SignOutDialog } from '@/components/sign-out-dialog';
 import { Avatar } from '@/components/ui/avatar';
 import { useSearchParamsAlert } from '@/hooks/useSearchParamsAlert';
+import { ROUTES } from '@/routes';
 
 export const MyPage = () => {
   const userInfo = useLoaderData() as UserInfo;
@@ -25,7 +26,7 @@ export const MyPage = () => {
       <main className="flex-1">
         <div className="my-2 bg-white">
           <MyPageButton asChild>
-            <NavLink to="account" relative="path">
+            <NavLink to={ROUTES.mypageAccount}>
               <div className="flex items-center gap-2">
                 <Avatar className="h-6 w-6">
                   <div className="flex h-6 w-6 items-center justify-center rounded-full bg-muted">

@@ -19,6 +19,7 @@ import { MyPageAccount } from '@/pages/MyPageAccount';
 import { MyPageChangeNickname } from '@/pages/MyPageChangeNickname';
 import { RootPage } from '@/pages/RootPage';
 import { SignIn } from '@/pages/SignIn';
+import { ROUTES } from '@/routes';
 import { getAuthService } from '@/services/authService';
 import { getTableService } from '@/services/tableService';
 import { getUserService } from '@/services/userService';
@@ -44,7 +45,7 @@ export const App = () => {
 
   const routes: RouteObject[] = [
     {
-      path: '/',
+      path: ROUTES.root,
       element: <RootPage />,
       loader: async ({ request }) => {
         const userInfo = await authLoader({ request });
@@ -53,24 +54,24 @@ export const App = () => {
       },
     },
     {
-      path: '/mypage',
+      path: ROUTES.mypage,
       element: <MyPage />,
       loader: authLoader,
       action: getSignOutAction(authService),
     },
     {
-      path: '/mypage/account',
+      path: ROUTES.mypageAccount,
       element: <MyPageAccount />,
       loader: authLoader,
     },
     {
-      path: '/mypage/account/change-nickname',
+      path: ROUTES.mypageAccountChangeNickname,
       element: <MyPageChangeNickname />,
       loader: authLoader,
       action: getChangeNicknameAction(userService),
     },
     {
-      path: '/sign-in',
+      path: ROUTES.signIn,
       element: <SignIn />,
       action: getSignInAction(authService),
     },
