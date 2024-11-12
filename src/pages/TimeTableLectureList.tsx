@@ -1,4 +1,4 @@
-export const LectureListPage = () => {
+export const TimeTableLectureList = () => {
   return (
     // TODO: 강의 목록 페이지 구현
     // `/timetables/:id/lectures` route로 들어오는 페이지
