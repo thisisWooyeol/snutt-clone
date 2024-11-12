@@ -1,11 +1,12 @@
 import { Slot } from '@radix-ui/react-slot';
 import { AlignLeft, BellRing, List, Share2 } from 'lucide-react';
-import { useLoaderData } from 'react-router-dom';
+import { NavLink, useLoaderData } from 'react-router-dom';
 
 import { type TimeTableDetailed } from '@/api/types';
 import { NavigationBar } from '@/components/navigation-bar';
 import { PageHeader } from '@/components/page-header';
 import { cn } from '@/lib/utils';
+import { ROUTES } from '@/routes';
 
 // Constants
 const DAYS_OF_WEEK = ['월', '화', '수', '목', '금'] as const;
@@ -109,9 +110,13 @@ export const TimeTablePage = () => {
                   const duration = endHourPosition - startHourPosition;
 
                   return (
-                    <Slot
+                    <NavLink
                       key={`${lectureIndex}-${classTimeIndex}`}
-                      className="hover:opacity-80"
+                      to={ROUTES.getTimetableLecturePath(
+                        recentTimeTable._id,
+                        lecture._id,
+                      )}
+                      className={'hover:opacity-80'}
                     >
                       <div
                         className={cn(
@@ -126,7 +131,7 @@ export const TimeTablePage = () => {
                         <p>{lecture.course_title}</p>
                         <p>{classTime.place}</p>
                       </div>
-                    </Slot>
+                    </NavLink>
                   );
                 }),
             )}
