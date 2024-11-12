@@ -16,12 +16,12 @@ export const getSignInAction =
     if (error != null) {
       return encodedRedirect({
         type: 'error',
-        path: ROUTES.signIn,
+        path: ROUTES.SIGNIN,
         message: '아이디 또는 비밀번호가 일치하지 않습니다.',
       });
     }
     localStorage.setItem('token', data.token);
-    return redirect(ROUTES.root);
+    return redirect(ROUTES.ROOT);
   };
 
 export const getSignOutAction = (authService: AuthService) => () => {
@@ -29,11 +29,11 @@ export const getSignOutAction = (authService: AuthService) => () => {
   if (error != null) {
     return encodedRedirect({
       type: 'error',
-      path: ROUTES.mypage,
+      path: ROUTES.MYPAGE,
       message: '로그아웃 중 오류가 발생했습니다.',
     });
   }
-  return redirect(ROUTES.root);
+  return redirect(ROUTES.ROOT);
 };
 
 export const getChangeNicknameAction =
@@ -46,9 +46,9 @@ export const getChangeNicknameAction =
     if (error != null) {
       return encodedRedirect({
         type: 'error',
-        path: ROUTES.mypageAccountChangeNickname,
+        path: ROUTES.MYPAGE_ACCOUNT_CHANGENICKNAME,
         message: '사용할 수 없는 닉네임입니다.',
       });
     }
-    return redirect(ROUTES.mypageAccount);
+    return redirect(ROUTES.MYPAGE_ACCOUNT);
   };

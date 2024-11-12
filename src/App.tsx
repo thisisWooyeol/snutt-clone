@@ -19,6 +19,9 @@ import { MyPageAccount } from '@/pages/MyPageAccount';
 import { MyPageChangeNickname } from '@/pages/MyPageChangeNickname';
 import { RootPage } from '@/pages/RootPage';
 import { SignIn } from '@/pages/SignIn';
+import { TimeTableLecture } from '@/pages/TimeTableLecture';
+import { TimeTableLectureList } from '@/pages/TimeTableLectureList';
+import { TimeTableNew } from '@/pages/TimeTableNew';
 import { ROUTES } from '@/routes';
 import { getAuthService } from '@/services/authService';
 import { getTableService } from '@/services/tableService';
@@ -45,7 +48,7 @@ export const App = () => {
 
   const routes: RouteObject[] = [
     {
-      path: ROUTES.root,
+      path: ROUTES.ROOT,
       element: <RootPage />,
       loader: async ({ request }) => {
         const userInfo = await authLoader({ request });
@@ -54,24 +57,39 @@ export const App = () => {
       },
     },
     {
-      path: ROUTES.mypage,
+      path: ROUTES.TIMETABLE_LECTURE,
+      element: <TimeTableLecture />,
+      loader: authLoader,
+    },
+    {
+      path: ROUTES.TIMETABLE_LECTURELIST,
+      element: <TimeTableLectureList />,
+      loader: authLoader,
+    },
+    {
+      path: ROUTES.TIMETABLE_NEW,
+      element: <TimeTableNew />,
+      loader: authLoader,
+    },
+    {
+      path: ROUTES.MYPAGE,
       element: <MyPage />,
       loader: authLoader,
       action: getSignOutAction(authService),
     },
     {
-      path: ROUTES.mypageAccount,
+      path: ROUTES.MYPAGE_ACCOUNT,
       element: <MyPageAccount />,
       loader: authLoader,
     },
     {
-      path: ROUTES.mypageAccountChangeNickname,
+      path: ROUTES.MYPAGE_ACCOUNT_CHANGENICKNAME,
       element: <MyPageChangeNickname />,
       loader: authLoader,
       action: getChangeNicknameAction(userService),
     },
     {
-      path: ROUTES.signIn,
+      path: ROUTES.SIGNIN,
       element: <SignIn />,
       action: getSignInAction(authService),
     },
