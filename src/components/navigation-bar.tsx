@@ -2,6 +2,7 @@ import { NavLink, useLocation, useNavigation } from 'react-router-dom';
 import { HashLoader } from 'react-spinners';
 
 import { Button } from '@/components/ui/button';
+import { ROUTES } from '@/routes';
 
 export const NavigationBar = () => {
   const location = useLocation();
@@ -27,11 +28,11 @@ export const NavigationBar = () => {
       <div className="sticky bottom-0 bg-background">
         <div className="flex justify-around p-2.5">
           {[
-            { imgName: 'timetable', path: '/' },
+            { imgName: 'timetable', path: ROUTES.root },
             { imgName: 'search', path: '/search' },
             { imgName: 'thumbs', path: '/thumbs' },
             { imgName: 'friends', path: '/friends' },
-            { imgName: 'mypage', path: '/mypage' },
+            { imgName: 'mypage', path: ROUTES.mypage },
           ].map(({ imgName, path }) => (
             <Button asChild key={imgName} variant="ghost" size="icon">
               <NavLink to={path} end onClick={getOnTabClick(path)}>

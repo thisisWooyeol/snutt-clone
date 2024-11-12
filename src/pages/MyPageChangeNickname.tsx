@@ -8,6 +8,7 @@ import { PageHeader } from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useSearchParamsAlert } from '@/hooks/useSearchParamsAlert';
+import { ROUTES } from '@/routes';
 
 export const MyPageChangeNickname = () => {
   const navigation = useNavigation();
@@ -22,7 +23,7 @@ export const MyPageChangeNickname = () => {
         <PageHeader>
           <div className="flex gap-1 p-4">
             <Button asChild variant="ghost" size="icon" className="size-6">
-              <NavLink to=".." relative="path">
+              <NavLink to={ROUTES.mypageAccount}>
                 <ChevronLeft />
               </NavLink>
             </Button>
