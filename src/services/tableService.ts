@@ -1,23 +1,23 @@
 import { type TableApi } from '@/api/tableApi';
 import type {
-  GetTimeTableByIdResult,
-  GetTimeTableListResult,
-  GetTimeTableRecentResult,
+  GetTimetableByIdResult,
+  GetTimetableListResult,
+  GetTimetableRecentResult,
 } from '@/services/types';
 
 export type TableService = {
-  getTimeTableList: () => Promise<GetTimeTableListResult>;
-  getTimeTableRecent: () => Promise<GetTimeTableRecentResult>;
-  getTimeTableById: (id: string) => Promise<GetTimeTableByIdResult>;
+  getTimetableList: () => Promise<GetTimetableListResult>;
+  getTimetableRecent: () => Promise<GetTimetableRecentResult>;
+  getTimetableById: (id: string) => Promise<GetTimetableByIdResult>;
 };
 
 export const getTableService = (tableApi: TableApi): TableService => ({
-  getTimeTableList: async (): Promise<GetTimeTableListResult> => {
+  getTimetableList: async (): Promise<GetTimetableListResult> => {
     try {
       const token = localStorage.getItem('token');
       if (token === null) throw new Error('Token not found');
 
-      const data = await tableApi.getTimeTableList({ token });
+      const data = await tableApi.getTimetableList({ token });
       return { data, error: null };
     } catch (error: unknown) {
       return {
@@ -26,12 +26,12 @@ export const getTableService = (tableApi: TableApi): TableService => ({
       };
     }
   },
-  getTimeTableRecent: async (): Promise<GetTimeTableRecentResult> => {
+  getTimetableRecent: async (): Promise<GetTimetableRecentResult> => {
     try {
       const token = localStorage.getItem('token');
       if (token === null) throw new Error('Token not found');
 
-      const data = await tableApi.getTimeTableRecent({ token });
+      const data = await tableApi.getTimetableRecent({ token });
       return { data, error: null };
     } catch (error: unknown) {
       return {
@@ -40,12 +40,12 @@ export const getTableService = (tableApi: TableApi): TableService => ({
       };
     }
   },
-  getTimeTableById: async (id: string): Promise<GetTimeTableByIdResult> => {
+  getTimetableById: async (id: string): Promise<GetTimetableByIdResult> => {
     try {
       const token = localStorage.getItem('token');
       if (token === null) throw new Error('Token not found');
 
-      const data = await tableApi.getTimeTableById({ token, id });
+      const data = await tableApi.getTimetableById({ token, id });
       return { data, error: null };
     } catch (error: unknown) {
       return {

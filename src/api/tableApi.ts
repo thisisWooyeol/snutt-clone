@@ -1,28 +1,28 @@
 import type {
-  GetTimeTableByIdRequest,
-  GetTimeTableByIdResponse,
-  GetTimeTableListRequest,
-  GetTimeTableListResponse,
-  GetTimeTableRecentRequest,
-  GetTimeTableRecentResponse,
+  GetTimetableByIdRequest,
+  GetTimetableByIdResponse,
+  GetTimetableListRequest,
+  GetTimetableListResponse,
+  GetTimetableRecentRequest,
+  GetTimetableRecentResponse,
 } from '@/api/types';
 
 export type TableApi = {
-  getTimeTableList: (
-    req: GetTimeTableListRequest,
-  ) => Promise<GetTimeTableListResponse>;
-  getTimeTableRecent: (
-    req: GetTimeTableRecentRequest,
-  ) => Promise<GetTimeTableRecentResponse>;
-  getTimeTableById: (
-    req: GetTimeTableByIdRequest,
-  ) => Promise<GetTimeTableByIdResponse>;
+  getTimetableList: (
+    req: GetTimetableListRequest,
+  ) => Promise<GetTimetableListResponse>;
+  getTimetableRecent: (
+    req: GetTimetableRecentRequest,
+  ) => Promise<GetTimetableRecentResponse>;
+  getTimetableById: (
+    req: GetTimetableByIdRequest,
+  ) => Promise<GetTimetableByIdResponse>;
 };
 
 export const getTableApi = (API_BASE_URL: string): TableApi => ({
-  getTimeTableList: async ({
+  getTimetableList: async ({
     token,
-  }: GetTimeTableListRequest): Promise<GetTimeTableListResponse> => {
+  }: GetTimetableListRequest): Promise<GetTimetableListResponse> => {
     const response = await fetch(`${API_BASE_URL}/v1/tables`, {
       headers: {
         'x-access-token': token,
@@ -34,11 +34,11 @@ export const getTableApi = (API_BASE_URL: string): TableApi => ({
     }
 
     console.debug('Fetched time table list');
-    return response.json() as Promise<GetTimeTableListResponse>;
+    return response.json() as Promise<GetTimetableListResponse>;
   },
-  getTimeTableRecent: async ({
+  getTimetableRecent: async ({
     token,
-  }: GetTimeTableRecentRequest): Promise<GetTimeTableRecentResponse> => {
+  }: GetTimetableRecentRequest): Promise<GetTimetableRecentResponse> => {
     const response = await fetch(`${API_BASE_URL}/v1/tables/recent`, {
       headers: {
         'x-access-token': token,
@@ -50,12 +50,12 @@ export const getTableApi = (API_BASE_URL: string): TableApi => ({
     }
 
     console.debug('Fetched recent time table');
-    return response.json() as Promise<GetTimeTableRecentResponse>;
+    return response.json() as Promise<GetTimetableRecentResponse>;
   },
-  getTimeTableById: async ({
+  getTimetableById: async ({
     token,
     id,
-  }: GetTimeTableByIdRequest): Promise<GetTimeTableByIdResponse> => {
+  }: GetTimetableByIdRequest): Promise<GetTimetableByIdResponse> => {
     const response = await fetch(`${API_BASE_URL}/v1/tables/${id}`, {
       headers: {
         'x-access-token': token,
@@ -67,6 +67,6 @@ export const getTableApi = (API_BASE_URL: string): TableApi => ({
     }
 
     console.debug('Fetched time table by id');
-    return response.json() as Promise<GetTimeTableByIdResponse>;
+    return response.json() as Promise<GetTimetableByIdResponse>;
   },
 });

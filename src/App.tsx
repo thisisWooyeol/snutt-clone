@@ -19,9 +19,9 @@ import { MyPageAccount } from '@/pages/MyPageAccount';
 import { MyPageChangeNickname } from '@/pages/MyPageChangeNickname';
 import { RootPage } from '@/pages/RootPage';
 import { SignIn } from '@/pages/SignIn';
-import { TimeTableLecture } from '@/pages/TimeTableLecture';
-import { TimeTableLectureList } from '@/pages/TimeTableLectureList';
-import { TimeTableNew } from '@/pages/TimeTableNew';
+import { TimetableLecture } from '@/pages/TimetableLecture';
+import { TimetableLectureList } from '@/pages/TimetableLectureList';
+import { TimetableNew } from '@/pages/TimetableNew';
 import { ROUTES } from '@/routes';
 import { getAuthService } from '@/services/authService';
 import { getTableService } from '@/services/tableService';
@@ -31,7 +31,7 @@ import {
   getSignInAction,
   getSignOutAction,
 } from '@/utils/actions';
-import { getAuthLoader, getTimeTableRecentLoader } from '@/utils/loaders';
+import { getAuthLoader, getTimetableRecentLoader } from '@/utils/loaders';
 
 export const App = () => {
   const { API_BASE_URL } = useGuardContext(EnvContext);
@@ -44,7 +44,7 @@ export const App = () => {
   const tableService = getTableService(tableApi);
 
   const authLoader = getAuthLoader(userService);
-  const timeTableRecentLoader = getTimeTableRecentLoader(tableService);
+  const timetableRecentLoader = getTimetableRecentLoader(tableService);
 
   const routes: RouteObject[] = [
     {
@@ -52,23 +52,23 @@ export const App = () => {
       element: <RootPage />,
       loader: async ({ request }) => {
         const userInfo = await authLoader({ request });
-        const recentTimeTable = await timeTableRecentLoader();
-        return { userInfo, recentTimeTable };
+        const recentTimetable = await timetableRecentLoader();
+        return { userInfo, recentTimetable };
       },
     },
     {
       path: ROUTES.TIMETABLE_LECTURE,
-      element: <TimeTableLecture />,
+      element: <TimetableLecture />,
       loader: authLoader,
     },
     {
       path: ROUTES.TIMETABLE_LECTURELIST,
-      element: <TimeTableLectureList />,
+      element: <TimetableLectureList />,
       loader: authLoader,
     },
     {
       path: ROUTES.TIMETABLE_NEW,
-      element: <TimeTableNew />,
+      element: <TimetableNew />,
       loader: authLoader,
     },
     {

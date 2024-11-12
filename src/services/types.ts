@@ -1,8 +1,8 @@
 import type {
   ChangeNicknameResponse,
-  GetTimeTableByIdResponse,
-  GetTimeTableListResponse,
-  GetTimeTableRecentResponse,
+  GetTimetableByIdResponse,
+  GetTimetableListResponse,
+  GetTimetableRecentResponse,
   GetUserResponse,
   SignInResponse,
 } from '@/api/types';
@@ -24,21 +24,21 @@ export type ChangeNicknameResult =
   | { data: null; error: string };
 
 // Types for TableService
-export type GetTimeTableListResult =
+export type GetTimetableListResult =
   | {
-      data: GetTimeTableListResponse;
+      data: GetTimetableListResponse;
       error: null;
     }
   | { data: null; error: string };
-export type GetTimeTableRecentResult =
+export type GetTimetableRecentResult =
   | {
-      data: GetTimeTableRecentResponse;
+      data: GetTimetableRecentResponse;
       error: null;
     }
   | { data: null; error: string };
-export type GetTimeTableByIdResult =
+export type GetTimetableByIdResult =
   | {
-      data: GetTimeTableByIdResponse;
+      data: GetTimetableByIdResponse;
       error: null;
     }
   | { data: null; error: string };
