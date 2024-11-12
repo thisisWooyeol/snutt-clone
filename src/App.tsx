@@ -22,7 +22,11 @@ import { SignIn } from '@/pages/SignIn';
 import { getAuthService } from '@/services/authService';
 import { getTableService } from '@/services/tableService';
 import { getUserService } from '@/services/userService';
-import { getSignInAction, getSignOutAction } from '@/utils/actions';
+import {
+  getChangeNicknameAction,
+  getSignInAction,
+  getSignOutAction,
+} from '@/utils/actions';
 import { getAuthLoader, getTimeTableRecentLoader } from '@/utils/loaders';
 
 export const App = () => {
@@ -63,6 +67,7 @@ export const App = () => {
       path: '/mypage/account/change-nickname',
       element: <MyPageChangeNickname />,
       loader: authLoader,
+      action: getChangeNicknameAction(userService),
     },
     {
       path: '/sign-in',

@@ -1,6 +1,7 @@
 import { redirect } from 'react-router-dom';
 
 import type { AuthService } from '@/services/authService';
+import type { UserService } from '@/services/userService';
 import { encodedRedirect } from '@/utils/utils';
 
 export const getSignInAction =
@@ -33,3 +34,20 @@ export const getSignOutAction = (authService: AuthService) => () => {
   }
   return redirect('/');
 };
+
+export const getChangeNicknameAction =
+  (userService: UserService) =>
+  async ({ request }: { request: Request }) => {
+    const formData = await request.formData();
+    const nickname = formData.get('nickname') as string;
+
+    const { error } = await userService.changeNickname(nickname);
+    if (error != null) {
+      return encodedRedirect({
+        type: 'error',
+        path: '/mypage/account/change-nickname',
+        message: '사용할 수 없는 닉네임입니다.',
+      });
+    }
+    return redirect('/mypage/account');
+  };
