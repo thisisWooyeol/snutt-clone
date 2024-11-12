@@ -47,7 +47,7 @@ export const TimeTablePage = () => {
           <AlignLeft size={24} />
           <div className="font-bold">{recentTimeTable.title}</div>
           <div className="text-xs text-muted-foreground">
-            <span className="align-sub">({totalCredit}학점)</span>
+            <span className="align-sub">({totalCredit} 학점)</span>
           </div>
         </div>
         <div className="flex items-center gap-3 p-4">

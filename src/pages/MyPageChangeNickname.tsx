@@ -1,4 +1,4 @@
-import { ChevronLeft, CircleX } from 'lucide-react';
+import { CircleX } from 'lucide-react';
 import { useState } from 'react';
 import { Form, NavLink, useLoaderData, useNavigation } from 'react-router-dom';
 import { HashLoader } from 'react-spinners';
@@ -24,7 +24,7 @@ export const MyPageChangeNickname = () => {
           <div className="flex gap-1 p-4">
             <Button asChild variant="ghost" size="icon" className="size-6">
               <NavLink to={ROUTES.mypageAccount}>
-                <ChevronLeft />
+                <img src="/icons/chevron-left.svg" alt="back" />
               </NavLink>
             </Button>
             <h1 className="font-bold">닉네임 변경</h1>

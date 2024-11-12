@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight, Copy } from 'lucide-react';
+import { ChevronRight, Copy } from 'lucide-react';
 import { NavLink, useLoaderData, useNavigation } from 'react-router-dom';
 import { HashLoader } from 'react-spinners';
 
@@ -18,7 +18,7 @@ export const MyPageAccount = () => {
         <div className="flex items-center gap-1 p-4">
           <Button asChild variant="ghost" size="icon" className="size-6">
             <NavLink to={ROUTES.mypage}>
-              <ChevronLeft />
+              <img src="/icons/chevron-left.svg" alt="back" />
             </NavLink>
           </Button>
           <h1 className="font-bold">내 계정</h1>
