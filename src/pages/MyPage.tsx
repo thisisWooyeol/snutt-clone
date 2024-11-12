@@ -1,5 +1,5 @@
 import { ChevronRight, Ellipsis, User } from 'lucide-react';
-import { useLoaderData } from 'react-router-dom';
+import { NavLink, useLoaderData } from 'react-router-dom';
 
 import { type UserInfo } from '@/api/types';
 import { MyPageButton } from '@/components/mypage-button';
@@ -7,14 +7,11 @@ import { NavigationBar } from '@/components/navigation-bar';
 import { PageHeader } from '@/components/page-header';
 import { SignOutDialog } from '@/components/sign-out-dialog';
 import { Avatar } from '@/components/ui/avatar';
-import { ServiceContext } from '@/context/ServiceContext';
-import { useGuardContext } from '@/hooks/useGuardContext';
-import { useRoutes } from '@/hooks/useRoutes';
+import { useSearchParamsAlert } from '@/hooks/useSearchParamsAlert';
 
 export const MyPage = () => {
-  const { authService } = useGuardContext(ServiceContext);
-  const { toRoot, toMyPageAccount } = useRoutes();
   const userInfo = useLoaderData() as UserInfo;
+  useSearchParamsAlert();
 
   return (
     <div className="flex h-full flex-col bg-zinc-50">
@@ -27,26 +24,28 @@ export const MyPage = () => {
 
       <main className="flex-1">
         <div className="my-2 bg-white">
-          <MyPageButton onClick={toMyPageAccount}>
-            <div className="flex items-center gap-2">
-              <Avatar className="h-6 w-6">
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-muted">
-                  <User />
+          <MyPageButton asChild>
+            <NavLink to="account" relative="path">
+              <div className="flex items-center gap-2">
+                <Avatar className="h-6 w-6">
+                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-muted">
+                    <User />
+                  </div>
+                </Avatar>
+                <div className="flex items-center gap-1">
+                  <span>내 계정</span>
+                  <span className="rounded bg-emerald-100 px-1.5 py-0.5 text-xs text-emerald-700">
+                    NEW!
+                  </span>
                 </div>
-              </Avatar>
-              <div className="flex items-center gap-1">
-                <span>내 계정</span>
-                <span className="rounded bg-emerald-100 px-1.5 py-0.5 text-xs text-emerald-700">
-                  NEW!
-                </span>
               </div>
-            </div>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <span>
-                {`${userInfo.nickname.nickname}#${userInfo.nickname.tag}`}
-              </span>
-              <ChevronRight />
-            </div>
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <span>
+                  {`${userInfo.nickname.nickname}#${userInfo.nickname.tag}`}
+                </span>
+                <ChevronRight />
+              </div>
+            </NavLink>
           </MyPageButton>
         </div>
 
@@ -121,10 +120,6 @@ export const MyPage = () => {
                 <ChevronRight />
               </MyPageButton>
             }
-            onClick={() => {
-              authService.signOut();
-              toRoot();
-            }}
           />
         </div>
       </main>

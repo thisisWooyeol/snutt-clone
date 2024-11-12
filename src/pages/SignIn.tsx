@@ -1,47 +1,16 @@
-import { type FormEvent, useState } from 'react';
+import { Form, useNavigation } from 'react-router-dom';
 import { HashLoader } from 'react-spinners';
 
 import { Button } from '@/components/ui/button';
-import { ServiceContext } from '@/context/ServiceContext';
-import { useGuardContext } from '@/hooks/useGuardContext';
-import { useRoutes } from '@/hooks/useRoutes';
+import { useSearchParamsAlert } from '@/hooks/useSearchParamsAlert';
 
 export const SignIn = () => {
-  const { authService } = useGuardContext(ServiceContext);
-  const { toRoot, toSignIn } = useRoutes();
-  const [isLoading, setIsLoading] = useState(false);
-
-  const signInAction = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setIsLoading(true);
-    const formData = new FormData(event.currentTarget);
-    const id = formData.get('id') as string;
-    const pw = formData.get('pw') as string;
-
-    authService
-      .signInWithPassword({ id, pw })
-      .then(({ data, error }) => {
-        setIsLoading(false);
-        if (error != null) {
-          console.error(error);
-          alert('아이디 또는 비밀번호가 일치하지 않습니다.');
-          return;
-        }
-
-        localStorage.setItem('token', data.token);
-        toRoot();
-      })
-      .catch((error: unknown) => {
-        setIsLoading(false);
-        console.error(error);
-        alert('알 수 없는 오류가 발생했습니다.');
-        toSignIn();
-      });
-  };
+  const navigation = useNavigation();
+  useSearchParamsAlert();
 
   return (
     <div className="px-8">
-      <form className="flex flex-col gap-4" onSubmit={signInAction}>
+      <Form className="flex flex-col gap-4" method="post">
         <div>
           <label htmlFor="id">아이디</label>
           <input
@@ -64,16 +33,21 @@ export const SignIn = () => {
         <Button
           type="submit"
           className="rounded bg-SNUTT-orange py-3 text-white hover:bg-SNUTT-orange hover:opacity-80"
-          disabled={isLoading}
         >
-          {isLoading ? '로그인중...' : '로그인하기'}
+          {navigation.state === 'submitting'
+            ? '로그인중...'
+            : navigation.state === 'loading'
+              ? '로그인 성공!'
+              : '로그인하기'}
         </Button>
-      </form>
-      {isLoading && (
+      </Form>
+
+      {navigation.state === 'submitting' && (
         <div className="absolute inset-1 flex items-center justify-center">
           <HashLoader color={'#F58D3D'} />
         </div>
       )}
+      {/** TODO: loading 중일때 체크 애니메이션 넣기 */}
     </div>
   );
 };

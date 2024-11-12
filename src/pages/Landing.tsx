@@ -1,8 +1,6 @@
-import { useRoutes } from '@/hooks/useRoutes';
+import { NavLink } from 'react-router-dom';
 
 export const Landing = () => {
-  const { toSignIn } = useRoutes();
-
   return (
     <div className="flex flex-col items-center gap-[14.5rem] pb-[5.62519rem]">
       <div /> {/* For layout */}
@@ -14,15 +12,13 @@ export const Landing = () => {
           </p>
           {/** TODO add font */}
         </div>
-        <div className="flex w-full flex-col items-center gap-10">
+        <div className="flex flex-col items-center gap-10">
           <div className="flex w-full flex-col gap-2.5 px-8 py-0">
             <div className="flex w-full flex-col items-center gap-3.5">
-              <button
-                className="flex items-center justify-center gap-[0.3125rem] self-stretch rounded-md bg-SNUTT-orange p-3 text-Text-onBG hover:opacity-80"
-                onClick={toSignIn}
-              >
-                {/* TODO: action 으로 바꾸기 */}
-                로그인
+              <button className="flex w-full items-center justify-center gap-[0.3125rem] self-stretch rounded-md bg-SNUTT-orange p-3 text-Text-onBG hover:opacity-80">
+                <NavLink to="sign-in" className={'w-full'}>
+                  로그인
+                </NavLink>
               </button>
               <button
                 className="flex flex-col justify-center gap-2.5"

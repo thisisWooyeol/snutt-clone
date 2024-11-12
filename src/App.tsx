@@ -22,7 +22,12 @@ import { SignIn } from '@/pages/SignIn';
 import { getAuthService } from '@/services/authService';
 import { getTableService } from '@/services/tableService';
 import { getUserService } from '@/services/userService';
-import { getAuthLoader, getTimeTableRecentLoader } from '@/utils/loader';
+import {
+  getChangeNicknameAction,
+  getSignInAction,
+  getSignOutAction,
+} from '@/utils/actions';
+import { getAuthLoader, getTimeTableRecentLoader } from '@/utils/loaders';
 
 export const App = () => {
   const { API_BASE_URL } = useGuardContext(EnvContext);
@@ -41,8 +46,8 @@ export const App = () => {
     {
       path: '/',
       element: <RootPage />,
-      loader: async ({ request, params }) => {
-        const userInfo = await authLoader({ request, params });
+      loader: async ({ request }) => {
+        const userInfo = await authLoader({ request });
         const recentTimeTable = await timeTableRecentLoader();
         return { userInfo, recentTimeTable };
       },
@@ -51,6 +56,7 @@ export const App = () => {
       path: '/mypage',
       element: <MyPage />,
       loader: authLoader,
+      action: getSignOutAction(authService),
     },
     {
       path: '/mypage/account',
@@ -61,10 +67,12 @@ export const App = () => {
       path: '/mypage/account/change-nickname',
       element: <MyPageChangeNickname />,
       loader: authLoader,
+      action: getChangeNicknameAction(userService),
     },
     {
       path: '/sign-in',
       element: <SignIn />,
+      action: getSignInAction(authService),
     },
     {
       path: '*',
