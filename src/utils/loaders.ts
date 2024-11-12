@@ -1,11 +1,11 @@
-import { type LoaderFunctionArgs, redirect } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 
 import { type TableService } from '@/services/tableService';
 import { type UserService } from '@/services/userService';
 
 export const getAuthLoader =
   (userService: UserService) =>
-  async ({ request }: LoaderFunctionArgs) => {
+  async ({ request }: { request: Request }) => {
     try {
       const { data, error } = await userService.getUser();
       if (data !== null) {

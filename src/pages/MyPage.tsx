@@ -1,5 +1,6 @@
 import { ChevronRight, Ellipsis, User } from 'lucide-react';
-import { NavLink, useLoaderData } from 'react-router-dom';
+import { useEffect } from 'react';
+import { NavLink, useLoaderData, useSearchParams } from 'react-router-dom';
 
 import { type UserInfo } from '@/api/types';
 import { MyPageButton } from '@/components/mypage-button';
@@ -7,14 +8,18 @@ import { NavigationBar } from '@/components/navigation-bar';
 import { PageHeader } from '@/components/page-header';
 import { SignOutDialog } from '@/components/sign-out-dialog';
 import { Avatar } from '@/components/ui/avatar';
-import { ServiceContext } from '@/context/ServiceContext';
-import { useGuardContext } from '@/hooks/useGuardContext';
-import { useRoutes } from '@/hooks/useRoutes';
 
 export const MyPage = () => {
-  const { authService } = useGuardContext(ServiceContext);
-  const { toRoot } = useRoutes();
   const userInfo = useLoaderData() as UserInfo;
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Action으로부터 받은 error message를 alert로 띄워줍니다.
+  useEffect(() => {
+    if (searchParams.has('error')) {
+      alert(searchParams.get('error'));
+      setSearchParams(() => '');
+    }
+  }, [searchParams, setSearchParams]);
 
   return (
     <div className="flex h-full flex-col bg-zinc-50">
@@ -123,10 +128,6 @@ export const MyPage = () => {
                 <ChevronRight />
               </MyPageButton>
             }
-            onClick={() => {
-              authService.signOut();
-              toRoot();
-            }}
           />
         </div>
       </main>
