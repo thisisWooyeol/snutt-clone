@@ -1,5 +1,6 @@
 import { ChevronLeft, ChevronRight, Copy } from 'lucide-react';
-import { NavLink, useLoaderData } from 'react-router-dom';
+import { NavLink, useLoaderData, useNavigation } from 'react-router-dom';
+import { HashLoader } from 'react-spinners';
 
 import type { UserInfo } from '@/api/types';
 import { MyPageButton } from '@/components/mypage-button';
@@ -9,6 +10,7 @@ import { useRoutes } from '@/hooks/useRoutes';
 
 export const MyPageAccount = () => {
   const { toMyPageAccountChangeNickname } = useRoutes();
+  const navigation = useNavigation();
   const userInfo = useLoaderData() as UserInfo;
 
   return (
@@ -82,6 +84,12 @@ export const MyPageAccount = () => {
           </MyPageButton>
         </div>
       </main>
+
+      {navigation.state === 'loading' && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <HashLoader color={'#F58D3D'} />
+        </div>
+      )}
     </div>
   );
 };
