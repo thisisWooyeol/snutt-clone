@@ -6,10 +6,8 @@ import type { UserInfo } from '@/api/types';
 import { MyPageButton } from '@/components/mypage-button';
 import { PageHeader } from '@/components/page-header';
 import { Button } from '@/components/ui/button';
-import { useRoutes } from '@/hooks/useRoutes';
 
 export const MyPageAccount = () => {
-  const { toMyPageAccountChangeNickname } = useRoutes();
   const navigation = useNavigation();
   const userInfo = useLoaderData() as UserInfo;
 
@@ -28,14 +26,16 @@ export const MyPageAccount = () => {
 
       <main className="flex-1">
         <div className="my-2 bg-white">
-          <MyPageButton onClick={toMyPageAccountChangeNickname}>
-            <span>닉네임 변경</span>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <span>
-                {`${userInfo.nickname.nickname}#${userInfo.nickname.tag}`}
-              </span>
-              <ChevronRight className="text-muted-foreground" />
-            </div>
+          <MyPageButton asChild>
+            <NavLink to="change-nickname" relative="path">
+              <span>닉네임 변경</span>
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <span>
+                  {`${userInfo.nickname.nickname}#${userInfo.nickname.tag}`}
+                </span>
+                <ChevronRight className="text-muted-foreground" />
+              </div>
+            </NavLink>
           </MyPageButton>
 
           {/** TODO: 닉네임 복사 toast 띄우기 */}
