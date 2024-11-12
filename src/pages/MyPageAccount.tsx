@@ -17,7 +17,7 @@ export const MyPageAccount = () => {
       <PageHeader>
         <div className="flex items-center gap-1 p-4">
           <Button asChild variant="ghost" size="icon" className="size-6">
-            <NavLink to={ROUTES.mypage}>
+            <NavLink to={ROUTES.MYPAGE}>
               <img src="/icons/chevron-left.svg" alt="back" />
             </NavLink>
           </Button>
@@ -28,7 +28,7 @@ export const MyPageAccount = () => {
       <main className="flex-1">
         <div className="my-2 bg-white">
           <MyPageButton asChild>
-            <NavLink to={ROUTES.mypageAccountChangeNickname}>
+            <NavLink to={ROUTES.MYPAGE_ACCOUNT_CHANGENICKNAME}>
               <span>닉네임 변경</span>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <span>

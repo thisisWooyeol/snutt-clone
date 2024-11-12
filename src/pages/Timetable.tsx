@@ -1,11 +1,12 @@
 import { Slot } from '@radix-ui/react-slot';
 import { AlignLeft, BellRing, List, Share2 } from 'lucide-react';
-import { useLoaderData } from 'react-router-dom';
+import { NavLink, useLoaderData } from 'react-router-dom';
 
-import { type TimeTableDetailed } from '@/api/types';
+import { type TimetableDetailed } from '@/api/types';
 import { NavigationBar } from '@/components/navigation-bar';
 import { PageHeader } from '@/components/page-header';
 import { cn } from '@/lib/utils';
+import { ROUTES } from '@/routes';
 
 // Constants
 const DAYS_OF_WEEK = ['월', '화', '수', '목', '금'] as const;
@@ -26,16 +27,16 @@ const COLORS = [
   'bg-purple-500',
 ];
 
-export const TimeTablePage = () => {
-  const { recentTimeTable } = useLoaderData() as {
-    recentTimeTable: TimeTableDetailed | null;
+export const TimetablePage = () => {
+  const { recentTimetable } = useLoaderData() as {
+    recentTimetable: TimetableDetailed | null;
   };
-  if (recentTimeTable === null) {
+  if (recentTimetable === null) {
     alert('시간표 불러오기에 실패했습니다. 다시 시도해주세요.');
     return null;
   }
 
-  const totalCredit = recentTimeTable.lecture_list.reduce(
+  const totalCredit = recentTimetable.lecture_list.reduce(
     (acc, lecture) => acc + lecture.credit,
     0,
   );
@@ -45,7 +46,7 @@ export const TimeTablePage = () => {
       <PageHeader>
         <div className="flex items-center gap-2 p-4">
           <AlignLeft size={24} />
-          <div className="font-bold">{recentTimeTable.title}</div>
+          <div className="font-bold">{recentTimetable.title}</div>
           <div className="text-xs text-muted-foreground">
             <span className="align-sub">({totalCredit} 학점)</span>
           </div>
@@ -98,7 +99,7 @@ export const TimeTablePage = () => {
               </div>
             ))}
             {/* Add Lectures for the Day */}
-            {recentTimeTable.lecture_list.map((lecture, lectureIndex) =>
+            {recentTimetable.lecture_list.map((lecture, lectureIndex) =>
               lecture.class_time_json
                 .filter((classTime) => classTime.day === dayIndex)
                 .map((classTime, classTimeIndex) => {
@@ -109,9 +110,13 @@ export const TimeTablePage = () => {
                   const duration = endHourPosition - startHourPosition;
 
                   return (
-                    <Slot
+                    <NavLink
                       key={`${lectureIndex}-${classTimeIndex}`}
-                      className="hover:opacity-80"
+                      to={ROUTES.getTimetableLecturePath(
+                        recentTimetable._id,
+                        lecture._id,
+                      )}
+                      className={'hover:opacity-80'}
                     >
                       <div
                         className={cn(
@@ -126,7 +131,7 @@ export const TimeTablePage = () => {
                         <p>{lecture.course_title}</p>
                         <p>{classTime.place}</p>
                       </div>
-                    </Slot>
+                    </NavLink>
                   );
                 }),
             )}

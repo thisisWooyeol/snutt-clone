@@ -23,9 +23,9 @@ export const getAuthLoader =
     return redirect('/');
   };
 
-export const getTimeTableRecentLoader =
+export const getTimetableRecentLoader =
   (tableService: TableService) => async () => {
-    const { data, error } = await tableService.getTimeTableRecent();
+    const { data, error } = await tableService.getTimetableRecent();
     if (data !== null) {
       return data;
     }

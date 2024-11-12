@@ -19,6 +19,9 @@ import { MyPageAccount } from '@/pages/MyPageAccount';
 import { MyPageChangeNickname } from '@/pages/MyPageChangeNickname';
 import { RootPage } from '@/pages/RootPage';
 import { SignIn } from '@/pages/SignIn';
+import { TimetableLecture } from '@/pages/TimetableLecture';
+import { TimetableLectureList } from '@/pages/TimetableLectureList';
+import { TimetableNew } from '@/pages/TimetableNew';
 import { ROUTES } from '@/routes';
 import { getAuthService } from '@/services/authService';
 import { getTableService } from '@/services/tableService';
@@ -28,7 +31,7 @@ import {
   getSignInAction,
   getSignOutAction,
 } from '@/utils/actions';
-import { getAuthLoader, getTimeTableRecentLoader } from '@/utils/loaders';
+import { getAuthLoader, getTimetableRecentLoader } from '@/utils/loaders';
 
 export const App = () => {
   const { API_BASE_URL } = useGuardContext(EnvContext);
@@ -41,37 +44,52 @@ export const App = () => {
   const tableService = getTableService(tableApi);
 
   const authLoader = getAuthLoader(userService);
-  const timeTableRecentLoader = getTimeTableRecentLoader(tableService);
+  const timetableRecentLoader = getTimetableRecentLoader(tableService);
 
   const routes: RouteObject[] = [
     {
-      path: ROUTES.root,
+      path: ROUTES.ROOT,
       element: <RootPage />,
       loader: async ({ request }) => {
         const userInfo = await authLoader({ request });
-        const recentTimeTable = await timeTableRecentLoader();
-        return { userInfo, recentTimeTable };
+        const recentTimetable = await timetableRecentLoader();
+        return { userInfo, recentTimetable };
       },
     },
     {
-      path: ROUTES.mypage,
+      path: ROUTES.TIMETABLE_LECTURE,
+      element: <TimetableLecture />,
+      loader: authLoader,
+    },
+    {
+      path: ROUTES.TIMETABLE_LECTURELIST,
+      element: <TimetableLectureList />,
+      loader: authLoader,
+    },
+    {
+      path: ROUTES.TIMETABLE_NEW,
+      element: <TimetableNew />,
+      loader: authLoader,
+    },
+    {
+      path: ROUTES.MYPAGE,
       element: <MyPage />,
       loader: authLoader,
       action: getSignOutAction(authService),
     },
     {
-      path: ROUTES.mypageAccount,
+      path: ROUTES.MYPAGE_ACCOUNT,
       element: <MyPageAccount />,
       loader: authLoader,
     },
     {
-      path: ROUTES.mypageAccountChangeNickname,
+      path: ROUTES.MYPAGE_ACCOUNT_CHANGENICKNAME,
       element: <MyPageChangeNickname />,
       loader: authLoader,
       action: getChangeNicknameAction(userService),
     },
     {
-      path: ROUTES.signIn,
+      path: ROUTES.SIGNIN,
       element: <SignIn />,
       action: getSignInAction(authService),
     },

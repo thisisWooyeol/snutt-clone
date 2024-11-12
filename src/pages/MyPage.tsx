@@ -30,7 +30,7 @@ export const MyPage = () => {
       <main className="flex-1">
         <div className="my-2 bg-white">
           <MyPageButton asChild>
-            <NavLink to={ROUTES.mypageAccount}>
+            <NavLink to={ROUTES.MYPAGE_ACCOUNT}>
               <div className="flex items-center gap-2">
                 <Avatar className="h-6 w-6">
                   <div className="flex h-6 w-6 items-center justify-center rounded-full bg-muted">

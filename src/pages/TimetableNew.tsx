@@ -1,4 +1,4 @@
-export const TimeTableNew = () => {
+export const TimetableNew = () => {
   return (
     // TODO: 강의 직접 생성하는 페이지 구현
     // `/timetables/:id/new` route로 들어오는 페이지

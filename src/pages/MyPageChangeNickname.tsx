@@ -23,7 +23,7 @@ export const MyPageChangeNickname = () => {
         <PageHeader>
           <div className="flex gap-1 p-4">
             <Button asChild variant="ghost" size="icon" className="size-6">
-              <NavLink to={ROUTES.mypageAccount}>
+              <NavLink to={ROUTES.MYPAGE_ACCOUNT}>
                 <img src="/icons/chevron-left.svg" alt="back" />
               </NavLink>
             </Button>
