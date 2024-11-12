@@ -1,4 +1,4 @@
-import { ChevronRight, Ellipsis, User } from 'lucide-react';
+import { ChevronRight, User } from 'lucide-react';
 import { NavLink, useLoaderData } from 'react-router-dom';
 
 import { type UserInfo } from '@/api/types';
@@ -18,7 +18,11 @@ export const MyPage = () => {
     <div className="flex h-full flex-col bg-zinc-50">
       <PageHeader>
         <div className="flex items-center gap-2 p-4">
-          <Ellipsis className="h-5 w-5" />
+          <img
+            src="/tab/tab_mypage_off.svg"
+            alt="mypage"
+            style={{ width: '24px', height: '24px' }}
+          />
           <div className="font-bold">더보기</div>
         </div>
       </PageHeader>
