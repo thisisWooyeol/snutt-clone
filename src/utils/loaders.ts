@@ -6,15 +6,11 @@ import { type UserService } from '@/services/userService';
 export const getAuthLoader =
   (userService: UserService) =>
   async ({ request }: { request: Request }) => {
-    try {
-      const { data, error } = await userService.getUser();
-      if (data !== null) {
-        return data; // 로그인 성공 시 유저 정보 반환
-      }
-      console.error(error);
-    } catch (error) {
-      console.error(error);
+    const { data, error } = await userService.getUser();
+    if (data !== null) {
+      return data; // 로그인 성공 시 유저 정보 반환
     }
+    console.error(error);
 
     // TODO: token expired 시 "로그인이 필요합니다." alert 추가
     // 로그인 실패 시 루트 페이지로 리다이렉트
@@ -29,14 +25,11 @@ export const getAuthLoader =
 
 export const getTimeTableRecentLoader =
   (tableService: TableService) => async () => {
-    try {
-      const { data, error } = await tableService.getTimeTableRecent();
-      if (data !== null) {
-        return data;
-      }
-      console.error(error);
-    } catch (error) {
-      console.error(error);
+    const { data, error } = await tableService.getTimeTableRecent();
+    if (data !== null) {
+      return data;
     }
+    console.error(error);
+
     return null;
   };
