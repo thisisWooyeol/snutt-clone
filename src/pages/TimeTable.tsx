@@ -2,7 +2,7 @@ import { Slot } from '@radix-ui/react-slot';
 import { AlignLeft, BellRing, List, Share2 } from 'lucide-react';
 import { useLoaderData } from 'react-router-dom';
 
-import { type TimeTable } from '@/api/types';
+import { type TimeTableDetailed } from '@/api/types';
 import { NavigationBar } from '@/components/navigation-bar';
 import { PageHeader } from '@/components/page-header';
 import { cn } from '@/lib/utils';
@@ -28,7 +28,7 @@ const COLORS = [
 
 export const TimeTablePage = () => {
   const { recentTimeTable } = useLoaderData() as {
-    recentTimeTable: TimeTable | null;
+    recentTimeTable: TimeTableDetailed | null;
   };
   if (recentTimeTable === null) {
     alert('시간표 불러오기에 실패했습니다. 다시 시도해주세요.');

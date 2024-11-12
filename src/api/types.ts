@@ -28,7 +28,7 @@ export type ChangeNicknameRequest = {
 export type ChangeNicknameResponse = UserInfo;
 
 // Types for TableApi
-export type TimeTableInfo = {
+export type TimeTableBasic = {
   _id: string;
   year: number;
   semester: 1 | 2 | 3 | 4;
@@ -38,7 +38,7 @@ export type TimeTableInfo = {
   total_credit: number;
 };
 
-export type TimeTable = {
+export type TimeTableDetailed = {
   _id: string;
   user_id: string;
   year: number;
@@ -107,8 +107,8 @@ export type ClassTimeJson = {
 };
 
 export type GetTimeTableListRequest = { token: string };
-export type GetTimeTableListResponse = TimeTableInfo[];
+export type GetTimeTableListResponse = TimeTableBasic[];
 export type GetTimeTableRecentRequest = { token: string };
-export type GetTimeTableRecentResponse = TimeTable;
+export type GetTimeTableRecentResponse = TimeTableDetailed;
 export type GetTimeTableByIdRequest = { token: string; id: string };
-export type GetTimeTableByIdResponse = TimeTable;
+export type GetTimeTableByIdResponse = TimeTableDetailed;
