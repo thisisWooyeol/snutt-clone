@@ -5,11 +5,24 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Custom colors
         snutt: {
           DEFAULT: '#F58D3D',
           foreground: '#FFFFFF',
         },
         assistive: '#C4C4C4',
+        lecture: {
+          0: 'hsl(0, 84.2%, 60.2%)',
+          1: 'hsl(25, 95%, 53.1%)',
+          2: 'hsl(48, 95.8%, 53.1%)',
+          3: 'hsl(83, 78%, 55.5%)',
+          4: 'hsl(142, 70.6%, 45.3%)',
+          5: 'hsl(172, 66%, 50.4%)',
+          6: 'hsl(217, 91.2%, 59.8%)',
+          7: 'hsl(239, 83.5%, 66.7%)',
+          8: 'hsl(271, 91%, 65.1%)',
+        },
+        // Until here
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -61,5 +74,10 @@ export default {
       },
     },
   },
+  safelist: [
+    {
+      pattern: /bg-lecture-(0|1|2|3|4|5|6|7|8)/,
+    },
+  ],
   plugins: [require('tailwindcss-animate')],
 };

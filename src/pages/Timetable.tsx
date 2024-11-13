@@ -5,7 +5,6 @@ import { NavLink, useLoaderData } from 'react-router-dom';
 import { type TimetableDetailed } from '@/api/types';
 import { NavigationBar } from '@/components/navigation-bar';
 import { PageHeader } from '@/components/page-header';
-import { cn } from '@/lib/utils';
 import { ROUTES } from '@/routes';
 
 // Constants
@@ -15,18 +14,6 @@ const START_OF_DAY = 9;
 const END_OF_DAY = 22;
 const NUM_HOURS = END_OF_DAY - START_OF_DAY + 1;
 const HOURS = Array.from({ length: NUM_HOURS }, (_, i) => START_OF_DAY + i);
-export const COLORS = [
-  // FIXME: hardcoded, inline colors
-  'bg-red-500',
-  'bg-orange-500',
-  'bg-yellow-400',
-  'bg-lime-400',
-  'bg-green-500',
-  'bg-teal-400',
-  'bg-blue-500',
-  'bg-indigo-500',
-  'bg-purple-500',
-];
 
 export const TimetablePage = () => {
   const { recentTimetable } = useLoaderData() as {
@@ -109,6 +96,7 @@ export const TimetablePage = () => {
                   const endHourPosition =
                     classTime.endMinute / 60 - START_OF_DAY;
                   const duration = endHourPosition - startHourPosition;
+                  console.debug(`bg-lecture-${lecture.colorIndex}`);
 
                   return (
                     <NavLink
@@ -120,10 +108,7 @@ export const TimetablePage = () => {
                       className={'hover:opacity-80'}
                     >
                       <div
-                        className={cn(
-                          'text-snutt-foreground absolute inset-x-0 flex flex-col justify-center p-2 text-center text-xs font-bold',
-                          COLORS[lecture.colorIndex % COLORS.length],
-                        )}
+                        className={`text-snutt-foreground absolute inset-x-0 flex flex-col justify-center p-2 text-center text-xs font-bold bg-lecture-${lecture.colorIndex}`}
                         style={{
                           top: `${(startHourPosition * 100) / NUM_HOURS}%`,
                           height: `${(duration * 100) / NUM_HOURS}%`,

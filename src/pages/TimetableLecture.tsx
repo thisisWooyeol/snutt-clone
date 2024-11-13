@@ -4,8 +4,7 @@ import type { TimetableDetailed } from '@/api/types';
 import { DeleteLectureDialog } from '@/components/delete-lecture-dialog';
 import { PageHeader } from '@/components/page-header';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import { COLORS, DAYS_OF_WEEK } from '@/pages/Timetable';
+import { DAYS_OF_WEEK } from '@/pages/Timetable';
 import { ROUTES } from '@/routes';
 
 type TimetableLectureParams = {
@@ -56,7 +55,7 @@ export const TimetableLecture = () => {
             <div className="flex">
               <div className="h-6 w-6 border bg-background" />
               <div
-                className={cn('h-6 w-6', COLORS[currentLecture.colorIndex])}
+                className={`h-6 w-6 bg-lecture-${currentLecture.colorIndex}`}
               />
             </div>
           </div>
