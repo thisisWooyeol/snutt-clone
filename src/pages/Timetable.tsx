@@ -96,7 +96,6 @@ export const TimetablePage = () => {
                   const endHourPosition =
                     classTime.endMinute / 60 - START_OF_DAY;
                   const duration = endHourPosition - startHourPosition;
-                  console.debug(`bg-lecture-${lecture.colorIndex}`);
 
                   return (
                     <NavLink
