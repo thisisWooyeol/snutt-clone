@@ -1,12 +1,10 @@
-import { NavLink, useLocation, useNavigation } from 'react-router-dom';
-import { HashLoader } from 'react-spinners';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import { Button } from '@/components/ui/button';
 import { ROUTES } from '@/routes';
 
 export const NavigationBar = () => {
   const location = useLocation();
-  const navigation = useNavigation();
 
   const isCurrentPage = (path: string) => location.pathname === path;
   const isNotImplemented = (path: string) => {
@@ -45,12 +43,6 @@ export const NavigationBar = () => {
           ))}
         </div>
       </div>
-
-      {navigation.state === 'loading' && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <HashLoader color={'#F58D3D'} />
-        </div>
-      )}
     </>
   );
 };

@@ -1,6 +1,5 @@
 import { ChevronRight, Copy } from 'lucide-react';
-import { NavLink, useLoaderData, useNavigation } from 'react-router-dom';
-import { HashLoader } from 'react-spinners';
+import { NavLink, useLoaderData } from 'react-router-dom';
 
 import type { UserInfo } from '@/api/types';
 import { MyPageButton } from '@/components/mypage-button';
@@ -9,7 +8,6 @@ import { Button } from '@/components/ui/button';
 import { ROUTES } from '@/routes';
 
 export const MyPageAccount = () => {
-  const navigation = useNavigation();
   const userInfo = useLoaderData() as UserInfo;
 
   return (
@@ -85,12 +83,6 @@ export const MyPageAccount = () => {
           </MyPageButton>
         </div>
       </main>
-
-      {navigation.state === 'loading' && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <HashLoader color={'#F58D3D'} />
-        </div>
-      )}
     </div>
   );
 };

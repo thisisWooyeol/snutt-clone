@@ -1,5 +1,4 @@
 import { Form, useNavigation } from 'react-router-dom';
-import { HashLoader } from 'react-spinners';
 
 import { Button } from '@/components/ui/button';
 import { useSearchParamsAlert } from '@/hooks/useSearchParamsAlert';
@@ -41,13 +40,6 @@ export const SignIn = () => {
               : '로그인하기'}
         </Button>
       </Form>
-
-      {navigation.state === 'submitting' && (
-        <div className="absolute inset-1 flex items-center justify-center">
-          <HashLoader color={'#F58D3D'} />
-        </div>
-      )}
-      {/** TODO: loading 중일때 체크 애니메이션 넣기 */}
     </div>
   );
 };
