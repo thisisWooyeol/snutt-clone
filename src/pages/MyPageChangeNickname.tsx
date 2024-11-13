@@ -18,7 +18,7 @@ export const MyPageChangeNickname = () => {
   const [nickname, setNickname] = useState(() => userInfo.nickname.nickname);
 
   return (
-    <div className="flex h-full flex-col bg-zinc-50">
+    <div className="flex h-full flex-col bg-muted">
       <Form method="post">
         <PageHeader>
           <div className="flex gap-1 p-4">
@@ -46,7 +46,7 @@ export const MyPageChangeNickname = () => {
             </div>
           </div>
 
-          <div className="flex h-12 items-center justify-between gap-2 bg-white px-4">
+          <div className="flex h-12 items-center justify-between gap-2 bg-background px-4">
             <Input
               className="text-md h-full rounded-none border-none shadow-none focus-visible:ring-0"
               name="nickname"
@@ -59,7 +59,7 @@ export const MyPageChangeNickname = () => {
               asChild
               variant="ghost"
               size="icon"
-              className="h-7 w-7 text-muted-foreground hover:bg-transparent hover:text-red-500"
+              className="size-7 text-muted-foreground hover:bg-transparent hover:text-destructive"
             >
               <CircleX />
             </Button>

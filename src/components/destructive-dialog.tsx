@@ -12,27 +12,37 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+import { buttonVariants } from '@/components/ui/button';
 
-export const SignOutDialog = ({
-  signOutButton,
-}: {
-  signOutButton: ReactNode;
-}) => {
+type DestructiveDialogProps = {
+  trigger: ReactNode;
+  title: string;
+  description: string;
+  action: string;
+};
+
+export const DestructiveDialog = ({
+  trigger,
+  title,
+  description,
+  action,
+}: DestructiveDialogProps) => {
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>{signOutButton}</AlertDialogTrigger>
+      <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
       <AlertDialogContent>
         <Form method="post">
           <AlertDialogHeader>
-            <AlertDialogTitle>로그아웃</AlertDialogTitle>
+            <AlertDialogTitle>{title}</AlertDialogTitle>
           </AlertDialogHeader>
-          <AlertDialogDescription>
-            로그아웃 하시겠습니까?
-          </AlertDialogDescription>
+          <AlertDialogDescription>{description}</AlertDialogDescription>
           <AlertDialogFooter>
             <AlertDialogCancel>취소</AlertDialogCancel>
-            <AlertDialogAction className="bg-red-500 hover:bg-red-600" asChild>
-              <button type="submit">로그아웃</button>
+            <AlertDialogAction
+              className={buttonVariants({ variant: 'destructive' })}
+              type="submit"
+            >
+              {action}
             </AlertDialogAction>
           </AlertDialogFooter>
         </Form>

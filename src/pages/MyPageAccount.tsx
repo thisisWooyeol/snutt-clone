@@ -13,7 +13,7 @@ export const MyPageAccount = () => {
   const userInfo = useLoaderData() as UserInfo;
 
   return (
-    <div className="flex h-full flex-col bg-zinc-50">
+    <div className="flex h-full flex-col bg-muted">
       <PageHeader>
         <div className="flex items-center gap-1 p-4">
           <Button asChild variant="ghost" size="icon" className="size-6">
@@ -26,7 +26,7 @@ export const MyPageAccount = () => {
       </PageHeader>
 
       <main className="flex-1">
-        <div className="my-2 bg-white">
+        <div className="my-2 bg-background">
           <MyPageButton asChild>
             <NavLink to={ROUTES.MYPAGE_ACCOUNT_CHANGENICKNAME}>
               <span>닉네임 변경</span>
@@ -48,7 +48,7 @@ export const MyPageAccount = () => {
           </MyPageButton>
         </div>
 
-        <div className="my-2 bg-white">
+        <div className="my-2 bg-background">
           <div className="flex h-12 w-full items-center justify-between px-4 py-2">
             <span className="text-sm">아이디</span>
             <span className="text-sm text-muted-foreground">
@@ -62,14 +62,14 @@ export const MyPageAccount = () => {
           </MyPageButton>
         </div>
 
-        <div className="my-2 bg-white">
+        <div className="my-2 bg-background">
           <MyPageButton>
             <span>SNS 계정 연동 및 해제</span>
             <ChevronRight className="text-muted-foreground" />
           </MyPageButton>
         </div>
 
-        <div className="my-2 bg-white">
+        <div className="my-2 bg-background">
           <div className="flex h-12 w-full items-center justify-between px-4 py-2">
             <span className="text-sm">이메일</span>
             <span className="text-sm text-muted-foreground">
@@ -78,8 +78,8 @@ export const MyPageAccount = () => {
           </div>
         </div>
 
-        <div className="my-2 bg-white">
-          <MyPageButton className="text-red-500 hover:text-red-500">
+        <div className="my-2 bg-background">
+          <MyPageButton className="text-destructive hover:text-destructive">
             <span>회원탈퇴</span>
             <ChevronRight />
           </MyPageButton>
