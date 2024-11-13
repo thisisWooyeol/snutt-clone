@@ -1,7 +1,6 @@
 import { CircleX } from 'lucide-react';
 import { useState } from 'react';
-import { Form, NavLink, useLoaderData, useNavigation } from 'react-router-dom';
-import { HashLoader } from 'react-spinners';
+import { Form, NavLink, useLoaderData } from 'react-router-dom';
 
 import type { UserInfo } from '@/api/types';
 import { PageHeader } from '@/components/page-header';
@@ -11,7 +10,6 @@ import { useSearchParamsAlert } from '@/hooks/useSearchParamsAlert';
 import { ROUTES } from '@/routes';
 
 export const MyPageChangeNickname = () => {
-  const navigation = useNavigation();
   const userInfo = useLoaderData() as UserInfo;
   useSearchParamsAlert();
 
@@ -89,12 +87,6 @@ export const MyPageChangeNickname = () => {
           </div>
         </main>
       </Form>
-
-      {navigation.state === 'submitting' && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <HashLoader color={'#F58D3D'} />
-        </div>
-      )}
     </div>
   );
 };

@@ -53,55 +53,60 @@ export const App = () => {
 
   const routes: RouteObject[] = [
     {
-      path: ROUTES.ROOT,
-      element: <RootPage />,
-      loader: async ({ request }) => {
-        const userInfo = await authLoader({ request });
-        const recentTimetable = await timetableRecentLoader();
-        return { userInfo, recentTimetable };
-      },
-    },
-    {
-      path: ROUTES.TIMETABLE_LECTURE,
-      element: <TimetableLecture />,
-      loader: getTimetableByIdLoader(tableService),
-      action: getDeleteLectureAction(tableService),
-    },
-    {
-      path: ROUTES.TIMETABLE_LECTURELIST,
-      element: <TimetableLectureList />,
-      loader: authLoader,
-    },
-    {
-      path: ROUTES.TIMETABLE_NEW,
-      element: <TimetableNew />,
-      loader: authLoader,
-    },
-    {
-      path: ROUTES.MYPAGE,
-      element: <MyPage />,
-      loader: authLoader,
-      action: getSignOutAction(authService),
-    },
-    {
-      path: ROUTES.MYPAGE_ACCOUNT,
-      element: <MyPageAccount />,
-      loader: authLoader,
-    },
-    {
-      path: ROUTES.MYPAGE_ACCOUNT_CHANGENICKNAME,
-      element: <MyPageChangeNickname />,
-      loader: authLoader,
-      action: getChangeNicknameAction(userService),
-    },
-    {
-      path: ROUTES.SIGNIN,
-      element: <SignIn />,
-      action: getSignInAction(authService),
-    },
-    {
-      path: '*',
-      element: <div>Not found</div>,
+      element: <RootLayout />,
+      children: [
+        {
+          path: ROUTES.ROOT,
+          element: <RootPage />,
+          loader: async ({ request }) => {
+            const userInfo = await authLoader({ request });
+            const recentTimetable = await timetableRecentLoader();
+            return { userInfo, recentTimetable };
+          },
+        },
+        {
+          path: ROUTES.TIMETABLE_LECTURE,
+          element: <TimetableLecture />,
+          loader: getTimetableByIdLoader(tableService),
+          action: getDeleteLectureAction(tableService),
+        },
+        {
+          path: ROUTES.TIMETABLE_LECTURELIST,
+          element: <TimetableLectureList />,
+          loader: authLoader,
+        },
+        {
+          path: ROUTES.TIMETABLE_NEW,
+          element: <TimetableNew />,
+          loader: authLoader,
+        },
+        {
+          path: ROUTES.MYPAGE,
+          element: <MyPage />,
+          loader: authLoader,
+          action: getSignOutAction(authService),
+        },
+        {
+          path: ROUTES.MYPAGE_ACCOUNT,
+          element: <MyPageAccount />,
+          loader: authLoader,
+        },
+        {
+          path: ROUTES.MYPAGE_ACCOUNT_CHANGENICKNAME,
+          element: <MyPageChangeNickname />,
+          loader: authLoader,
+          action: getChangeNicknameAction(userService),
+        },
+        {
+          path: ROUTES.SIGNIN,
+          element: <SignIn />,
+          action: getSignInAction(authService),
+        },
+        {
+          path: '*',
+          element: <div>Not found</div>,
+        },
+      ],
     },
   ];
 
@@ -110,9 +115,7 @@ export const App = () => {
       <ServiceContext.Provider
         value={{ authService, userService, tableService }}
       >
-        <RootLayout>
-          <RouterProvider router={createBrowserRouter(routes)} />
-        </RootLayout>
+        <RouterProvider router={createBrowserRouter(routes)} />
       </ServiceContext.Provider>
     </>
   );
