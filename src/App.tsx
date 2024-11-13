@@ -28,6 +28,7 @@ import { getTableService } from '@/services/tableService';
 import { getUserService } from '@/services/userService';
 import {
   getChangeNicknameAction,
+  getDeleteLectureAction,
   getSignInAction,
   getSignOutAction,
 } from '@/utils/actions';
@@ -64,6 +65,7 @@ export const App = () => {
       path: ROUTES.TIMETABLE_LECTURE,
       element: <TimetableLecture />,
       loader: getTimetableByIdLoader(tableService),
+      action: getDeleteLectureAction(tableService),
     },
     {
       path: ROUTES.TIMETABLE_LECTURELIST,
