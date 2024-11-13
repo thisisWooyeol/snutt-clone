@@ -12,6 +12,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+import { buttonVariants } from '@/components/ui/button';
 
 export const SignOutDialog = ({
   signOutButton,
@@ -31,8 +32,11 @@ export const SignOutDialog = ({
           </AlertDialogDescription>
           <AlertDialogFooter>
             <AlertDialogCancel>취소</AlertDialogCancel>
-            <AlertDialogAction className="bg-red-500 hover:bg-red-600" asChild>
-              <button type="submit">로그아웃</button>
+            <AlertDialogAction
+              className={buttonVariants({ variant: 'destructive' })}
+              type="submit"
+            >
+              로그아웃
             </AlertDialogAction>
           </AlertDialogFooter>
         </Form>

@@ -121,7 +121,7 @@ export const TimetablePage = () => {
                     >
                       <div
                         className={cn(
-                          'absolute inset-x-0 flex flex-col justify-center p-2 text-center text-xs font-bold text-white',
+                          'text-snutt-foreground absolute inset-x-0 flex flex-col justify-center p-2 text-center text-xs font-bold',
                           COLORS[lecture.colorIndex % COLORS.length],
                         )}
                         style={{

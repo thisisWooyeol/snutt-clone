@@ -5,11 +5,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        'SNUTT-orange': '#F58D3D',
-        'Text-onBG': '#FFFFFF',
-        'Text-Plain': '#505050',
-        'Text-Normal': '#000000',
-        'Text-Assistive': '#C4C4C4',
+        snutt: {
+          DEFAULT: '#F58D3D',
+          foreground: '#FFFFFF',
+        },
+        assistive: '#C4C4C4',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

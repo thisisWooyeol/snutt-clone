@@ -15,7 +15,7 @@ export const MyPage = () => {
   useSearchParamsAlert();
 
   return (
-    <div className="flex h-full flex-col bg-zinc-50">
+    <div className="flex h-full flex-col">
       <PageHeader>
         <div className="flex items-center gap-2 p-4">
           <img
@@ -27,8 +27,8 @@ export const MyPage = () => {
         </div>
       </PageHeader>
 
-      <main className="flex-1">
-        <div className="my-2 bg-white">
+      <main className="flex-1 bg-muted">
+        <div className="my-2 bg-background">
           <MyPageButton asChild>
             <NavLink to={ROUTES.MYPAGE_ACCOUNT}>
               <div className="flex items-center gap-2">
@@ -54,7 +54,7 @@ export const MyPage = () => {
           </MyPageButton>
         </div>
 
-        <div className="my-2 bg-white">
+        <div className="my-2 bg-background">
           <MyPageButton>
             <span>화면 모드</span>
             <div className="flex items-center gap-2 text-muted-foreground">
@@ -74,14 +74,14 @@ export const MyPage = () => {
           </MyPageButton>
         </div>
 
-        <div className="my-2 bg-white">
+        <div className="my-2 bg-background">
           <MyPageButton>
             <span>빈자리 알림</span>
             <ChevronRight className="text-muted-foreground" />
           </MyPageButton>
         </div>
 
-        <div className="my-2 bg-white">
+        <div className="my-2 bg-background">
           <div className="flex h-12 w-full items-center justify-between px-4 py-2">
             <span className="text-sm">버전 정보</span>
             <span className="text-sm text-muted-foreground">3.8.2</span>
@@ -93,14 +93,14 @@ export const MyPage = () => {
           </MyPageButton>
         </div>
 
-        <div className="my-2 bg-white">
+        <div className="my-2 bg-background">
           <MyPageButton>
             <span>개발자 괴롭히기</span>
             <ChevronRight className="text-muted-foreground" />
           </MyPageButton>
         </div>
 
-        <div className="my-2 bg-white">
+        <div className="my-2 bg-background">
           <MyPageButton>
             <span>오픈소스 라이선스</span>
             <ChevronRight className="text-muted-foreground" />
@@ -117,10 +117,10 @@ export const MyPage = () => {
           </MyPageButton>
         </div>
 
-        <div className="my-2 bg-white">
+        <div className="my-2 bg-background">
           <SignOutDialog
             signOutButton={
-              <MyPageButton className="text-red-500 hover:text-red-500">
+              <MyPageButton className="text-destructive hover:text-destructive">
                 <span>로그아웃</span>
                 <ChevronRight />
               </MyPageButton>

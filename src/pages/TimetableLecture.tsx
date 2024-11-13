@@ -37,7 +37,7 @@ export const TimetableLecture = () => {
         </div>
       </PageHeader>
 
-      <main className="flex-1 bg-zinc-50">
+      <main className="flex-1 bg-muted">
         <div className="my-2 bg-background">
           <div className="flex h-12 w-full items-center justify-start px-4 py-2">
             <div className="basis-1/4 text-sm text-muted-foreground">
@@ -171,7 +171,7 @@ export const TimetableLecture = () => {
               <Button
                 asChild
                 variant="ghost"
-                className="h-12 font-normal text-red-500 hover:text-red-500"
+                className="h-12 font-normal text-destructive hover:text-destructive"
               >
                 <div className="flex h-12 w-full items-center justify-center px-4 py-2">
                   <div className="text-sm">삭제</div>

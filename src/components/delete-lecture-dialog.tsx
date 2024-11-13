@@ -12,6 +12,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+import { buttonVariants } from '@/components/ui/button';
 
 export const DeleteLectureDialog = ({
   deleteBlock,
@@ -31,8 +32,11 @@ export const DeleteLectureDialog = ({
           </AlertDialogDescription>
           <AlertDialogFooter>
             <AlertDialogCancel>취소</AlertDialogCancel>
-            <AlertDialogAction className="bg-red-500 hover:bg-red-600" asChild>
-              <button type="submit">확인</button>
+            <AlertDialogAction
+              className={buttonVariants({ variant: 'destructive' })}
+              type="submit"
+            >
+              확인
             </AlertDialogAction>
           </AlertDialogFooter>
         </Form>
