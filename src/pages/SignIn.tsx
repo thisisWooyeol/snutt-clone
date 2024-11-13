@@ -32,7 +32,7 @@ export const SignIn = () => {
         </div>
         <Button
           type="submit"
-          className="bg-snutt hover:bg-snutt text-snutt-foreground rounded py-3 hover:opacity-80"
+          className="rounded bg-snutt py-3 text-snutt-foreground hover:bg-snutt hover:opacity-80"
         >
           {navigation.state === 'submitting'
             ? '로그인중...'

@@ -17,7 +17,7 @@ export const Landing = () => {
         <div className="flex flex-col items-center gap-10">
           <div className="flex w-full flex-col gap-2.5 px-8 py-0">
             <div className="flex w-full flex-col items-center gap-3.5">
-              <button className="bg-snutt text-snutt-foreground flex w-full items-center justify-center gap-[0.3125rem] self-stretch rounded-md p-3 hover:opacity-80">
+              <button className="flex w-full items-center justify-center gap-[0.3125rem] self-stretch rounded-md bg-snutt p-3 text-snutt-foreground hover:opacity-80">
                 <NavLink to={ROUTES.SIGNIN} className={'w-full'}>
                   로그인
                 </NavLink>
@@ -34,12 +34,12 @@ export const Landing = () => {
           <div className="flex flex-col gap-2.5 px-3 py-0">
             <div className="flex w-full flex-col items-center gap-6">
               <div className="flex items-center justify-center gap-2.5 self-stretch">
-                <hr className="bg-assistive h-[0.04688rem] w-[6rem] flex-1" />
-                <p className="non-italic text-assistive flex-initial items-center text-sm font-medium">
+                <hr className="h-[0.04688rem] w-[6rem] flex-1 bg-assistive" />
+                <p className="non-italic flex-initial items-center text-sm font-medium text-assistive">
                   SNS 계정으로 계속하기
                 </p>
                 {/* TODO add font style */}
-                <hr className="bg-assistive h-[0.04688rem] w-[6rem] flex-1" />
+                <hr className="h-[0.04688rem] w-[6rem] flex-1 bg-assistive" />
               </div>
               <div className="flex items-center gap-3">
                 <button style={{ cursor: 'not-allowed' }}>
