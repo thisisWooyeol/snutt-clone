@@ -1,7 +1,8 @@
-import { redirect } from 'react-router-dom';
+import { type Params, redirect } from 'react-router-dom';
 
 import { type TableService } from '@/services/tableService';
 import { type UserService } from '@/services/userService';
+import { encodedRedirect } from '@/utils/utils';
 
 export const getAuthLoader =
   (userService: UserService) =>
@@ -32,4 +33,32 @@ export const getTimetableRecentLoader =
     console.error(error);
 
     return null;
+  };
+
+export const getTimetableByIdLoader =
+  (tableService: TableService) =>
+  async ({ request, params }: { request: Request; params: Params }) => {
+    const timetableId = params.timetableId;
+
+    if (timetableId === undefined) {
+      const url = new URL(request.url);
+      return encodedRedirect({
+        type: 'error',
+        path: url.pathname,
+        message: '시간표 정보를 찾을 수 없습니다.',
+      });
+    }
+
+    const { data, error } = await tableService.getTimetableById(timetableId);
+    if (data !== null) {
+      return data;
+    }
+    console.error(error);
+
+    const url = new URL(request.url);
+    return encodedRedirect({
+      type: 'error',
+      path: url.pathname,
+      message: '시간표 정보를 찾을 수 없습니다.',
+    });
   };

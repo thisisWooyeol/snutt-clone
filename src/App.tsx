@@ -31,7 +31,11 @@ import {
   getSignInAction,
   getSignOutAction,
 } from '@/utils/actions';
-import { getAuthLoader, getTimetableRecentLoader } from '@/utils/loaders';
+import {
+  getAuthLoader,
+  getTimetableByIdLoader,
+  getTimetableRecentLoader,
+} from '@/utils/loaders';
 
 export const App = () => {
   const { API_BASE_URL } = useGuardContext(EnvContext);
@@ -59,7 +63,7 @@ export const App = () => {
     {
       path: ROUTES.TIMETABLE_LECTURE,
       element: <TimetableLecture />,
-      loader: authLoader,
+      loader: getTimetableByIdLoader(tableService),
     },
     {
       path: ROUTES.TIMETABLE_LECTURELIST,
