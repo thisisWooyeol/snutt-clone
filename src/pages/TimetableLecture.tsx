@@ -2,6 +2,11 @@ import { NavLink, useLoaderData, useParams } from 'react-router-dom';
 
 import type { TimetableDetailed } from '@/api/types';
 import { DestructiveDialog } from '@/components/destructive-dialog';
+import {
+  DetailRow,
+  DetailSection,
+  TimePlaceRow,
+} from '@/components/lecture-detail';
 import { PageHeader } from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { DAYS_OF_WEEK } from '@/pages/Timetable';
@@ -37,134 +42,72 @@ export const TimetableLecture = () => {
       </PageHeader>
 
       <main className="flex-1 bg-muted">
-        <div className="my-2 bg-background">
-          <div className="flex h-12 w-full items-center justify-start px-4 py-2">
-            <div className="basis-1/4 text-sm text-muted-foreground">
-              강의명
-            </div>
-            <div className="text-sm">{currentLecture.course_title}</div>
-          </div>
+        <DetailSection>
+          <DetailRow label="강의명" value={currentLecture.course_title} />
+          <DetailRow label="교수" value={currentLecture.instructor} />
+          <DetailRow
+            label="색상"
+            value={
+              <div className="flex">
+                <div className="size-6 border bg-background" />
+                <div
+                  className={`size-6 bg-lecture-${currentLecture.colorIndex}`}
+                />
+              </div>
+            }
+          />
+        </DetailSection>
 
-          <div className="flex h-12 w-full items-center justify-start px-4 py-2">
-            <div className="basis-1/4 text-sm text-muted-foreground">교수</div>
-            <div className="text-sm">{currentLecture.instructor}</div>
-          </div>
+        <DetailSection>
+          <DetailRow
+            label="강의평점"
+            value={
+              <>
+                <span>--</span>
+                <span className="text-muted-foreground"> (0개)</span>
+              </>
+            }
+          />
+        </DetailSection>
 
-          <div className="flex h-12 w-full items-center justify-start px-4 py-2">
-            <div className="basis-1/4 text-sm text-muted-foreground">색상</div>
-            <div className="flex">
-              <div className="h-6 w-6 border bg-background" />
-              <div
-                className={`h-6 w-6 bg-lecture-${currentLecture.colorIndex}`}
-              />
-            </div>
-          </div>
-        </div>
+        <DetailSection>
+          <DetailRow label="학과" value={currentLecture.department} />
+          <DetailRow label="학년" value={currentLecture.academic_year} />
+          <DetailRow label="학점" value={currentLecture.credit} />
+          <DetailRow label="분류" value={currentLecture.classification} />
+          <DetailRow label="구분" value={currentLecture.category} />
+          <DetailRow label="강좌번호" value={currentLecture.course_number} />
+          <DetailRow label="분반번호" value={currentLecture.lecture_number} />
+          <DetailRow label="정원" value={currentLecture.quota} />
+          <DetailRow label="비고" value={currentLecture.remark} />
+        </DetailSection>
 
-        <div className="my-2 bg-background">
-          <div className="flex h-12 w-full items-center justify-start px-4 py-2">
-            <div className="basis-1/4 text-sm text-muted-foreground">
-              강의평점
-            </div>
-            <div className="text-sm">
-              <span>--</span>
-              <span className="text-muted-foreground"> (0개)</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="my-2 bg-background">
-          <div className="flex h-12 w-full items-center justify-start px-4 py-2">
-            <div className="basis-1/4 text-sm text-muted-foreground">학과</div>
-            <div className="text-sm">{currentLecture.department}</div>
-          </div>
-
-          <div className="flex h-12 w-full items-center justify-start px-4 py-2">
-            <div className="basis-1/4 text-sm text-muted-foreground">힉년</div>
-            <div className="text-sm">{currentLecture.academic_year}</div>
-          </div>
-
-          <div className="flex h-12 w-full items-center justify-start px-4 py-2">
-            <div className="basis-1/4 text-sm text-muted-foreground">힉점</div>
-            <div className="text-sm">{currentLecture.credit}</div>
-          </div>
-
-          <div className="flex h-12 w-full items-center justify-start px-4 py-2">
-            <div className="basis-1/4 text-sm text-muted-foreground">분류</div>
-            <div className="text-sm">{currentLecture.classification}</div>
-          </div>
-
-          <div className="flex h-12 w-full items-center justify-start px-4 py-2">
-            <div className="basis-1/4 text-sm text-muted-foreground">구분</div>
-            <div className="text-sm">{currentLecture.category}</div>
-          </div>
-
-          <div className="flex h-12 w-full items-center justify-start px-4 py-2">
-            <div className="basis-1/4 text-sm text-muted-foreground">
-              강좌번호
-            </div>
-            <div className="text-sm">{currentLecture.course_number}</div>
-          </div>
-
-          <div className="flex h-12 w-full items-center justify-start px-4 py-2">
-            <div className="basis-1/4 text-sm text-muted-foreground">
-              분반번호
-            </div>
-            <div className="text-sm">{currentLecture.lecture_number}</div>
-          </div>
-
-          <div className="flex h-12 w-full items-center justify-start px-4 py-2">
-            <div className="basis-1/4 text-sm text-muted-foreground">정원</div>
-            <div className="text-sm">{currentLecture.quota}</div>
-          </div>
-
-          <div className="flex w-full basis-3 items-center justify-start px-4 py-2">
-            <div className="flex-none basis-1/4 text-sm text-muted-foreground">
-              비고
-            </div>
-            <div className="text-sm">{currentLecture.remark}</div>
-          </div>
-        </div>
-
-        <div className="my-2 bg-background">
-          <div className="flex h-12 w-full items-center justify-start px-4 py-2">
-            <div className="basis-1/4 text-sm text-muted-foreground">
-              시간 및 장소
-            </div>
-          </div>
-
+        <DetailSection>
+          <DetailRow label="시간 및 장소" value="" />
           {currentLecture.class_time_json.map((classTime, index) => (
             <div key={index}>
-              <div className="flex h-9 w-full items-center justify-start px-4 py-2">
-                <div className="basis-1/4 text-sm text-muted-foreground">
-                  시간
-                </div>
-                <div className="text-sm">
-                  {DAYS_OF_WEEK[classTime.day]} {classTime.start_time}~
-                  {classTime.end_time}
-                </div>
-              </div>
-
-              <div className="flex h-9 w-full items-center justify-start px-4 py-2">
-                <div className="basis-1/4 text-sm text-muted-foreground">
-                  장소
-                </div>
-                <div className="text-sm">{classTime.place}</div>
-              </div>
+              <TimePlaceRow
+                dayString={DAYS_OF_WEEK[classTime.day] ?? ''}
+                startTime={classTime.start_time}
+                endTime={classTime.end_time}
+                place={classTime.place}
+              />
             </div>
           ))}
-        </div>
+          {/* Spacer */}
+          <div className="h-2" />
+        </DetailSection>
 
-        <div className="my-2 bg-background">
+        <DetailSection>
           <div className="flex h-12 w-full items-center justify-center px-4 py-2">
             <div className="text-sm">강의계획서</div>
           </div>
           <div className="flex h-12 w-full items-center justify-center px-4 py-2">
             <div className="text-sm">강의평</div>
           </div>
-        </div>
+        </DetailSection>
 
-        <div className="my-2 bg-background">
+        <DetailSection>
           <DestructiveDialog
             trigger={
               <Button
@@ -181,7 +124,7 @@ export const TimetableLecture = () => {
             description="강의를 삭제하시겠습니까?"
             action="확인"
           />
-        </div>
+        </DetailSection>
       </main>
     </div>
   );
