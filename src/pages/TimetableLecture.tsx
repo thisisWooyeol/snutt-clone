@@ -1,7 +1,7 @@
 import { NavLink, useLoaderData, useParams } from 'react-router-dom';
 
 import type { TimetableDetailed } from '@/api/types';
-import { DeleteLectureDialog } from '@/components/delete-lecture-dialog';
+import { DestructiveDialog } from '@/components/destructive-dialog';
 import { PageHeader } from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { DAYS_OF_WEEK } from '@/pages/Timetable';
@@ -165,8 +165,8 @@ export const TimetableLecture = () => {
         </div>
 
         <div className="my-2 bg-background">
-          <DeleteLectureDialog
-            deleteBlock={
+          <DestructiveDialog
+            trigger={
               <Button
                 asChild
                 variant="ghost"
@@ -177,6 +177,9 @@ export const TimetableLecture = () => {
                 </div>
               </Button>
             }
+            title="강의 삭제"
+            description="강의를 삭제하시겠습니까?"
+            action="확인"
           />
         </div>
       </main>

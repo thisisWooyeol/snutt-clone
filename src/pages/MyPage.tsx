@@ -2,10 +2,10 @@ import { ChevronRight, User } from 'lucide-react';
 import { NavLink, useLoaderData } from 'react-router-dom';
 
 import { type UserInfo } from '@/api/types';
+import { DestructiveDialog } from '@/components/destructive-dialog';
 import { MyPageButton } from '@/components/mypage-button';
 import { NavigationBar } from '@/components/navigation-bar';
 import { PageHeader } from '@/components/page-header';
-import { SignOutDialog } from '@/components/sign-out-dialog';
 import { Avatar } from '@/components/ui/avatar';
 import { useSearchParamsAlert } from '@/hooks/useSearchParamsAlert';
 import { ROUTES } from '@/routes';
@@ -118,13 +118,16 @@ export const MyPage = () => {
         </div>
 
         <div className="my-2 bg-background">
-          <SignOutDialog
-            signOutButton={
+          <DestructiveDialog
+            trigger={
               <MyPageButton className="text-destructive hover:text-destructive">
                 <span>로그아웃</span>
                 <ChevronRight />
               </MyPageButton>
             }
+            title="로그아웃"
+            description="로그아웃 하시겠습니까?"
+            action="로그아웃"
           />
         </div>
       </main>
