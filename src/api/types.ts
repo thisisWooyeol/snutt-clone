@@ -112,3 +112,11 @@ export type GetTimetableRecentRequest = { token: string };
 export type GetTimetableRecentResponse = TimetableDetailed;
 export type GetTimetableByIdRequest = { token: string; id: string };
 export type GetTimetableByIdResponse = TimetableDetailed;
+
+export type DeleteTimetableLectureRequest = {
+  token: string;
+  timetableId: string;
+  lectureId: string;
+};
+
+export type DeleteTimetableLectureResponse = TimetableDetailed;

@@ -1,4 +1,6 @@
 import type {
+  DeleteTimetableLectureRequest,
+  DeleteTimetableLectureResponse,
   GetTimetableByIdRequest,
   GetTimetableByIdResponse,
   GetTimetableListRequest,
@@ -8,18 +10,60 @@ import type {
 } from '@/api/types';
 
 export type TableApi = {
+  deleteTimetableLecture: (
+    req: DeleteTimetableLectureRequest,
+  ) => Promise<DeleteTimetableLectureResponse>;
+  getTimetableById: (
+    req: GetTimetableByIdRequest,
+  ) => Promise<GetTimetableByIdResponse>;
   getTimetableList: (
     req: GetTimetableListRequest,
   ) => Promise<GetTimetableListResponse>;
   getTimetableRecent: (
     req: GetTimetableRecentRequest,
   ) => Promise<GetTimetableRecentResponse>;
-  getTimetableById: (
-    req: GetTimetableByIdRequest,
-  ) => Promise<GetTimetableByIdResponse>;
 };
 
 export const getTableApi = (API_BASE_URL: string): TableApi => ({
+  deleteTimetableLecture: async ({
+    token,
+    timetableId,
+    lectureId,
+  }: DeleteTimetableLectureRequest): Promise<DeleteTimetableLectureResponse> => {
+    const response = await fetch(
+      `${API_BASE_URL}/v1/tables/${timetableId}/lecture/${lectureId}`,
+      {
+        method: 'DELETE',
+        headers: {
+          'x-access-token': token,
+        },
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to delete lecture from time table');
+    }
+
+    console.debug('Deleted lecture from time table');
+    return response.json() as Promise<DeleteTimetableLectureResponse>;
+  },
+  getTimetableById: async ({
+    token,
+    id,
+  }: GetTimetableByIdRequest): Promise<GetTimetableByIdResponse> => {
+    const response = await fetch(`${API_BASE_URL}/v1/tables/${id}`, {
+      headers: {
+        'x-access-token': token,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch time table by id');
+    }
+
+    console.debug('Fetched time table by id');
+    return response.json() as Promise<GetTimetableByIdResponse>;
+  },
   getTimetableList: async ({
     token,
   }: GetTimetableListRequest): Promise<GetTimetableListResponse> => {
@@ -51,22 +95,5 @@ export const getTableApi = (API_BASE_URL: string): TableApi => ({
 
     console.debug('Fetched recent time table');
     return response.json() as Promise<GetTimetableRecentResponse>;
-  },
-  getTimetableById: async ({
-    token,
-    id,
-  }: GetTimetableByIdRequest): Promise<GetTimetableByIdResponse> => {
-    const response = await fetch(`${API_BASE_URL}/v1/tables/${id}`, {
-      headers: {
-        'x-access-token': token,
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch time table by id');
-    }
-
-    console.debug('Fetched time table by id');
-    return response.json() as Promise<GetTimetableByIdResponse>;
   },
 });
