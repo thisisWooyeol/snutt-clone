@@ -9,12 +9,13 @@ import { cn } from '@/lib/utils';
 import { ROUTES } from '@/routes';
 
 // Constants
-const DAYS_OF_WEEK = ['월', '화', '수', '목', '금'] as const;
+// FIXME: Handle shared constants
+export const DAYS_OF_WEEK = ['월', '화', '수', '목', '금'];
 const START_OF_DAY = 9;
 const END_OF_DAY = 22;
 const NUM_HOURS = END_OF_DAY - START_OF_DAY + 1;
 const HOURS = Array.from({ length: NUM_HOURS }, (_, i) => START_OF_DAY + i);
-const COLORS = [
+export const COLORS = [
   // FIXME: hardcoded, inline colors
   'bg-red-500',
   'bg-orange-500',

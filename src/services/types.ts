@@ -1,5 +1,6 @@
 import type {
   ChangeNicknameResponse,
+  DeleteTimetableLectureResponse,
   GetTimetableByIdResponse,
   GetTimetableListResponse,
   GetTimetableRecentResponse,
@@ -24,21 +25,18 @@ export type ChangeNicknameResult =
   | { data: null; error: string };
 
 // Types for TableService
-export type GetTimetableListResult =
-  | {
-      data: GetTimetableListResponse;
-      error: null;
-    }
+export type DeleteTimetableLectureResult =
+  | { data: DeleteTimetableLectureResponse; error: null }
   | { data: null; error: string };
-export type GetTimetableRecentResult =
-  | {
-      data: GetTimetableRecentResponse;
-      error: null;
-    }
-  | { data: null; error: string };
+
 export type GetTimetableByIdResult =
-  | {
-      data: GetTimetableByIdResponse;
-      error: null;
-    }
+  | { data: GetTimetableByIdResponse; error: null }
+  | { data: null; error: string };
+
+export type GetTimetableListResult =
+  | { data: GetTimetableListResponse; error: null }
+  | { data: null; error: string };
+
+export type GetTimetableRecentResult =
+  | { data: GetTimetableRecentResponse; error: null }
   | { data: null; error: string };

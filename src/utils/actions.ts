@@ -1,7 +1,8 @@
-import { redirect } from 'react-router-dom';
+import { type Params, redirect } from 'react-router-dom';
 
 import { ROUTES } from '@/routes';
 import type { AuthService } from '@/services/authService';
+import type { TableService } from '@/services/tableService';
 import type { UserService } from '@/services/userService';
 import { encodedRedirect } from '@/utils/utils';
 
@@ -51,4 +52,34 @@ export const getChangeNicknameAction =
       });
     }
     return redirect(ROUTES.MYPAGE_ACCOUNT);
+  };
+
+export const getDeleteLectureAction =
+  (tableService: TableService) =>
+  async ({ request, params }: { request: Request; params: Params }) => {
+    const timetableId = params.timetableId;
+    const lectureId = params.lectureId;
+
+    if (timetableId === undefined || lectureId === undefined) {
+      const url = new URL(request.url);
+      return encodedRedirect({
+        type: 'error',
+        path: url.pathname,
+        message: '강의 정보를 찾을 수 없습니다.',
+      });
+    }
+
+    const { error } = await tableService.deleteTimetableLecture(
+      timetableId,
+      lectureId,
+    );
+    if (error != null) {
+      const url = new URL(request.url);
+      return encodedRedirect({
+        type: 'error',
+        path: url.pathname,
+        message: '강의 삭제에 실패했습니다. 다시 시도해주세요.',
+      });
+    }
+    return redirect(ROUTES.ROOT);
   };
