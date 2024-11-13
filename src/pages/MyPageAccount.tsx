@@ -2,13 +2,17 @@ import { ChevronRight, Copy } from 'lucide-react';
 import { NavLink, useLoaderData } from 'react-router-dom';
 
 import type { UserInfo } from '@/api/types';
-import { MyPageButton } from '@/components/mypage-button';
+import { MyPageItem, MyPageSection } from '@/components/mypage-detail';
 import { PageHeader } from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { ROUTES } from '@/routes';
 
 export const MyPageAccount = () => {
   const userInfo = useLoaderData() as UserInfo;
+
+  const CHEVRON_RIGHT_MUTED = (
+    <ChevronRight className="text-muted-foreground" />
+  );
 
   return (
     <div className="flex h-full flex-col bg-muted">
@@ -24,64 +28,64 @@ export const MyPageAccount = () => {
       </PageHeader>
 
       <main className="flex-1">
-        <div className="my-2 bg-background">
-          <MyPageButton asChild>
-            <NavLink to={ROUTES.MYPAGE_ACCOUNT_CHANGENICKNAME}>
-              <span>닉네임 변경</span>
+        <MyPageSection>
+          <MyPageItem
+            asChild
+            to={ROUTES.MYPAGE_ACCOUNT_CHANGENICKNAME}
+            leftContent={<span>닉네임 변경</span>}
+            rightContent={
               <div className="flex items-center gap-2 text-muted-foreground">
                 <span>
                   {`${userInfo.nickname.nickname}#${userInfo.nickname.tag}`}
                 </span>
-                <ChevronRight className="text-muted-foreground" />
+                {CHEVRON_RIGHT_MUTED}
               </div>
-            </NavLink>
-          </MyPageButton>
-
+            }
+          />
           {/** TODO: 닉네임 복사 toast 띄우기 */}
-          <MyPageButton>
-            <span>닉네임 복사하기</span>
-            <span className="text-sm text-muted-foreground">
-              <Copy />
-            </span>
-          </MyPageButton>
-        </div>
+          <MyPageItem
+            leftContent={<span>닉네임 복사하기</span>}
+            rightContent={
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <Copy />
+              </div>
+            }
+          />
+        </MyPageSection>
 
-        <div className="my-2 bg-background">
-          <div className="flex h-12 w-full items-center justify-between px-4 py-2">
-            <span className="text-sm">아이디</span>
-            <span className="text-sm text-muted-foreground">
-              {userInfo.localId}
-            </span>
+        <MyPageSection>
+          <div className="flex h-12 w-full items-center justify-between px-4 py-2 text-sm">
+            <span>아이디</span>
+            <span className="text-muted-foreground">{userInfo.localId}</span>
           </div>
 
-          <MyPageButton>
-            <span>비밀번호 변경</span>
-            <ChevronRight className="text-muted-foreground" />
-          </MyPageButton>
-        </div>
+          <MyPageItem
+            leftContent={<span>비밀번호 변경</span>}
+            rightContent={CHEVRON_RIGHT_MUTED}
+          />
+        </MyPageSection>
 
-        <div className="my-2 bg-background">
-          <MyPageButton>
-            <span>SNS 계정 연동 및 해제</span>
-            <ChevronRight className="text-muted-foreground" />
-          </MyPageButton>
-        </div>
+        <MyPageSection>
+          <MyPageItem
+            leftContent={<span>SNS 계정 연동 및 해제</span>}
+            rightContent={CHEVRON_RIGHT_MUTED}
+          />
+        </MyPageSection>
 
-        <div className="my-2 bg-background">
-          <div className="flex h-12 w-full items-center justify-between px-4 py-2">
-            <span className="text-sm">이메일</span>
-            <span className="text-sm text-muted-foreground">
-              {userInfo.email}
-            </span>
+        <MyPageSection>
+          <div className="flex h-12 w-full items-center justify-between px-4 py-2 text-sm">
+            <span>이메일</span>
+            <span className="text-muted-foreground">{userInfo.email}</span>
           </div>
-        </div>
+        </MyPageSection>
 
-        <div className="my-2 bg-background">
-          <MyPageButton className="text-destructive hover:text-destructive">
-            <span>회원탈퇴</span>
-            <ChevronRight />
-          </MyPageButton>
-        </div>
+        <MyPageSection>
+          <MyPageItem
+            leftContent={<span>회원탈퇴</span>}
+            rightContent={<ChevronRight />}
+            className="text-destructive hover:text-destructive"
+          />
+        </MyPageSection>
       </main>
     </div>
   );
