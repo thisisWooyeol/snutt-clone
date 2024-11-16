@@ -41,7 +41,12 @@ export const TimetablePage = () => {
         </div>
         <div className="flex items-center gap-3 p-4">
           <Slot className="hover:rounded-md hover:bg-accent">
-            <List strokeWidth={1.5} size={24} />
+            <NavLink
+              to={ROUTES.getTimetableLectureListPath(recentTimetable._id)}
+              state={{ timetable: recentTimetable }}
+            >
+              <List strokeWidth={1.5} size={24} />
+            </NavLink>
           </Slot>
           <Slot className="hover:rounded-md hover:bg-accent">
             <Share2 strokeWidth={1.5} size={20} />
