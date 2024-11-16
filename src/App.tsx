@@ -73,7 +73,7 @@ export const App = () => {
         {
           path: ROUTES.TIMETABLE_LECTURELIST,
           element: <TimetableLectureList />,
-          loader: authLoader,
+          loader: timetableRecentLoader,
         },
         {
           path: ROUTES.TIMETABLE_NEW,
