@@ -1,4 +1,4 @@
-import { NavLink, useLoaderData, useParams } from 'react-router-dom';
+import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 
 import type { TimetableDetailed } from '@/api/types';
 import { DestructiveDialog } from '@/components/destructive-dialog';
@@ -10,7 +10,6 @@ import {
 import { PageHeader } from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { DAYS_OF_WEEK } from '@/pages/Timetable';
-import { ROUTES } from '@/routes';
 
 type TimetableLectureParams = {
   timetableId: string;
@@ -18,6 +17,7 @@ type TimetableLectureParams = {
 };
 
 export const TimetableLecture = () => {
+  const navigate = useNavigate();
   const timetableDetail = useLoaderData() as TimetableDetailed;
   const { lectureId } = useParams<TimetableLectureParams>();
 
@@ -32,10 +32,15 @@ export const TimetableLecture = () => {
     <div className="flex h-full flex-col">
       <PageHeader>
         <div className="flex items-center gap-1 p-4">
-          <Button asChild variant="ghost" size="icon" className="size-6">
-            <NavLink to={ROUTES.ROOT}>
-              <img src="/icons/chevron-left.svg" alt="back" />
-            </NavLink>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="size-6"
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            <img src="/icons/chevron-left.svg" alt="back" />
           </Button>
           <h1 className="font-bold">강의 상세 보기</h1>
         </div>
