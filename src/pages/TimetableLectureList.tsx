@@ -18,7 +18,6 @@ const LectureItem = ({ lecture, timetableId }: LectureItemProps) => (
   <NavLink
     key={lecture._id}
     to={ROUTES.getTimetableLecturePath(timetableId, lecture._id)}
-    className={'hover:opacity-80'}
   >
     <Button
       variant="ghost"
@@ -30,16 +29,22 @@ const LectureItem = ({ lecture, timetableId }: LectureItemProps) => (
           {lecture.instructor} / {lecture.credit}학점
         </div>
       </div>
-      <div className="text-xs">
-        {lecture.department}, {lecture.academic_year}
-      </div>
-      <div className="flex flex-wrap gap-1 text-xs">
-        {lecture.class_time_json.map((classTime, index) => (
-          <span key={index}>
-            {DAYS_OF_WEEK[classTime.day]}({classTime.start_time}~
-            {classTime.end_time})
-          </span>
-        ))}
+      <div className="flex flex-col gap-1 text-xs">
+        <div className="flex flex-wrap items-center gap-1">
+          <img src="/icons/tag.svg" alt="tag" className="size-3" />
+          <div>
+            {lecture.department}, {lecture.academic_year}
+          </div>
+        </div>
+        <div className="flex flex-wrap items-center gap-1">
+          <img src="/icons/clock-5.svg" alt="clock" className="size-3" />
+          {lecture.class_time_json.map((classTime, index) => (
+            <div key={index}>
+              {DAYS_OF_WEEK[classTime.day]}({classTime.start_time}~
+              {classTime.end_time})
+            </div>
+          ))}
+        </div>
       </div>
     </Button>
   </NavLink>
