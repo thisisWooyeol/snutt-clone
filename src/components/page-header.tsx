@@ -1,8 +1,20 @@
 import type { ReactNode } from 'react';
 
-export const PageHeader = ({ children }: { children: ReactNode }) => {
+import { cn } from '@/lib/utils';
+
+type PageHeaderProps = {
+  children: ReactNode;
+  className?: string;
+};
+
+export const PageHeader = ({ children, className }: PageHeaderProps) => {
   return (
-    <header className="sticky top-0 flex w-full justify-between bg-background">
+    <header
+      className={cn(
+        'sticky top-0 flex w-full justify-between bg-background',
+        className,
+      )}
+    >
       {children}
     </header>
   );
