@@ -14,41 +14,72 @@ type LectureItemProps = {
   timetableId: string;
 };
 
-const LectureItem = ({ lecture, timetableId }: LectureItemProps) => (
-  <NavLink
-    key={lecture._id}
-    to={ROUTES.getTimetableLecturePath(timetableId, lecture._id)}
-  >
-    <Button
-      variant="ghost"
-      className="flex h-auto w-full flex-col items-start gap-2 rounded-none px-6 py-4 text-left font-normal"
-    >
-      <div className="flex w-full justify-between">
-        <div className="text-md font-semibold">{lecture.course_title}</div>
-        <div className="text-xs">
-          {lecture.instructor} / {lecture.credit}학점
-        </div>
-      </div>
-      <div className="flex flex-col gap-1 text-xs">
-        <div className="flex flex-wrap items-center gap-1">
-          <img src="/icons/tag.svg" alt="tag" className="size-3" />
-          <div>
-            {lecture.department}, {lecture.academic_year}
+const LectureItem = ({ lecture, timetableId }: LectureItemProps) => {
+  const classTimes: string = lecture.class_time_json
+    .reduce(
+      (acc: string, classTime) =>
+        acc +
+        `${DAYS_OF_WEEK[classTime.day] ?? ''}(${classTime.start_time}~${classTime.end_time}), `,
+      '',
+    )
+    .replace(/, $/, '');
+
+  const places: string = lecture.class_time_json
+    .reduce(
+      (unique: string[], classTime) =>
+        unique.includes(classTime.place)
+          ? unique
+          : [...unique, classTime.place],
+      [],
+    )
+    .reduce((acc: string, place) => acc + `${place} / `, '')
+    .replace(/ \/ $/, '');
+
+  const lectureInfo = [
+    {
+      icon: '/icons/tag.svg',
+      alt: 'tag',
+      text: `${lecture.department}, ${lecture.academic_year}`,
+    },
+    {
+      icon: '/icons/clock-5.svg',
+      alt: 'time',
+      text: classTimes,
+    },
+    {
+      icon: '/icons/map-pin-minus-inside.svg',
+      alt: 'place',
+      text: places,
+    },
+  ];
+
+  return (
+    <NavLink to={ROUTES.getTimetableLecturePath(timetableId, lecture._id)}>
+      <Button
+        variant="ghost"
+        className="flex h-auto w-full flex-col items-start gap-2 rounded-none px-6 py-4 text-left font-normal"
+      >
+        <div className="flex w-full justify-between">
+          <div className="text-md font-semibold">{lecture.course_title}</div>
+          <div className="text-xs">
+            {lecture.instructor} / {lecture.credit}학점
           </div>
         </div>
-        <div className="flex flex-wrap items-center gap-1">
-          <img src="/icons/clock-5.svg" alt="clock" className="size-3" />
-          {lecture.class_time_json.map((classTime, index) => (
-            <div key={index}>
-              {DAYS_OF_WEEK[classTime.day]}({classTime.start_time}~
-              {classTime.end_time})
+        <div className="flex flex-col gap-1 text-xs">
+          {lectureInfo.map(({ icon, alt, text }, index) => (
+            <div
+              key={`${lecture._id}${index}`}
+              className="flex h-4 flex-wrap items-center gap-1"
+            >
+              <img src={icon} alt={alt} className="size-3" />
+              <div>{text}</div>
             </div>
           ))}
         </div>
-      </div>
-    </Button>
-  </NavLink>
-);
+      </Button>
+    </NavLink>
+  );
+};
 
 export const TimetableLectureList = () => {
   const timetableDetail = useLoaderData() as TimetableDetailed;
