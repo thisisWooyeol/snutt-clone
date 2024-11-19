@@ -14,36 +14,74 @@ type LectureItemProps = {
   timetableId: string;
 };
 
-const LectureItem = ({ lecture, timetableId }: LectureItemProps) => (
-  <NavLink
-    key={lecture._id}
-    to={ROUTES.getTimetableLecturePath(timetableId, lecture._id)}
-    className={'hover:opacity-80'}
-  >
-    <Button
-      variant="ghost"
-      className="flex h-auto w-full flex-col items-start gap-2 rounded-none px-6 py-4 text-left font-normal"
-    >
-      <div className="flex w-full justify-between">
-        <div className="text-md font-semibold">{lecture.course_title}</div>
-        <div className="text-xs">
-          {lecture.instructor} / {lecture.credit}학점
+const LectureItem = ({ lecture, timetableId }: LectureItemProps) => {
+  const classTimes: string = lecture.class_time_json
+    .reduce(
+      (acc: string, classTime) =>
+        acc +
+        `${DAYS_OF_WEEK[classTime.day] ?? ''}(${classTime.start_time}~${classTime.end_time}), `,
+      '',
+    )
+    .replace(/, $/, '');
+
+  const places: string = lecture.class_time_json
+    .reduce(
+      (unique: string[], classTime) =>
+        unique.includes(classTime.place)
+          ? unique
+          : [...unique, classTime.place],
+      [],
+    )
+    .reduce((acc: string, place) => acc + `${place} / `, '')
+    .replace(/ \/ $/, '');
+
+  const lectureInfo = [
+    {
+      icon: '/icons/tag.svg',
+      alt: 'tag',
+      text: `${lecture.department}, ${lecture.academic_year}`,
+    },
+    {
+      icon: '/icons/clock-5.svg',
+      alt: 'time',
+      text: classTimes,
+    },
+    {
+      icon: '/icons/map-pin-minus-inside.svg',
+      alt: 'place',
+      text: places,
+    },
+  ];
+
+  return (
+    <NavLink to={ROUTES.getTimetableLecturePath(timetableId, lecture._id)}>
+      <Button
+        variant="ghost"
+        className="flex h-auto w-full flex-col items-start gap-2 rounded-none px-6 py-4 text-left font-normal"
+      >
+        <div className="flex w-full justify-between truncate">
+          <div className="text-md truncate font-semibold">
+            {lecture.course_title}
+          </div>
+          <div className="text-xs">
+            {lecture.instructor} / {lecture.credit}학점
+          </div>
         </div>
-      </div>
-      <div className="text-xs">
-        {lecture.department}, {lecture.academic_year}
-      </div>
-      <div className="flex flex-wrap gap-1 text-xs">
-        {lecture.class_time_json.map((classTime, index) => (
-          <span key={index}>
-            {DAYS_OF_WEEK[classTime.day]}({classTime.start_time}~
-            {classTime.end_time})
-          </span>
-        ))}
-      </div>
-    </Button>
-  </NavLink>
-);
+        <div className="flex flex-col gap-1 text-xs">
+          {lectureInfo.map(({ icon, alt, text }, index) => (
+            <div
+              key={`${lecture._id}${index}`}
+              className="flex min-h-4 flex-wrap items-center gap-1 truncate"
+            >
+              <img src={icon} alt={alt} className="size-3" />
+              <div>{text}</div>
+            </div>
+          ))}
+        </div>
+      </Button>
+    </NavLink>
+  );
+};
 
 export const TimetableLectureList = () => {
   const timetableDetail = useLoaderData() as TimetableDetailed;
@@ -63,16 +101,12 @@ export const TimetableLectureList = () => {
 
       <div className="flex-1 overflow-y-auto">
         {timetableDetail.lecture_list.map((lecture) => (
-          <>
-            <LectureItem
-              key={lecture._id}
-              lecture={lecture}
-              timetableId={timetableDetail._id}
-            />
+          <div key={lecture._id}>
+            <LectureItem lecture={lecture} timetableId={timetableDetail._id} />
             <div className="px-6">
               <Separator decorative={true} className="bg-muted" />
             </div>
-          </>
+          </div>
         ))}
         <NavLink to={ROUTES.getTimetableNewPath(timetableDetail._id)}>
           <Button
