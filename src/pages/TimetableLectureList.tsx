@@ -59,8 +59,10 @@ const LectureItem = ({ lecture, timetableId }: LectureItemProps) => {
         variant="ghost"
         className="flex h-auto w-full flex-col items-start gap-2 rounded-none px-6 py-4 text-left font-normal"
       >
-        <div className="flex w-full justify-between">
-          <div className="text-md font-semibold">{lecture.course_title}</div>
+        <div className="flex w-full justify-between truncate">
+          <div className="text-md truncate font-semibold">
+            {lecture.course_title}
+          </div>
           <div className="text-xs">
             {lecture.instructor} / {lecture.credit}학점
           </div>
@@ -69,7 +71,7 @@ const LectureItem = ({ lecture, timetableId }: LectureItemProps) => {
           {lectureInfo.map(({ icon, alt, text }, index) => (
             <div
               key={`${lecture._id}${index}`}
-              className="flex h-4 flex-wrap items-center gap-1"
+              className="flex min-h-4 flex-wrap items-center gap-1 truncate"
             >
               <img src={icon} alt={alt} className="size-3" />
               <div>{text}</div>
@@ -99,16 +101,12 @@ export const TimetableLectureList = () => {
 
       <div className="flex-1 overflow-y-auto">
         {timetableDetail.lecture_list.map((lecture) => (
-          <>
-            <LectureItem
-              key={lecture._id}
-              lecture={lecture}
-              timetableId={timetableDetail._id}
-            />
+          <div key={lecture._id}>
+            <LectureItem lecture={lecture} timetableId={timetableDetail._id} />
             <div className="px-6">
               <Separator decorative={true} className="bg-muted" />
             </div>
-          </>
+          </div>
         ))}
         <NavLink to={ROUTES.getTimetableNewPath(timetableDetail._id)}>
           <Button
