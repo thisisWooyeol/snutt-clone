@@ -1,4 +1,6 @@
 import type {
+  CreateTimetableLectureRequest,
+  CreateTimetableLectureResponse,
   DeleteTimetableLectureRequest,
   DeleteTimetableLectureResponse,
   GetTimetableByIdRequest,
@@ -10,6 +12,9 @@ import type {
 } from '@/api/types';
 
 export type TableApi = {
+  createTimetableLecture: (
+    req: CreateTimetableLectureRequest,
+  ) => Promise<CreateTimetableLectureResponse>;
   deleteTimetableLecture: (
     req: DeleteTimetableLectureRequest,
   ) => Promise<DeleteTimetableLectureResponse>;
@@ -25,6 +30,28 @@ export type TableApi = {
 };
 
 export const getTableApi = (API_BASE_URL: string): TableApi => ({
+  createTimetableLecture: async ({
+    token,
+    //isForced,
+    timetableId,
+  }: CreateTimetableLectureRequest): Promise<CreateTimetableLectureResponse> => {
+    const response = await fetch(
+      `${API_BASE_URL}/v1/tables/${timetableId}/lecture`,
+      {
+        method: 'POST',
+        headers: {
+          'x-access-token': token,
+        },
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to create lecture from time table');
+    }
+
+    console.debug('Created lecture from time table');
+    return response.json() as Promise<CreateTimetableLectureResponse>;
+  },
   deleteTimetableLecture: async ({
     token,
     timetableId,

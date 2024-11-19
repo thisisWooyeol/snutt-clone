@@ -54,6 +54,36 @@ export const getChangeNicknameAction =
     return redirect(ROUTES.MYPAGE_ACCOUNT);
   };
 
+export const getCreateLectureAction =
+  (tableService: TableService) =>
+  async ({ request, params }: { request: Request; params: Params }) => {
+    const isForced = true;
+    const timetableId = params.timetableId;
+
+    if (timetableId === undefined) {
+      const url = new URL(request.url);
+      return encodedRedirect({
+        type: 'error',
+        path: url.pathname,
+        message: '강의 정보를 찾을 수 없습니다.',
+      });
+    }
+
+    const { error } = await tableService.createTimetableLecture(
+      isForced,
+      timetableId,
+    );
+    if (error != null) {
+      const url = new URL(request.url);
+      return encodedRedirect({
+        type: 'error',
+        path: url.pathname,
+        message: '강의 생성에 실패했습니다. 다시 시도해주세요.',
+      });
+    }
+    return redirect(ROUTES.ROOT);
+  };
+
 export const getDeleteLectureAction =
   (tableService: TableService) =>
   async ({ request, params }: { request: Request; params: Params }) => {
