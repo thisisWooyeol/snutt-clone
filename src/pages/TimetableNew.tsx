@@ -5,6 +5,7 @@ import {
   DetailRow,
   DetailRowForm,
   DetailSection,
+  TimePlaceRowForm,
 } from '@/components/lecture-detail';
 import { PageHeader } from '@/components/page-header';
 import { Button } from '@/components/ui/button';
@@ -80,7 +81,9 @@ export const TimetableNew = () => {
             <div className="flex h-8 w-full items-center justify-start px-4 py-2 text-sm text-muted-foreground">
               시간 및 장소
             </div>
+            <TimePlaceRowForm />
             <Button
+              type="button"
               variant="ghost"
               className="w-full rounded-none text-sm text-muted-foreground"
               disabled

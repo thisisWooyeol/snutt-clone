@@ -1,6 +1,7 @@
 import { type Params, redirect } from 'react-router-dom';
 
-import type { CreateLectureData } from '@/api/types';
+import type { ClassTimeJson, CreateLectureData, Lecture } from '@/api/types';
+import { DAYS_OF_WEEK } from '@/pages/Timetable';
 import { ROUTES } from '@/routes';
 import type { AuthService } from '@/services/authService';
 import type { TableService } from '@/services/tableService';
@@ -72,22 +73,43 @@ export const getCreateLectureAction =
     const formData = await request.formData();
     const course_title = formData.get('course_title') as string;
     const instructor = formData.get('instructor') as string;
-    const credit = Number(formData.get('credit')) as 1 | 2 | 3 | 4;
+    const credit = Number(formData.get('credit')) as Lecture['credit'];
     const remark = formData.get('remark') as string;
 
+    // Build class_time_json
+    const dayString = formData.get('dayString') as string;
+    const day = DAYS_OF_WEEK.findIndex(
+      (d) => d === dayString,
+    ) as ClassTimeJson['day'];
+
     // magic values
-    const class_time_json = [
+    const place = formData.get('place') as string;
+    const start_time = formData.get('start_time') as string;
+    const end_time = formData.get('end_time') as string;
+    const startMinute = start_time
+      .split(':')
+      .reduce((acc, cur) => acc * 60 + +cur, 0);
+    const endMinute = end_time
+      .split(':')
+      .reduce((acc, cur) => acc * 60 + +cur, 0);
+    const len = endMinute - startMinute;
+    const startOfDay = 9;
+    const start = startMinute / 60 - startOfDay;
+
+    const class_time_json: CreateLectureData['class_time_json'] = [
       {
-        day: 2 as const,
-        place: '301-102',
-        startMinute: 1140,
-        endMinute: 1230,
-        start_time: '19:00',
-        end_time: '20:30',
-        len: 90,
-        start: 11.0,
+        day,
+        place,
+        start_time,
+        end_time,
+        startMinute,
+        endMinute,
+        len,
+        start,
       },
     ];
+    // end of building class_time_json
+
     const colorIndex = 0;
     const is_forced = false;
 
