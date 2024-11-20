@@ -25,6 +25,7 @@ export const TimetableLecture = () => {
     (lecture) => lecture._id === lectureId,
   );
   if (currentLecture === undefined) {
+    // TODO: use ErrorPage component
     return <div>강의 정보를 찾을 수 없습니다.</div>;
   }
 

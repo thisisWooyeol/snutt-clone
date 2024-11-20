@@ -30,7 +30,7 @@ export const MyPageChangeNickname = () => {
           <Button
             type="submit"
             variant="ghost"
-            className="rounded-none font-normal"
+            className="size-14 rounded-none font-normal"
             disabled={userInfo.nickname.nickname === nickname}
           >
             저장

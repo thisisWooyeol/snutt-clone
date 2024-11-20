@@ -15,6 +15,11 @@ type LectureItemProps = {
 };
 
 const LectureItem = ({ lecture, timetableId }: LectureItemProps) => {
+  const tags = [lecture.department, lecture.academic_year]
+    .filter((tag) => tag !== undefined)
+    .reduce((acc, tag) => acc + tag + ', ', '')
+    .replace(/, $/, '');
+
   const classTimes: string = lecture.class_time_json
     .reduce(
       (acc: string, classTime) =>
@@ -39,7 +44,7 @@ const LectureItem = ({ lecture, timetableId }: LectureItemProps) => {
     {
       icon: '/icons/tag.svg',
       alt: 'tag',
-      text: `${lecture.department}, ${lecture.academic_year}`,
+      text: tags,
     },
     {
       icon: '/icons/clock-5.svg',
@@ -111,7 +116,7 @@ export const TimetableLectureList = () => {
         <NavLink to={ROUTES.getTimetableNewPath(timetableDetail._id)}>
           <Button
             variant="ghost"
-            className="h-12 w-full justify-between rounded-none p-6 font-normal"
+            className="h-16 w-full justify-between rounded-none p-6 font-normal"
           >
             <span>강의 추가하기</span>
             <ChevronRight />

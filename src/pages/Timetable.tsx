@@ -112,7 +112,7 @@ export const TimetablePage = () => {
                       className={'hover:opacity-80'}
                     >
                       <div
-                        className={`absolute inset-x-0 flex flex-col justify-center p-2 text-center text-xs font-bold text-snutt-foreground bg-lecture-${lecture.colorIndex}`}
+                        className={`absolute inset-x-0 flex flex-col justify-center text-pretty p-2 text-center text-xs font-bold text-snutt-foreground bg-lecture-${lecture.colorIndex % 9}`}
                         style={{
                           top: `${(startHourPosition * 100) / NUM_HOURS}%`,
                           height: `${(duration * 100) / NUM_HOURS}%`,

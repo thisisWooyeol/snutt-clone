@@ -28,6 +28,7 @@ export type ChangeNicknameRequest = {
 export type ChangeNicknameResponse = UserInfo;
 
 // Types for TableApi
+// FIXME: nullable types are not verified
 export type TimetableBasic = {
   _id: string;
   year: number;
@@ -40,33 +41,33 @@ export type TimetableBasic = {
 
 export type TimetableDetailed = {
   _id: string;
-  user_id: string;
   year: number;
   semester: 1 | 2 | 3 | 4;
-  lecture_list: Lecture[];
   title: string;
-  theme: number;
-  themeId: string;
   isPrimary: boolean;
   updated_at: string;
+  user_id: string;
+  lecture_list: Lecture[];
+  theme: number;
+  themeId: string;
 };
 
 export type Lecture = {
   _id: string;
-  academic_year: string;
+  academic_year?: string;
   category: string;
   class_time_json: ClassTimeJson[];
   classification: string;
   credit: 1 | 2 | 3 | 4;
-  department: string;
-  instructor: string;
+  department?: string;
+  instructor?: string;
   lecture_number: string;
-  quota: number;
-  freshman_quota: number;
+  quota?: number;
+  freshman_quota?: number;
   remark: string;
   course_number: string;
   course_title: string;
-  color: {
+  color?: {
     bg: string;
     fg: string;
   };
@@ -106,45 +107,25 @@ export type ClassTimeJson = {
   ];
 };
 
-export type LectureInfo = {
+export type CreateLectureData = {
   course_title: string;
-  instructor: string;
+  instructor?: string;
   credit: 1 | 2 | 3 | 4;
-  class_time_json: [
-    {
-      day: number;
-      place: string;
-      startMinute: number;
-      endMinute: number;
-      start_time: string;
-      end_time: string;
-      len: number;
-      start: number;
-    },
-  ];
+  class_time_json: Omit<ClassTimeJson, 'lectureBuildings'>[];
   remark: string;
-  color: {
+  color?: {
     bg: string;
     fg: string;
   };
   colorIndex: number;
-  is_forced: boolean;
 };
-
-export type GetTimetableListRequest = { token: string };
-export type GetTimetableListResponse = TimetableBasic[];
-export type GetTimetableRecentRequest = { token: string };
-export type GetTimetableRecentResponse = TimetableDetailed;
-export type GetTimetableByIdRequest = { token: string; id: string };
-export type GetTimetableByIdResponse = TimetableDetailed;
 
 export type CreateTimetableLectureRequest = {
   token: string;
-  isForced: boolean;
   timetableId: string;
-  newLecture: LectureInfo;
+  createLectureData: CreateLectureData;
+  isForced: boolean;
 };
-
 export type CreateTimetableLectureResponse = TimetableDetailed;
 
 export type DeleteTimetableLectureRequest = {
@@ -152,5 +133,11 @@ export type DeleteTimetableLectureRequest = {
   timetableId: string;
   lectureId: string;
 };
-
 export type DeleteTimetableLectureResponse = TimetableDetailed;
+
+export type GetTimetableListRequest = { token: string };
+export type GetTimetableListResponse = TimetableBasic[];
+export type GetTimetableRecentRequest = { token: string };
+export type GetTimetableRecentResponse = TimetableDetailed;
+export type GetTimetableByIdRequest = { token: string; id: string };
+export type GetTimetableByIdResponse = TimetableDetailed;

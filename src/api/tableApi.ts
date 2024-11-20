@@ -32,27 +32,27 @@ export type TableApi = {
 export const getTableApi = (API_BASE_URL: string): TableApi => ({
   createTimetableLecture: async ({
     token,
-    //isForced,
     timetableId,
-    newLecture,
+    createLectureData,
+    isForced,
   }: CreateTimetableLectureRequest): Promise<CreateTimetableLectureResponse> => {
     const response = await fetch(
       `${API_BASE_URL}/v1/tables/${timetableId}/lecture`,
       {
         method: 'POST',
         headers: {
-          'x-access-token': token,
           'Content-Type': 'application/json',
+          'x-access-token': token,
         },
-        body: JSON.stringify(newLecture),
+        body: JSON.stringify({ ...createLectureData, is_forced: isForced }),
       },
     );
 
     if (!response.ok) {
-      throw new Error('Failed to create lecture from time table');
+      throw new Error('Failed to create lecture in time table');
     }
 
-    console.debug('Created lecture from time table');
+    console.debug('Created lecture named ', createLectureData.course_title);
     return response.json() as Promise<CreateTimetableLectureResponse>;
   },
   deleteTimetableLecture: async ({
