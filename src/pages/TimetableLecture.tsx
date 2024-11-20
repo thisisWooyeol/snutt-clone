@@ -9,6 +9,7 @@ import {
 } from '@/components/lecture-detail';
 import { PageHeader } from '@/components/page-header';
 import { Button } from '@/components/ui/button';
+import { useSearchParamsAlert } from '@/hooks/useSearchParamsAlert';
 import { DAYS_OF_WEEK } from '@/pages/Timetable';
 
 type TimetableLectureParams = {
@@ -18,6 +19,7 @@ type TimetableLectureParams = {
 
 export const TimetableLecture = () => {
   const navigate = useNavigate();
+  useSearchParamsAlert();
   const timetableDetail = useLoaderData() as TimetableDetailed;
   const { lectureId } = useParams<TimetableLectureParams>();
 

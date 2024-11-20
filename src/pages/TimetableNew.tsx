@@ -9,6 +9,7 @@ import {
 } from '@/components/lecture-detail';
 import { PageHeader } from '@/components/page-header';
 import { Button } from '@/components/ui/button';
+import { useSearchParamsAlert } from '@/hooks/useSearchParamsAlert';
 import { ROUTES } from '@/routes';
 
 type TimeTableNewParams = {
@@ -16,6 +17,7 @@ type TimeTableNewParams = {
 };
 
 export const TimetableNew = () => {
+  useSearchParamsAlert();
   const { timetableId } = useParams<TimeTableNewParams>() as TimeTableNewParams;
   const [courseTitle, setCourseTitle] = useState('');
 
