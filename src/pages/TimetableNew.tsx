@@ -1,23 +1,20 @@
 //import { Form, useActionData, useLoaderData, useNavigate, useParams } from 'react-router-dom';
-import { Form, useNavigate } from 'react-router-dom';
+import { Form, useNavigate, useNavigation } from 'react-router-dom';
 
 import type { LectureInfo } from '@/api/types';
 //import { DestructiveDialog } from '@/components/destructive-dialog';
-import {
-  DetailRow,
-  DetailSection,
-  TimePlaceRow,
-} from '@/components/lecture-detail';
+import { DetailRow, DetailSection } from '@/components/lecture-detail';
 import { PageHeader } from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import { DAYS_OF_WEEK } from '@/pages/Timetable';
 
 export const TimetableNew = () => {
   const navigate = useNavigate();
+  const navigation = useNavigation();
   //const timetableDetail = useLoaderData() as TimetableDetailed;
   //const { lectureId } = useParams<TimetableLectureParams>();
 
-  const newTable: LectureInfo = {
+  const newInfo: LectureInfo = {
     course_title: '',
     instructor: '',
     credit: 3,
@@ -42,7 +39,7 @@ export const TimetableNew = () => {
     is_forced: true,
   };
 
-  const currentLecture = newTable;
+  const currentLecture = newInfo;
   // if (currentLecture === undefined) {
   //   return <div>강의 정보를 찾을 수 없습니다.</div>;
   // }
@@ -68,7 +65,7 @@ export const TimetableNew = () => {
           >
             <img src="/icons/chevron-left.svg" alt="back" />
           </Button>
-          <h1 className="font-bold">강의 생성하기</h1>
+          <h1 className="font-bold">{'강의 추가하기'}</h1>
         </div>
       </PageHeader>
 
@@ -78,6 +75,7 @@ export const TimetableNew = () => {
             <div className="flex-none basis-1/4 text-sm text-muted-foreground">
               {'강의명'}
             </div>
+            <label htmlFor="course_title"></label>
             <input
               type="text"
               name="course_title"
@@ -91,12 +89,12 @@ export const TimetableNew = () => {
             <div className="flex-none basis-1/4 text-sm text-muted-foreground">
               {'교수'}
             </div>
+            <label htmlFor="instructor"></label>
             <input
               type="text"
               name="instructor"
               className="text-sm"
               placeholder="(없음)"
-              required
             />
           </div>
 
@@ -104,6 +102,7 @@ export const TimetableNew = () => {
             <div className="flex-none basis-1/4 text-sm text-muted-foreground">
               {'학점'}
             </div>
+            <label htmlFor="credit"></label>
             <input
               type="text"
               name="credit"
@@ -130,12 +129,12 @@ export const TimetableNew = () => {
             <div className="flex-none basis-1/4 text-sm text-muted-foreground">
               {'비고'}
             </div>
+            <label htmlFor="remark"></label>
             <input
               type="text"
               name="remark"
               className="text-sm"
               placeholder="(없음)"
-              required
             />
           </div>
         </DetailSection>
@@ -144,12 +143,28 @@ export const TimetableNew = () => {
           <DetailRow label="시간 및 장소" value="" />
           {currentLecture.class_time_json.map((classTime, index) => (
             <div key={index}>
-              <TimePlaceRow
-                dayString={DAYS_OF_WEEK[classTime.day] ?? ''}
-                startTime={classTime.start_time}
-                endTime={classTime.end_time}
-                place={classTime.place}
-              />
+              <div className="flex h-8 w-full items-center justify-start px-4 py-2">
+                <div className="flex-none basis-1/4 text-sm text-muted-foreground">
+                  시간
+                </div>
+                <div className="text-sm">
+                  {' '}
+                  {`${DAYS_OF_WEEK[classTime.day] ?? ''} ${classTime.start_time} ~ ${classTime.end_time}`}
+                </div>
+              </div>
+
+              <div className="flex h-8 w-full items-center justify-start px-4 py-2">
+                <div className="flex-none basis-1/4 text-sm text-muted-foreground">
+                  {'장소'}
+                </div>
+                <label htmlFor="place"></label>
+                <input
+                  type="text"
+                  name="place"
+                  className="text-sm"
+                  placeholder="(없음)"
+                />
+              </div>
             </div>
           ))}
           {/* Spacer */}
@@ -158,12 +173,18 @@ export const TimetableNew = () => {
 
         <DetailSection>
           <Button
-            asChild
+            type="submit"
             variant="ghost"
             className="h-12 font-normal text-primary hover:text-primary"
           >
             <div className="flex h-12 w-full items-center justify-center px-4 py-2">
-              <div className="text-sm">저장</div>
+              <div className="text-sm">
+                {navigation.state === 'submitting'
+                  ? '저장중...'
+                  : navigation.state === 'loading'
+                    ? '저장하기'
+                    : '저장하기'}
+              </div>
             </div>
           </Button>
         </DetailSection>

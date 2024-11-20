@@ -142,6 +142,7 @@ export type CreateTimetableLectureRequest = {
   token: string;
   isForced: boolean;
   timetableId: string;
+  newLecture: LectureInfo;
 };
 
 export type CreateTimetableLectureResponse = TimetableDetailed;
