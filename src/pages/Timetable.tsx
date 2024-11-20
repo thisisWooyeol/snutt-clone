@@ -118,7 +118,9 @@ export const TimetablePage = () => {
                           height: `${(duration * 100) / NUM_HOURS}%`,
                         }}
                       >
-                        <p>{lecture.course_title}</p>
+                        <p className="max-h-full overflow-y-hidden text-ellipsis">
+                          {lecture.course_title}
+                        </p>
                         <p>{classTime.place}</p>
                       </div>
                     </NavLink>

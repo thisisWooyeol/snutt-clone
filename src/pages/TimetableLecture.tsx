@@ -57,7 +57,7 @@ export const TimetableLecture = () => {
               <div className="flex">
                 <div className="size-6 border bg-background" />
                 <div
-                  className={`size-6 bg-lecture-${currentLecture.colorIndex}`}
+                  className={`size-6 bg-lecture-${currentLecture.colorIndex % 9}`}
                 />
               </div>
             }
