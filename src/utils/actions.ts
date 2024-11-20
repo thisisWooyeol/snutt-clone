@@ -75,7 +75,8 @@ export const getCreateLectureAction =
     const instructor = formData.get('instructor') as string;
     const credit = Number(formData.get('credit')) as Lecture['credit'];
     const remark = formData.get('remark') as string;
-    const isForced = false; // FIXME: magic value
+    // ! FIXME: Warning, it may harm the user experience
+    const isForced = true; // FIXME: magic value
 
     // Build class_time_json
     const dayString = formData.get('dayString') as string;
