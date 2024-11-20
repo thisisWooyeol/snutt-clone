@@ -118,13 +118,13 @@ export type CreateLectureData = {
     fg: string;
   };
   colorIndex: number;
-  is_forced: boolean;
 };
 
 export type CreateTimetableLectureRequest = {
   token: string;
   timetableId: string;
   createLectureData: CreateLectureData;
+  isForced: boolean;
 };
 export type CreateTimetableLectureResponse = TimetableDetailed;
 

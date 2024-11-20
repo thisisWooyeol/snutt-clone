@@ -79,6 +79,7 @@ export const App = () => {
         {
           path: ROUTES.TIMETABLE_NEW,
           element: <TimetableNew />,
+          loader: getTimetableByIdLoader(tableService),
           action: getCreateLectureAction(tableService),
         },
         {

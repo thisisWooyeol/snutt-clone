@@ -34,6 +34,7 @@ export const getTableApi = (API_BASE_URL: string): TableApi => ({
     token,
     timetableId,
     createLectureData,
+    isForced,
   }: CreateTimetableLectureRequest): Promise<CreateTimetableLectureResponse> => {
     const response = await fetch(
       `${API_BASE_URL}/v1/tables/${timetableId}/lecture`,
@@ -43,7 +44,7 @@ export const getTableApi = (API_BASE_URL: string): TableApi => ({
           'Content-Type': 'application/json',
           'x-access-token': token,
         },
-        body: JSON.stringify(createLectureData),
+        body: JSON.stringify({ ...createLectureData, is_forced: isForced }),
       },
     );
 

@@ -75,6 +75,7 @@ export const getCreateLectureAction =
     const instructor = formData.get('instructor') as string;
     const credit = Number(formData.get('credit')) as Lecture['credit'];
     const remark = formData.get('remark') as string;
+    const isForced = false; // magic value
 
     // Build class_time_json
     const dayString = formData.get('dayString') as string;
@@ -111,8 +112,7 @@ export const getCreateLectureAction =
     // end of building class_time_json
 
     const colorIndex = 0;
-    const is_forced = false;
-
+    
     const createLectureData: CreateLectureData = {
       course_title,
       instructor,
@@ -120,12 +120,12 @@ export const getCreateLectureAction =
       class_time_json,
       remark,
       colorIndex,
-      is_forced,
     };
 
     const { error } = await tableService.createTimetableLecture(
       timetableId,
       createLectureData,
+      isForced,
     );
     if (error != null) {
       const url = new URL(request.url);
