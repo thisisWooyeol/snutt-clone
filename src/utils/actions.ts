@@ -1,5 +1,6 @@
 import { type Params, redirect } from 'react-router-dom';
 
+import type { LectureInfo } from '@/api/types';
 import { ROUTES } from '@/routes';
 import type { AuthService } from '@/services/authService';
 import type { TableService } from '@/services/tableService';
@@ -52,6 +53,64 @@ export const getChangeNicknameAction =
       });
     }
     return redirect(ROUTES.MYPAGE_ACCOUNT);
+  };
+
+export const getCreateLectureAction =
+  (tableService: TableService) =>
+  async ({ request, params }: { request: Request; params: Params }) => {
+    const formData = await request.formData();
+    //const credits = parseInt(formData.get('credit') as string);
+    const newLecture: LectureInfo = {
+      course_title: formData.get('course_title') as string,
+      instructor: formData.get('instructor') as string,
+      credit: parseInt(formData.get('credit') as string) as 1 | 2 | 3 | 4,
+      class_time_json: [
+        {
+          day: 2,
+          place: formData.get('place') as string,
+          startMinute: 1140,
+          endMinute: 1230,
+          start_time: '19:00',
+          end_time: '20:30',
+          len: 0,
+          start: 0,
+        },
+      ],
+      remark: formData.get('remark') as string,
+      color: {
+        bg: '',
+        fg: '',
+      },
+      colorIndex: 0,
+      is_forced: true,
+    };
+
+    const isForced = true;
+    const timetableId = params.timetableId;
+
+    if (timetableId === undefined) {
+      const url = new URL(request.url);
+      return encodedRedirect({
+        type: 'error',
+        path: url.pathname,
+        message: '강의 정보를 찾을 수 없습니다.',
+      });
+    }
+
+    const { error } = await tableService.createTimetableLecture(
+      isForced,
+      timetableId,
+      newLecture,
+    );
+    if (error != null) {
+      const url = new URL(request.url);
+      return encodedRedirect({
+        type: 'error',
+        path: url.pathname,
+        message: '강의 생성에 실패했습니다. 다시 시도해주세요.',
+      });
+    }
+    return redirect(ROUTES.ROOT);
   };
 
 export const getDeleteLectureAction =

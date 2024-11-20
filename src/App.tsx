@@ -28,6 +28,7 @@ import { getTableService } from '@/services/tableService';
 import { getUserService } from '@/services/userService';
 import {
   getChangeNicknameAction,
+  getCreateLectureAction,
   getDeleteLectureAction,
   getSignInAction,
   getSignOutAction,
@@ -78,7 +79,9 @@ export const App = () => {
         {
           path: ROUTES.TIMETABLE_NEW,
           element: <TimetableNew />,
-          loader: authLoader,
+          //loader: timetableRecentLoader,
+          loader: getTimetableByIdLoader(tableService),
+          action: getCreateLectureAction(tableService),
         },
         {
           path: ROUTES.MYPAGE,

@@ -1,5 +1,7 @@
 import { type TableApi } from '@/api/tableApi';
+import { type LectureInfo } from '@/api/types';
 import type {
+  CreateTimetableLectureResult,
   DeleteTimetableLectureResult,
   GetTimetableByIdResult,
   GetTimetableListResult,
@@ -7,6 +9,11 @@ import type {
 } from '@/services/types';
 
 export type TableService = {
+  createTimetableLecture: (
+    isForced: boolean,
+    timetableId: string,
+    newLecture: LectureInfo,
+  ) => Promise<CreateTimetableLectureResult>;
   deleteTimetableLecture: (
     timetableId: string,
     lectureId: string,
@@ -17,6 +24,29 @@ export type TableService = {
 };
 
 export const getTableService = (tableApi: TableApi): TableService => ({
+  createTimetableLecture: async (
+    isForced: boolean,
+    timetableId: string,
+    newLecture: LectureInfo,
+  ): Promise<CreateTimetableLectureResult> => {
+    try {
+      const token = localStorage.getItem('token');
+      if (token === null) throw new Error('Token not found');
+
+      const data = await tableApi.createTimetableLecture({
+        token,
+        isForced,
+        timetableId,
+        newLecture,
+      });
+      return { data, error: null };
+    } catch (error: unknown) {
+      return {
+        data: null,
+        error: error instanceof Error ? error.message : 'Unknown error',
+      };
+    }
+  },
   deleteTimetableLecture: async (
     timetableId: string,
     lectureId: string,

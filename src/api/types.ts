@@ -106,12 +106,46 @@ export type ClassTimeJson = {
   ];
 };
 
+export type LectureInfo = {
+  course_title: string;
+  instructor: string;
+  credit: 1 | 2 | 3 | 4;
+  class_time_json: [
+    {
+      day: number;
+      place: string;
+      startMinute: number;
+      endMinute: number;
+      start_time: string;
+      end_time: string;
+      len: number;
+      start: number;
+    },
+  ];
+  remark: string;
+  color: {
+    bg: string;
+    fg: string;
+  };
+  colorIndex: number;
+  is_forced: boolean;
+};
+
 export type GetTimetableListRequest = { token: string };
 export type GetTimetableListResponse = TimetableBasic[];
 export type GetTimetableRecentRequest = { token: string };
 export type GetTimetableRecentResponse = TimetableDetailed;
 export type GetTimetableByIdRequest = { token: string; id: string };
 export type GetTimetableByIdResponse = TimetableDetailed;
+
+export type CreateTimetableLectureRequest = {
+  token: string;
+  isForced: boolean;
+  timetableId: string;
+  newLecture: LectureInfo;
+};
+
+export type CreateTimetableLectureResponse = TimetableDetailed;
 
 export type DeleteTimetableLectureRequest = {
   token: string;
