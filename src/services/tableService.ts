@@ -12,7 +12,7 @@ export type TableService = {
   createTimetableLecture: (
     timetableId: string,
     createLectureData: CreateLectureData,
-    isForced: boolean
+    isForced: boolean,
   ) => Promise<CreateTimetableLectureResult>;
   deleteTimetableLecture: (
     timetableId: string,

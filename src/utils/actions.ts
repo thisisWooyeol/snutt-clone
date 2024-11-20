@@ -75,7 +75,7 @@ export const getCreateLectureAction =
     const instructor = formData.get('instructor') as string;
     const credit = Number(formData.get('credit')) as Lecture['credit'];
     const remark = formData.get('remark') as string;
-    const isForced = false; // magic value
+    const isForced = false; // FIXME: magic value
 
     // Build class_time_json
     const dayString = formData.get('dayString') as string;
@@ -83,7 +83,6 @@ export const getCreateLectureAction =
       (d) => d === dayString,
     ) as ClassTimeJson['day'];
 
-    // magic values
     const place = formData.get('place') as string;
     const start_time = formData.get('start_time') as string;
     const end_time = formData.get('end_time') as string;
@@ -94,7 +93,7 @@ export const getCreateLectureAction =
       .split(':')
       .reduce((acc, cur) => acc * 60 + +cur, 0);
     const len = endMinute - startMinute;
-    const startOfDay = 9;
+    const startOfDay = 9; // FIXME: magic value
     const start = startMinute / 60 - startOfDay;
 
     const class_time_json: CreateLectureData['class_time_json'] = [
@@ -111,8 +110,8 @@ export const getCreateLectureAction =
     ];
     // end of building class_time_json
 
-    const colorIndex = 0;
-    
+    const colorIndex = 0; // FIXME: magic value
+
     const createLectureData: CreateLectureData = {
       course_title,
       instructor,
